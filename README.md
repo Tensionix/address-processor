@@ -8,14 +8,14 @@
   <a href="https://github.com/Tensionix/address-processor/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/address-processor?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Версия 1.7.4** · 2026-09-04 · 9.3 MB
+**Версия 1.7.4** · 2026-09-04 · 218.3 MB
 
-- [Скачать напрямую](https://dl.audion.dev/address-processor/1.7.4/Audion_Address_Processor_v1.7.4.zip) — быстрая раздача, без ограничений
+- [Скачать напрямую](https://audion.dev/get/address-processor/1.7.4/Audion_Address_Processor_v1.7.4_Full.zip) — быстрая раздача, без ограничений
 - [Страница проекта](https://audion.dev/downloads/address-processor) — все версии и установка
 
 <p align="center"><img src="docs/screenshot.png" alt="Окно программы" width="560"></p>
 
-`SHA-256: 1c142119208e4aa36fa79fbaa5a40c0de7d7ccde1e8b26e6bf1c1e240b773220`
+`SHA-256: f7be1f313fa315cd40b4b3aeba2e15f7fb604f2cfd5adfe9d9c1a062979e40e3`
 
 ---
 
