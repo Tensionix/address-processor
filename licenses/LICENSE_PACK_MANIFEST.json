@@ -1,0 +1,36 @@
+{
+  "schema": "audion.build_licenses.pack_manifest.v1",
+  "generated_utc": "2026-09-04T02:24:52Z",
+  "run_id": "20260904T022438Z_audion-address-processor_ab42ee07",
+  "project_id": "audion-address-processor",
+  "project_name": "Audion Address Processor",
+  "scan_root": "S:\\Release\\Audion Address Processor",
+  "output_dir": "S:\\Release\\Audion Address Processor\\licenses",
+  "files": [
+    {
+      "name": "THIRD_PARTY_NOTICES.txt",
+      "sha256": "e778109a8685c340c867a76f1ef998bc3855da6a483280581ce63921e0b026f1",
+      "size": 614351
+    },
+    {
+      "name": "SOURCE_CODE_AVAILABILITY.txt",
+      "sha256": "9766e946a33dbc866159a1d91ebc3dee430c81f8e8ca63ab123e51b20310e85d",
+      "size": 1357
+    },
+    {
+      "name": "COMPONENTS.json",
+      "sha256": "4828bc4f3d66bfd020396d954367653c0d72f034605f9cd1a1906dafb1e6045e",
+      "size": 159128
+    },
+    {
+      "name": "_records.json",
+      "sha256": "6860d2b484c64f798f4333be4dd858b6879e99d6d24942d42ab7546b5e1b384a",
+      "size": 38838
+    },
+    {
+      "name": "LICENSE_SCAN_REPORT.md",
+      "sha256": "1b723fd744d1cc4157327fba73d583a8766d813ff049e4caacbfd48ae4554077",
+      "size": 6939
+    }
+  ]
+}

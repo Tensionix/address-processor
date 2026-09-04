@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "generator": "Audion Build Orchestrator",
+  "batch_id": "20260904T085712",
+  "created_at": "2026-09-04T08:57:12.6969918+06:00",
+  "project_name": "Audion Address Processor",
+  "version": "1.7.4",
+  "version_file": "config\\version.json",
+  "source_root": "Audion Address Processor",
+  "archive_root_entry": "Audion Address Processor",
+  "archive_name": "Audion_Address_Processor_v1.7.4.zip",
+  "archive_path": "Audion_Address_Processor_v1.7.4.zip",
+  "release_kind": "Git",
+  "public": true,
+  "audience": "public",
+  "secrets_sanitized": true,
+  "git_metadata": "excluded",
+  "github_directories": "excluded",
+  "github_directories_excluded": 0,
+  "workshop_files": "excluded",
+  "name_includes_date": false,
+  "compression": {
+    "tool": "7-Zip",
+    "format": "zip",
+    "level": 1,
+    "verify": false
+  },
+  "builder": "builder_main.cmd",
+  "cleanup": "cleanup_project.cmd",
+  "map_path": "build_map.json"
+}

@@ -1,0 +1,51 @@
+# Project metadata.
+# Основные сведения о проекте.
+project:
+  name: "Audion Address Processor"
+  version: "1.0.0"
+
+# Address alignment engine settings.
+# Настройки движка сопоставления адресов.
+address_aligner:
+  # City name removed from addresses during normalization.
+  # Город, который удаляется из адресов при нормализации.
+  city: "тюмень"
+
+  # Ground truth address column. Leave "" for automatic detection.
+  # Эталонная адресная колонка. Если оставить "", движок выберет ее автоматически.
+  ground_truth_column: "B"
+
+  # Address columns to align, separated by commas.
+  # Адресные колонки для сопоставления через запятую.
+  # Example: "C,D" aligns C and D against the ground truth column.
+  # Пример: "C,D" означает сопоставлять C и D с эталоном.
+  # Leave "" to align max_auto_align_columns columns to the right of the ground truth.
+  # Если оставить "", движок возьмет max_auto_align_columns колонок справа от эталона.
+  # Kraken mode: one distant target column carries all columns between ground truth and target.
+  # Режим Кракена: одна дальняя target-колонка тащит весь блок между эталоном и target.
+  # Example: ground_truth_column: "A" and target_columns: "AC" align AC and move B:AB with it.
+  # Пример: ground_truth_column: "A" и target_columns: "AC" сопоставляют AC и двигают B:AB вместе с ней.
+  target_columns: "C,D"
+
+  # Linked-column behavior for values attached to raw target addresses.
+  # Поведение связанных колонок, значения которых должны ехать вместе с сырым адресом.
+  # Values: auto, none, left, right, between.
+  # Значения: auto, none, left, right, between.
+  # auto keeps the legacy behavior; none means pure address-column alignment.
+  # auto сохраняет прежнюю автоматику; none означает чистое сопоставление адресных колонок.
+  companion_mode: "auto"
+
+  # Number of columns to align in automatic target-column mode.
+  # Сколько колонок справа от эталона брать в авто-режиме, если target_columns пустой.
+  max_auto_align_columns: 5
+
+# Safety limits for maintenance operations.
+# Ограничения безопасности для обслуживающих операций.
+safety:
+  # true = clean only project-managed folders, never arbitrary paths.
+  # true = очищать только управляемые папки проекта, а не произвольные пути.
+  cleanup_managed_workspace_only: true
+
+  # true = never delete original files from input.
+  # true = никогда не удалять исходные файлы из input.
+  never_delete_original_inputs: true

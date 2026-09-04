@@ -1,0 +1,1528 @@
+# Tool description for the GUI and service shell.
+# Описание инструмента для GUI и сервисной оболочки.
+tool:
+  # Internal project identifier.
+  # Внутренний идентификатор проекта.
+  id: audion_address_aligner
+  # Display name shown in the interface.
+  # Название, которое отображается в интерфейсе.
+  name: "Audion Address Processor"
+  # Tool category.
+  # Категория инструмента.
+  category: "Address Processing"
+  # Tool/configuration version.
+  # Версия конфигурации/инструмента.
+  version: "1.0.0"
+
+# Project-managed folders.
+# Управляемые папки проекта.
+paths:
+  # Input Excel files.
+  # Входные Excel-файлы.
+  input: "input"
+  # Generated results.
+  # Готовые результаты.
+  output: "output"
+  # Operation logs.
+  # Журналы операций.
+  logs: "logs"
+  # Diagnostic reports.
+  # Диагностические отчеты.
+  report: "report"
+  # Workspace for intermediate files.
+  # Рабочая папка для промежуточных файлов.
+  workspace: "workspace"
+  # Configuration files.
+  # Конфигурационные файлы.
+  config: "config"
+  # Archives and release artifacts.
+  # Архивы и релизные артефакты.
+  release: "release"
+
+# GUI startup settings.
+# Настройки запуска GUI.
+ui:
+  # Window/page title.
+  # Заголовок окна/страницы.
+  title: "Audion Address Processor"
+  # Local GUI host.
+  # Локальный адрес GUI.
+  host: "127.0.0.1"
+  # GUI port.
+  # Порт GUI.
+  port: 8080
+  # true = run as a native window, false = regular web UI.
+  # true = запускать как native-окно, false = обычный web-интерфейс.
+  native: false
+  # true = reload GUI on code changes; portable builds usually keep this false.
+  # true = перезагружать GUI при изменениях кода; для portable-сборки обычно false.
+  reload: false
+  # true = open browser when GUI starts.
+  # true = открывать браузер при запуске GUI.
+  open_browser: true
+
+# Main operations shown in the GUI.
+# Основные операции, отображаемые в GUI.
+operations:
+  - id: run_address_aligner
+    # English and Russian button title.
+    # Английское и русское название кнопки.
+    title: "Run address aligner"
+    title_ru: "Выровнять адреса"
+    # English and Russian operation description.
+    # Английское и русское описание операции.
+    description: "Process .xlsx files from input and write aligned workbooks to output."
+    description_ru: "Обработать .xlsx-файлы из исходников и записать выровненные книги в результаты."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:run_address_aligner"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+  - id: run_parser_diagnostic
+    # English and Russian button title.
+    # Английское и русское название кнопки.
+    title: "Run parser diagnostic"
+    title_ru: "Диагностика"
+    # English and Russian operation description.
+    # Английское и русское описание операции.
+    description: "Extract parsed address components from input files for inspection."
+    description_ru: "Извлечь компоненты адресов из исходных файлов для проверки парсера."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:run_parser_diagnostic"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+  - id: validate_input
+    # English and Russian button title.
+    # Английское и русское название кнопки.
+    title: "Validate input"
+    title_ru: "Проверить исходники"
+    # English and Russian operation description.
+    # Английское и русское описание операции.
+    description: "Check the input folder and list supported spreadsheets."
+    description_ru: "Проверить исходные файлы и показать найденные таблицы."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:validate_input"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+# Command-tree operations shown in the GUI when present.
+# Операции дерева команд GUI, если этот раздел присутствует.
+operation_groups:
+  - id: run_table_comparison
+    title: "Compare tables A and B"
+    title_ru: "СРАВНИТЬ ДВЕ ТАБЛИЦЫ"
+    description: "Choose any two workbooks, assemble each address from its configured columns, normalize and match buildings, and create a separate comparison workbook."
+    description_ru: "Выбрать любые две книги, собрать адреса из указанных колонок, нормализовать и сопоставить дома, затем создать отдельную книгу сравнения."
+    service: "system_core.services.address_aligner_service:run_table_comparison"
+    kind: "safe"
+    fields:
+      - id: file_a
+        type: "xlsx_file_picker"
+        group: "files"
+        label: "Table A"
+        label_ru: "Таблица A"
+        default: ""
+        hint: "Choose the first Excel workbook from any folder."
+        hint_ru: "Выберите первую книгу Excel в любой папке. Переносить её в input не нужно."
+        refresh_on_change: true
+      - id: file_b
+        type: "xlsx_file_picker"
+        group: "files"
+        label: "Table B"
+        label_ru: "Таблица B"
+        default: ""
+        hint: "Choose the second Excel workbook from any folder."
+        hint_ru: "Выберите вторую книгу Excel в любой папке. Переносить её в input не нужно."
+        refresh_on_change: true
+      - id: sheet_a
+        type: "select"
+        group: "sheets"
+        label: "Worksheet A"
+        label_ru: "Лист A"
+        default: ""
+        depends_on: ["file_a"]
+        options_source: "system_core.services.address_aligner_service:comparison_sheet_a_options"
+        cache_seconds: 3
+      - id: sheet_b
+        type: "select"
+        group: "sheets"
+        label: "Worksheet B"
+        label_ru: "Лист B"
+        default: ""
+        depends_on: ["file_b"]
+        options_source: "system_core.services.address_aligner_service:comparison_sheet_b_options"
+        cache_seconds: 3
+      - id: address_columns_a
+        type: "text"
+        group: "addresses"
+        label: "Address columns A"
+        label_ru: "Адресные колонки A"
+        default: ""
+        placeholder: "B или B,C,D"
+        hint: "Empty = auto-detect. Or enter one column/several address slots in assembly order."
+        hint_ru: "Пусто = автопоиск. Или укажите одну колонку/несколько слотов в порядке сборки."
+      - id: address_columns_b
+        type: "text"
+        group: "addresses"
+        label: "Address columns B"
+        label_ru: "Адресные колонки B"
+        default: ""
+        placeholder: "F или F,H,J"
+        hint: "Empty = auto-detect. Columns may be in different positions than in A."
+        hint_ru: "Пусто = автопоиск. Колонки могут стоять не там, где в A."
+      - id: start_row_a
+        type: "number"
+        group: "rows"
+        label: "First data row A"
+        label_ru: "Первая строка данных A"
+        default: 5
+      - id: start_row_b
+        type: "number"
+        group: "rows"
+        label: "First data row B"
+        label_ru: "Первая строка данных B"
+        default: 7
+      - id: sort_addresses
+        type: "checkbox"
+        group: "options"
+        label: "Sort addresses within groups"
+        label_ru: "Сортировать адреса внутри групп"
+        default: false
+        hint: "Off: matched rows first in A order, then only A and only B. On: the same three groups are additionally sorted by normalized address."
+        hint_ru: "Выкл.: сначала сопоставленные в порядке A, затем только A и только B. Вкл.: те же три группы дополнительно сортируются по нормализованному адресу."
+
+  - id: run_safe_table_join
+    title: "Safe two-table join"
+    title_ru: "ПЕРЕНЕСТИ КОЛОНКИ ПО АДРЕСУ"
+    description: "Copy the primary XLSX intact and append data matched by a normalized building address. Formulas, formatting, sheets, and row order in the primary workbook are preserved through Excel automation."
+    description_ru: "Найти одинаковые дома в двух книгах и перенести выбранные колонки из источника в соответствующие строки основной таблицы. Простое копирование строк для этого не подходит; оформление, формулы и порядок основной книги сохраняются."
+    service: "system_core.services.address_aligner_service:run_safe_table_join"
+    kind: "safe"
+    fields:
+      - id: primary_file
+        type: "xlsx_file_picker"
+        group: "files"
+        label: "Primary workbook"
+        label_ru: "Куда переносим данные"
+        default: ""
+        hint: "The workbook is copied to output and is never overwritten."
+        hint_ru: "Выберите книгу, которую нужно дополнить. Оригинал не изменится — результат будет отдельным файлом в output."
+        refresh_on_change: true
+      - id: source_file
+        type: "xlsx_file_picker"
+        group: "files"
+        label: "Source workbook"
+        label_ru: "Откуда переносим данные"
+        default: ""
+        hint: "Read-only source of fields to append."
+        hint_ru: "Выберите книгу, из которой нужно перенести данные. Оригинал открывается только для чтения."
+        refresh_on_change: true
+      - id: primary_sheet
+        type: "select"
+        group: "sheets"
+        label: "Primary sheet"
+        label_ru: "Основной лист"
+        default: ""
+        depends_on: ["primary_file"]
+        options_source: "system_core.services.address_aligner_service:safe_join_primary_sheet_options"
+        cache_seconds: 0
+      - id: source_sheets
+        type: "checkboxes"
+        group: "sheets"
+        label: "Source sheets"
+        label_ru: "Листы источника"
+        hint: "Select one or more sheets. Only checked sheets are read."
+        hint_ru: "Отметьте один или несколько листов. Читаются только включённые."
+        depends_on: ["source_file"]
+        options_source: "system_core.services.address_aligner_service:safe_join_source_sheet_options"
+        cache_seconds: 0
+      - id: primary_address_columns
+        type: "text"
+        group: "columns"
+        label: "Primary address columns"
+        label_ru: "Адрес в основной"
+        default: "B,C,D"
+        hint_ru: "Улица, дом, корпус/литера."
+      - id: source_address_columns
+        type: "text"
+        group: "columns"
+        label: "Source address columns"
+        label_ru: "Адрес в источнике"
+        default: "B,C"
+        hint_ru: "Улица и дом. Квартира/комната игнорируются в ключе дома."
+      - id: source_payload_columns
+        type: "text"
+        group: "columns"
+        label: "Fields to append"
+        label_ru: "Какие колонки перенести"
+        default: "D,E,F,G,H,I,J,K"
+        hint_ru: "Колонки источника, значения которых нужно поставить в строки с тем же адресом дома."
+      - id: primary_start_row
+        type: "number"
+        group: "rows"
+        label: "First primary data row"
+        label_ru: "Первая строка основных данных"
+        default: 5
+      - id: source_start_row
+        type: "number"
+        group: "rows"
+        label: "First source data row"
+        label_ru: "Первая строка данных источника"
+        default: 7
+      - id: output_header_row
+        type: "number"
+        group: "rows"
+        label: "Output header row"
+        label_ru: "Строка заголовков результата"
+        default: 1
+
+  - id: run_address_collection
+    title: "Address collection"
+    title_ru: "СБОР АДРЕСОВ"
+    description: "Collect address candidates recursively from XLSX/DOCX/ODT/TXT/CSV/MD/searchable PDF, merge slot evidence, sanitize incomplete rows, and write an address collection workbook."
+    description_ru: "Рекурсивно собрать адреса из XLSX/DOCX/ODT/TXT/CSV/MD/searchable PDF, объединить слот-доказательства, убрать неполные строки и записать книгу адресов."
+    fields:
+      - id: address_collection_action
+        type: "radio"
+        group: "parameters"
+        label: "Action"
+        label_ru: "Действие"
+        default: "generate"
+        refresh_on_change: true
+        hint: "Create a new table, or append collected addresses to the ready workbook from the address table folder."
+        hint_ru: "Собрать новую таблицу или перенести новые адреса в выбранную готовую книгу."
+        options:
+          - value: "generate"
+            label: "New table"
+            label_ru: "Собрать новую таблицу"
+          - value: "update"
+            label: "Append to ready"
+            label_ru: "Добавить адреса в готовую"
+      - id: use_oktmo
+        type: "checkbox"
+        group: "parameters"
+        label: "Enable OKTMO keys"
+        label_ru: "Подключить ключи ОКТМО"
+        default: true
+        hint: "Uses the local Rosstat registry and the project keys prepared in the OKTMO child screen. If the key file is empty, OKTMO does not narrow the search."
+        hint_ru: "Использует локальный реестр Росстата и проектные ключи из экрана ОКТМО. Если файл ключей пустой, ОКТМО не сужает поиск."
+      - id: reference_file
+        type: "xlsx_file_picker"
+        group: "parameters"
+        label: "Ready table"
+        label_ru: "Таблица, которую нужно дополнить"
+        default: ""
+        show_when: {address_collection_action: "update"}
+        placeholder: "address_collection\\AddressCollection.xlsx"
+        hint: "Optional ready XLSX. Picker fills this path; empty means latest XLSX from the address table folder, or a new table if none exists."
+        hint_ru: "Выберите готовую книгу, которую нужно дополнить. Оригинал не перезаписывается."
+      - id: collected_file
+        type: "xlsx_file_picker"
+        group: "parameters"
+        label: "Collected workbook"
+        label_ru: "Таблица с новыми адресами"
+        default: ""
+        show_when: {address_collection_action: "update"}
+        placeholder: "address_collection\\AddressCollection_20260606_120000.xlsx"
+        hint: "For append mode: clean XLSX produced by New table. Empty means latest AddressCollection*.xlsx from the address table folder, excluding the ready target workbook."
+        hint_ru: "Выберите книгу, из которой нужно взять новые собранные адреса."
+      - id: source_root
+        type: "text"
+        group: "source"
+        label: "Source folder"
+        label_ru: "Папка источников"
+        default: ""
+        placeholder: "input\\Тюмень образование"
+        hint: "Optional recursive source folder. Empty means the whole input folder."
+        hint_ru: "Необязательная рекурсивная папка источников. Пусто = вся папка input."
+      - id: address_collection_dir
+        type: "text"
+        group: "source"
+        label: "Address table folder"
+        label_ru: "Папка адресной таблицы"
+        default: "address_collection"
+        advanced: true
+        placeholder: "address_collection"
+        hint: "Folder with the ready XLSX address table. If no XLSX exists there, a new table is created."
+        hint_ru: "Папка с готовой XLSX-таблицей адресов. Если XLSX там нет, будет создана новая таблица."
+      - id: source_columns
+        type: "text"
+        group: "columns"
+        label: "Address columns"
+        label_ru: "Адресные колонки"
+        default: ""
+        placeholder: "B или B,D"
+        hint: "Optional XLSX columns to scan. Empty means all cells and all supported text blocks."
+        hint_ru: "Необязательные XLSX-колонки для сканирования. Пусто = все ячейки и все поддержанные текстовые блоки."
+      - id: collected_column
+        type: "text"
+        group: "columns"
+        label: "Collected address column"
+        label_ru: "Взять адрес из колонки"
+        default: "A"
+        show_when: {address_collection_action: "update"}
+        placeholder: "A или 2"
+        hint: "For append mode: column with the clean collected address line. Header, letter, or number are accepted."
+        hint_ru: "Колонка, из которой читать новый адрес. Можно указать заголовок, букву Excel или номер."
+      - id: target_column
+        type: "text"
+        group: "columns"
+        label: "Target address column"
+        label_ru: "Записать адрес в колонку"
+        default: "A"
+        show_when: {address_collection_action: "update"}
+        placeholder: "A или 2"
+        hint: "Column to append collected addresses to. Letter/number has priority over the dropdown."
+        hint_ru: "Колонка готовой таблицы, куда добавлять адреса. Буква/номер главнее выбора по заголовку."
+      - id: target_column_header
+        type: "select"
+        group: "columns"
+        label: "Target address header"
+        label_ru: "Название адресного столбца"
+        default: ""
+        show_when: {address_collection_action: "update"}
+        hint: "Scans the first row of the latest workbook in address_collection. Manual letter/number above has priority."
+        hint_ru: "Сканирует первую строку последней книги в address_collection. Ручная буква/номер выше имеет приоритет."
+        options_source: "system_core.services.address_aligner_service:address_collection_column_options"
+        cache_seconds: 10
+      - id: benchmark_file
+        type: "xlsx_file_picker"
+        group: "columns"
+        label: "Benchmark workbook"
+        label_ru: "Книга-бенчмарк"
+        default: ""
+        placeholder: "input\\benchmark\\control_addresses.xlsx"
+        hint: "Optional XLSX with the control address column. It is used only for coverage measurement, not as an input source."
+        hint_ru: "Необязательный XLSX с контрольной адресной колонкой. Используется только для оценки покрытия, не как источник сборки."
+      - id: benchmark_column
+        type: "text"
+        group: "columns"
+        label: "Benchmark column"
+        label_ru: "Столбец бенчмарка"
+        default: "Местоположение"
+        placeholder: "Местоположение"
+        hint: "Header, letter, or number of the control address column."
+        hint_ru: "Название, буква или номер контрольного адресного столбца."
+      - id: slot_preview
+        type: "slot_preview"
+        group: "options"
+        span: "full"
+        label: "Address line"
+        label_ru: "Линейка адреса"
+        default: "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10"
+        hint: "Read-only example of the address assembled from collected slot winners."
+        hint_ru: "Read-only пример адреса, собранного из победителей по слотам."
+      - id: enabled_slots
+        type: "checkboxes"
+        group: "options"
+        span: "full"
+        label: "Enabled slots"
+        label_ru: "Включённые слоты"
+        hint: "Checked slots participate in the generated address column and in output columns. Microdistrict/quartal is off by default."
+        hint_ru: "Отмеченные слоты участвуют в генерируемой адресной колонке и выходных колонках. Микрорайон/квартал по умолчанию выключен."
+        options:
+          - value: "postal_index"
+            label: "Postal index"
+            label_ru: "Почтовый индекс"
+            default: true
+          - value: "federal_district"
+            label: "Federal district"
+            label_ru: "Федеральный округ"
+            default: true
+          - value: "parent_subject"
+            label: "Parent subject"
+            label_ru: "Регион-родитель"
+            default: true
+          - value: "subject"
+            label: "Subject"
+            label_ru: "Субъект РФ"
+            default: true
+          - value: "autonomous_okrug"
+            label: "Autonomous okrug"
+            label_ru: "Автономный округ"
+            default: true
+          - value: "municipality"
+            label: "Municipality"
+            label_ru: "Муниципалитет"
+            default: true
+          - value: "locality"
+            label: "Locality"
+            label_ru: "Населённый пункт"
+            default: true
+          - value: "territory"
+            label: "Territory"
+            label_ru: "Территория"
+            default: true
+          - value: "microdistrict"
+            label: "Microdistrict"
+            label_ru: "Микрорайон/квартал"
+            default: false
+          - value: "street"
+            label: "Street"
+            label_ru: "Улица"
+            default: true
+          - value: "house"
+            label: "House"
+            label_ru: "Дом"
+            default: true
+          - value: "premise"
+            label: "Premise"
+            label_ru: "Помещение"
+            default: true
+          - value: "oktmo_code"
+            label: "OKTMO code"
+            label_ru: "Код ОКТМО"
+            default: true
+          - value: "oktmo_name"
+            label: "OKTMO name"
+            label_ru: "Имя ОКТМО"
+            default: true
+          - value: "house_base"
+            label: "House base"
+            label_ru: "Номер дома"
+            default: true
+          - value: "house_mods"
+            label: "House modifiers"
+            label_ru: "Модификаторы дома"
+            default: true
+          - value: "house_modifiers"
+            label: "House modifier columns"
+            label_ru: "Колонки корпуса/строения"
+            default: true
+          - value: "street_numbers"
+            label: "Street numbers"
+            label_ru: "Номера в названии улицы"
+            default: true
+          - value: "territory_key"
+            label: "Territory key"
+            label_ru: "Ключ территории"
+            default: true
+          - value: "match_key"
+            label: "Match key"
+            label_ru: "Ключ сопоставления"
+            default: true
+      - id: slot_order
+        type: "slot_order"
+        group: "options"
+        span: "full"
+        label: "Slot order"
+        label_ru: "Порядок слотов"
+        hint: "Number dropdowns define the generated address line order. Disabled slots are ignored."
+        hint_ru: "Dropdown с номерами задают порядок генерируемой адресной строки. Выключенные слоты игнорируются."
+        default:
+          postal_index: 1
+          federal_district: 2
+          parent_subject: 3
+          subject: 4
+          autonomous_okrug: 5
+          municipality: 6
+          locality: 7
+          territory: 8
+          microdistrict: 9
+          street: 10
+          house: 11
+          premise: 12
+        options:
+          - value: "postal_index"
+            label: "Postal index"
+            label_ru: "Индекс"
+            default_order: 1
+          - value: "federal_district"
+            label: "Federal district"
+            label_ru: "Федеральный округ"
+            default_order: 2
+          - value: "parent_subject"
+            label: "Parent subject"
+            label_ru: "Регион-родитель"
+            default_order: 3
+          - value: "subject"
+            label: "Subject"
+            label_ru: "Субъект"
+            default_order: 4
+          - value: "autonomous_okrug"
+            label: "Autonomous okrug"
+            label_ru: "Автономный округ"
+            default_order: 5
+          - value: "municipality"
+            label: "Municipality"
+            label_ru: "Муниципалитет"
+            default_order: 6
+          - value: "locality"
+            label: "Locality"
+            label_ru: "Населённый пункт"
+            default_order: 7
+          - value: "territory"
+            label: "Territory"
+            label_ru: "Территория"
+            default_order: 8
+          - value: "microdistrict"
+            label: "Microdistrict"
+            label_ru: "Микрорайон/квартал"
+            default_order: 9
+          - value: "street"
+            label: "Street"
+            label_ru: "Улица"
+            default_order: 10
+          - value: "house"
+            label: "House"
+            label_ru: "Дом"
+            default_order: 11
+          - value: "premise"
+            label: "Premise"
+            label_ru: "Помещение"
+            default_order: 12
+      - id: omit_microdistrict_when_street_found
+        type: "checkbox"
+        group: "options"
+        label: "Skip microdistrict when street exists"
+        label_ru: "Не включать мкр/квартал при найденной улице"
+        default: true
+        hint: "Keeps the Microdistrict column, but excludes it from the generated address line when a street is found."
+        hint_ru: "Колонка Microdistrict остаётся, но не попадает в адресную строку, если найдена улица."
+      - id: clean_output_workbook
+        type: "checkbox"
+        group: "options"
+        label: "Clean new workbook"
+        label_ru: "Чистая новая таблица"
+        default: false
+        hint: "Write the collected address column to a compact clean XLSX instead of copying or inheriting the ready workbook."
+        hint_ru: "Записать собранную адресную колонку в компактную чистую XLSX-книгу, не копируя и не наследуя готовую таблицу."
+      - id: clean_duplicates
+        type: "checkbox"
+        group: "options"
+        label: "Merge duplicates"
+        label_ru: "Схлопывать дубли"
+        default: true
+        hint: "Merge candidates with the same address key and vote for the best slot values."
+        hint_ru: "Объединять кандидаты с одинаковым адресным ключом и выбирать лучшие значения слотов."
+      - id: sanitize_incomplete
+        type: "checkbox"
+        group: "options"
+        label: "Sanitize incomplete"
+        label_ru: "Чистить неполные адреса"
+        default: true
+        hint: "Drop street without house, house without street/territory, subject-only and contaminated table dumps."
+        hint_ru: "Удалять улицу без дома, дом без улицы/территории, адрес только из региона и загрязнённые табличные свалки."
+      - id: write_rejected
+        type: "checkbox"
+        group: "options"
+        label: "Write rejected sheet"
+        label_ru: "Писать лист отбраковки"
+        default: true
+        hint: "Write rejected candidates to a separate workbook sheet for audit."
+        hint_ru: "Записывать отбракованные кандидаты на отдельный лист книги для аудита."
+    service: "system_core.services.address_aligner_service:run_address_collection"
+    kind: "safe"
+
+  - id: run_address_aligner
+    # English and Russian final command title.
+    # Английское и русское название финальной команды.
+    title: "Address alignment"
+    title_ru: "Сопоставление адресов"
+    # English and Russian final command description.
+    # Английское и русское описание финальной команды.
+    description: "Choose columns in the GUI without editing project.yaml. Empty fields keep automatic behavior."
+    description_ru: "Выбрать колонки в интерфейсе без правки project.yaml. Пустые поля включают авто-режим."
+    # Runtime fields passed to context.operation.parameters.
+    # Runtime-поля, которые передаются в context.operation.parameters.
+    fields:
+      - id: ground_truth_column
+        type: "text"
+        group: "columns"
+        label: "GT column"
+        label_ru: "Колонка GT"
+        default: ""
+        placeholder: "B"
+        hint: "Reference address column. Empty means automatic detection."
+        hint_ru: "Эталонная адресная колонка. Пусто = определить автоматически."
+      - id: ground_truth_column_header
+        type: "select"
+        group: "columns"
+        label: "GT header"
+        label_ru: "Название колонки GT"
+        default: ""
+        hint: "Scans the first row of the first input workbook. Manual letter/number above has priority."
+        hint_ru: "Сканирует первую строку первой книги input. Ручная буква/номер выше имеет приоритет."
+        options_source: "system_core.services.address_aligner_service:input_column_options"
+        cache_seconds: 10
+      - id: target_columns
+        type: "text"
+        group: "columns"
+        label: "Address columns"
+        label_ru: "Адресные колонки"
+        default: ""
+        placeholder: "C или C,D,AC"
+        hint: "One column or several columns separated by commas."
+        hint_ru: "Одна колонка или несколько через запятую."
+      - id: target_column_header
+        type: "select"
+        group: "columns"
+        label: "Address header"
+        label_ru: "Название адресной колонки"
+        default: ""
+        hint: "Optional single target column selected by first-row header. Manual address columns above have priority."
+        hint_ru: "Необязательный выбор одной целевой колонки по заголовку первой строки. Ручные адресные колонки выше имеют приоритет."
+        options_source: "system_core.services.address_aligner_service:input_column_options"
+        cache_seconds: 10
+      - id: alignment_mode
+        type: "radio"
+        group: "alignment_mode"
+        label: "Alignment mode"
+        label_ru: "Режим сопоставления"
+        default: "fast"
+        hint: "Fast keeps the legacy matcher intact. Normalized first runs the same matcher, then cleans aligned address columns."
+        hint_ru: "Быстрый режим сохраняет прежний matcher. Нормализованный сначала сопоставляет так же, затем чистит выровненные адресные колонки."
+        options:
+          - value: "fast"
+            label: "Fast alignment"
+            label_ru: "Быстрое сопоставление"
+          - value: "normalized"
+            label: "Alignment + normalization"
+            label_ru: "Сопоставление + нормализация"
+      - id: companion_mode
+        type: "radio"
+        group: "related_columns"
+        label: "Linked columns"
+        label_ru: "Связанные колонки"
+        default: "auto"
+        hint: "Values from linked columns move together with the matched raw address."
+        hint_ru: "Значения из связанных колонок едут вместе с найденным сырым адресом."
+        options:
+          - value: "auto"
+            label: "Auto"
+            label_ru: "Авто"
+          - value: "none"
+            label: "None"
+            label_ru: "Нет"
+          - value: "left"
+            label: "Left of each address"
+            label_ru: "Слева"
+          - value: "right"
+            label: "Right of each address"
+            label_ru: "Справа"
+          - value: "between"
+            label: "Between GT and address"
+            label_ru: "Блок между GT и адресом"
+      - id: satellite_columns
+        type: "text"
+        group: "related_columns"
+        label: "Satellite columns"
+        label_ru: "Колонки-сателлиты"
+        default: ""
+        placeholder: "C=D:E; F=G,H"
+        hint: "Optional explicit map: address column = one or more linked non-address columns. Use ranges and semicolon between groups."
+        hint_ru: "Необязательная явная карта: адресная колонка = связанные неадресные колонки. Диапазоны через :, группы через ;."
+      - id: normalize_before_match
+        type: "checkbox"
+        group: "alignment_normalization"
+        advanced: true
+        gui_hidden: true
+        label: "Normalize before match"
+        label_ru: "Нормализовать перед сопоставлением"
+        default: false
+        hint: "Optional slower mode: use the common AddressNormalizer before the legacy five-stage matcher."
+        hint_ru: "Необязательный более медленный режим: использовать общий AddressNormalizer перед старым пятиэтапным сопоставителем."
+      - id: normalize_after_match
+        type: "checkbox"
+        group: "alignment_normalization"
+        advanced: true
+        gui_hidden: true
+        label: "Normalize after match"
+        label_ru: "Нормализовать после сопоставления"
+        default: false
+        hint: "Compatibility flag for scripts. In the GUI prefer the Alignment + normalization mode above."
+        hint_ru: "Флаг совместимости для скриптов. В GUI лучше выбирать режим Сопоставление + нормализация выше."
+      - id: collect_before_match
+        type: "checkbox"
+        group: "alignment_normalization"
+        advanced: true
+        gui_hidden: true
+        label: "Collect before match"
+        label_ru: "Собрать перед сопоставлением"
+        default: false
+        hint: "Build clean address candidates from selected columns before matching them to the reference column."
+        hint_ru: "Собрать чистые адресные кандидаты из выбранных колонок перед сопоставлением с эталоном."
+      - id: collect_whole_document
+        type: "checkbox"
+        group: "alignment_normalization"
+        advanced: true
+        gui_hidden: true
+        label: "Whole document"
+        label_ru: "Весь документ / все страницы"
+        default: false
+        hint: "When collection before match is enabled, scan the whole workbook/document instead of only selected address columns."
+        hint_ru: "При сборке перед сопоставлением сканировать всю книгу/документ, а не только выбранные адресные колонки."
+      - id: use_oktmo
+        type: "checkbox"
+        group: "alignment_normalization"
+        label: "Enable OKTMO keys"
+        label_ru: "Подключить ключи ОКТМО"
+        default: true
+        hint: "Uses the local Rosstat registry and the project keys prepared in the OKTMO child screen. If the key file is empty, OKTMO does not narrow the search."
+        hint_ru: "Использует локальный реестр Росстата и проектные ключи из экрана ОКТМО. Если файл ключей пустой, ОКТМО не сужает поиск."
+      - id: city
+        type: "text"
+        group: "alignment_normalization"
+        advanced: true
+        gui_hidden: true
+        label: "Default city"
+        label_ru: "Город по умолчанию"
+        default: ""
+        placeholder: "Тюмень"
+        hint: "Optional city name removed from component keys during normalized matching."
+        hint_ru: "Необязательное название города, которое убирается из ключей компонентов при нормализованном сопоставлении."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:run_address_aligner"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+  - id: run_reference_normalization
+    # English and Russian final command title.
+    # Английское и русское название финальной команды.
+    title: "Reference normalization"
+    title_ru: "НОРМАЛИЗАЦИЯ ЭТАЛОНА"
+    # English and Russian final command description.
+    # Английское и русское описание финальной команды.
+    description: "Generate, update, or clean an address reference from XLSX/DOCX/ODT/TXT/CSV/MD/searchable PDF using slots, postal indexes, and OKTMO."
+    description_ru: "Сгенерировать, обновить или очистить адресный эталон из XLSX/DOCX/ODT/TXT/CSV/MD/searchable PDF на основе слотов, индексов и ОКТМО."
+    fields:
+      - id: reference_action
+        type: "radio"
+        group: "parameters"
+        label: "Action"
+        label_ru: "Действие"
+        default: "generate"
+        hint: "Generate a new reference, update an existing one, or rebuild old slot columns."
+        hint_ru: "Создать новый эталон, обновить существующий или пересобрать старые слоты."
+        options:
+          - value: "generate"
+            label: "Generate"
+            label_ru: "Генерация"
+          - value: "update"
+            label: "Update"
+            label_ru: "Обновление"
+          - value: "clean"
+            label: "Clean slots"
+            label_ru: "Чистка слотов"
+      - id: use_oktmo
+        type: "checkbox"
+        group: "parameters"
+        label: "Enable OKTMO keys"
+        label_ru: "Подключить ключи ОКТМО"
+        default: true
+        hint: "Uses the local Rosstat registry and the project keys prepared in the OKTMO child screen. If the key file is empty, OKTMO does not narrow the search."
+        hint_ru: "Использует локальный реестр Росстата и проектные ключи из экрана ОКТМО. Если файл ключей пустой, ОКТМО не сужает поиск."
+      - id: source_columns
+        type: "text"
+        group: "columns"
+        label: "Address columns"
+        label_ru: "Адресные колонки"
+        default: ""
+        placeholder: "B или B,D"
+        hint: "Leave empty to scan all cells for address-like values."
+        hint_ru: "Оставьте пустым, чтобы искать адресные значения по всем ячейкам."
+      - id: reference_columns
+        type: "text"
+        group: "columns"
+        label: "Reference letter/number"
+        label_ru: "Буква/номер эталона"
+        default: ""
+        placeholder: "A или 2"
+        hint: "For update/cleanup: optional manual override by Excel letter or column number."
+        hint_ru: "Для обновления/чистки: необязательный ручной выбор по букве Excel или номеру колонки."
+      - id: reference_column_header
+        type: "select"
+        group: "columns"
+        label: "Reference header"
+        label_ru: "Название эталонного столбца"
+        default: ""
+        hint: "Scans the first row of the latest AddressReference workbook. Empty means auto-detect."
+        hint_ru: "Сканирует первую строку последней книги AddressReference. Пусто = авто-поиск."
+        options_source: "system_core.services.address_aligner_service:reference_column_options"
+        cache_seconds: 10
+      - id: slot_preview
+        type: "slot_preview"
+        group: "options"
+        span: "full"
+        label: "Address construction"
+        label_ru: "Линейка адреса"
+        default: "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10"
+        hint: "Read-only example of the address line assembled from enabled slots."
+        hint_ru: "Read-only пример адресной строки, собираемой из включённых слотов."
+      - id: enabled_slots
+        type: "checkboxes"
+        group: "options"
+        span: "full"
+        label: "Enabled slots"
+        label_ru: "Включённые слоты"
+        hint: "Checked slots are used in the normalized address and in the reference columns. Microdistrict/quartal is off by default."
+        hint_ru: "Отмеченные слоты участвуют в адресной конструкции и колонках эталона. Микрорайон/квартал по умолчанию выключен."
+        options:
+          - value: "postal_index"
+            label: "Postal index"
+            label_ru: "Почтовый индекс"
+            default: true
+          - value: "federal_district"
+            label: "Federal district"
+            label_ru: "Федеральный округ"
+            default: true
+          - value: "parent_subject"
+            label: "Parent subject"
+            label_ru: "Регион-родитель"
+            default: true
+          - value: "subject"
+            label: "Subject"
+            label_ru: "Субъект РФ"
+            default: true
+          - value: "autonomous_okrug"
+            label: "Autonomous okrug"
+            label_ru: "Автономный округ"
+            default: true
+          - value: "municipality"
+            label: "Municipality"
+            label_ru: "Муниципалитет"
+            default: true
+          - value: "locality"
+            label: "Locality"
+            label_ru: "Населённый пункт"
+            default: true
+          - value: "territory"
+            label: "Territory"
+            label_ru: "Территория"
+            default: true
+          - value: "microdistrict"
+            label: "Microdistrict"
+            label_ru: "Микрорайон/квартал"
+            default: false
+          - value: "street"
+            label: "Street"
+            label_ru: "Улица"
+            default: true
+          - value: "house"
+            label: "House"
+            label_ru: "Дом"
+            default: true
+          - value: "premise"
+            label: "Premise"
+            label_ru: "Помещение"
+            default: true
+          - value: "oktmo_code"
+            label: "OKTMO code"
+            label_ru: "Код ОКТМО"
+            default: true
+          - value: "oktmo_name"
+            label: "OKTMO name"
+            label_ru: "Имя ОКТМО"
+            default: true
+          - value: "house_base"
+            label: "House base"
+            label_ru: "Номер дома"
+            default: true
+          - value: "house_mods"
+            label: "House modifiers"
+            label_ru: "Модификаторы дома"
+            default: true
+          - value: "house_modifiers"
+            label: "House modifier columns"
+            label_ru: "Колонки корпуса/строения"
+            default: true
+          - value: "street_numbers"
+            label: "Street numbers"
+            label_ru: "Номера в названии улицы"
+            default: true
+          - value: "territory_key"
+            label: "Territory key"
+            label_ru: "Ключ территории"
+            default: true
+          - value: "match_key"
+            label: "Match key"
+            label_ru: "Ключ сопоставления"
+            default: true
+      - id: slot_order
+        type: "slot_order"
+        group: "options"
+        span: "full"
+        label: "Slot order"
+        label_ru: "Порядок слотов"
+        hint: "Small number dropdowns define the order of the normalized address line. Disabled slots are ignored."
+        hint_ru: "Маленькие dropdown с номерами задают порядок адресной строки. Выключенные слоты игнорируются."
+        default:
+          postal_index: 1
+          federal_district: 2
+          parent_subject: 3
+          subject: 4
+          autonomous_okrug: 5
+          municipality: 6
+          locality: 7
+          territory: 8
+          microdistrict: 9
+          street: 10
+          house: 11
+          premise: 12
+        options:
+          - value: "postal_index"
+            label: "Postal index"
+            label_ru: "Индекс"
+            default_order: 1
+          - value: "federal_district"
+            label: "Federal district"
+            label_ru: "Федеральный округ"
+            default_order: 2
+          - value: "parent_subject"
+            label: "Parent subject"
+            label_ru: "Регион-родитель"
+            default_order: 3
+          - value: "subject"
+            label: "Subject"
+            label_ru: "Субъект"
+            default_order: 4
+          - value: "autonomous_okrug"
+            label: "Autonomous okrug"
+            label_ru: "Автономный округ"
+            default_order: 5
+          - value: "municipality"
+            label: "Municipality"
+            label_ru: "Муниципалитет"
+            default_order: 6
+          - value: "locality"
+            label: "Locality"
+            label_ru: "Населённый пункт"
+            default_order: 7
+          - value: "territory"
+            label: "Territory"
+            label_ru: "Территория"
+            default_order: 8
+          - value: "microdistrict"
+            label: "Microdistrict"
+            label_ru: "Микрорайон/квартал"
+            default_order: 9
+          - value: "street"
+            label: "Street"
+            label_ru: "Улица"
+            default_order: 10
+          - value: "house"
+            label: "House"
+            label_ru: "Дом"
+            default_order: 11
+          - value: "premise"
+            label: "Premise"
+            label_ru: "Помещение"
+            default_order: 12
+      - id: omit_microdistrict_when_street_found
+        type: "checkbox"
+        group: "options"
+        label: "Skip microdistrict when street exists"
+        label_ru: "Не включать мкр/квартал при найденной улице"
+        default: true
+        hint: "Keeps the Microdistrict column, but excludes microdistrict/quartal from Normalized_Address and merge key when a street is found."
+        hint_ru: "Колонка Microdistrict остаётся, но мкр/квартал не попадает в Normalized_Address и ключ схлопывания, если найдена улица."
+      - id: clean_output_workbook
+        type: "checkbox"
+        group: "options"
+        label: "Clean new workbook"
+        label_ru: "Чистая новая таблица"
+        default: false
+        hint: "Write the normalized reference as a compact clean XLSX workbook with small font."
+        hint_ru: "Записать нормализованный эталон как компактную чистую XLSX-книгу с мелким шрифтом."
+      - id: clean_old_values
+        type: "checkbox"
+        group: "options"
+        label: "Merge old duplicates"
+        label_ru: "Чистить старые дубли"
+        default: true
+        hint: "Merge records with the same selected slot key."
+        hint_ru: "Схлопывать записи с одинаковым ключом выбранных слотов."
+      - id: clean_old_slots
+        type: "checkbox"
+        group: "options"
+        label: "Rebuild old slots"
+        label_ru: "Пересобрать старые слоты"
+        default: true
+        hint: "Drop obsolete slot columns and write only the current slot set."
+        hint_ru: "Убрать устаревшие слот-колонки и записать текущий набор слотов."
+      - id: reference_file
+        type: "text"
+        group: "source"
+        advanced: true
+        label: "Existing reference"
+        label_ru: "Существующий эталон"
+        default: ""
+        placeholder: "output\\AddressReference_*.xlsx"
+        hint: "Optional path for update or cleanup. Empty means auto-detect the latest AddressReference workbook."
+        hint_ru: "Необязательный путь для обновления или чистки. Пусто = найти последний AddressReference автоматически."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:run_reference_normalization"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+  - id: run_reference_processing
+    title: "Reference processing"
+    title_ru: "ОБРАБОТКА ЭТАЛОНА"
+    description: "Sort a reference address column by slots, or deconstruct it into selected slot columns."
+    description_ru: "Отсортировать эталонный адресный столбец по слотам или разложить его на выбранные слот-колонки."
+    fields:
+      - id: reference_processing_action
+        type: "radio"
+        group: "parameters"
+        label: "Action"
+        label_ru: "Действие"
+        default: "sort"
+        hint: "Sort the table, deconstruct the address column into slots, or do both."
+        hint_ru: "Отсортировать таблицу, разложить адресный столбец на слоты или сделать оба действия."
+        options:
+          - value: "sort"
+            label: "Sort"
+            label_ru: "Сортировка"
+          - value: "deconstruct"
+            label: "Deconstruct"
+            label_ru: "Деконструкция"
+          - value: "sort_deconstruct"
+            label: "Sort + deconstruct"
+            label_ru: "Сортировка + деконструкция"
+      - id: use_oktmo
+        type: "checkbox"
+        group: "parameters"
+        label: "Enable OKTMO keys"
+        label_ru: "Подключить ключи ОКТМО"
+        default: true
+        hint: "Uses the local Rosstat registry and the project keys prepared in the OKTMO child screen. If the key file is empty, OKTMO does not narrow the search."
+        hint_ru: "Использует локальный реестр Росстата и проектные ключи из экрана ОКТМО. Если файл ключей пустой, ОКТМО не сужает поиск."
+      - id: reference_columns
+        type: "text"
+        group: "columns"
+        label: "Reference letter/number"
+        label_ru: "Буква/номер эталона"
+        default: ""
+        placeholder: "A или 2"
+        hint: "Optional manual override by Excel letter, column number, or header name."
+        hint_ru: "Необязательный ручной выбор по букве Excel, номеру колонки или названию заголовка."
+      - id: reference_column_header
+        type: "select"
+        group: "columns"
+        label: "Reference header"
+        label_ru: "Название эталонного столбца"
+        default: ""
+        hint: "Scans the first row of the latest AddressReference workbook. Empty means auto-detect."
+        hint_ru: "Сканирует первую строку последней книги AddressReference. Пусто = авто-поиск."
+        options_source: "system_core.services.address_aligner_service:reference_column_options"
+        cache_seconds: 10
+      - id: slot_preview
+        type: "slot_preview"
+        group: "options"
+        span: "full"
+        label: "Sort key"
+        label_ru: "Линейка сортировки"
+        default: "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10"
+        hint: "Read-only example of the slot hierarchy used for sorting."
+        hint_ru: "Read-only пример иерархии слотов, по которой сортируется эталон."
+      - id: enabled_slots
+        type: "checkboxes"
+        group: "options"
+        span: "full"
+        label: "Enabled slots"
+        label_ru: "Включённые слоты"
+        hint: "Checked slots participate in sorting and are written during deconstruction. Microdistrict/quartal is off by default."
+        hint_ru: "Отмеченные слоты участвуют в сортировке и записываются при деконструкции. Микрорайон/квартал по умолчанию выключен."
+        options:
+          - value: "postal_index"
+            label: "Postal index"
+            label_ru: "Почтовый индекс"
+            default: true
+          - value: "federal_district"
+            label: "Federal district"
+            label_ru: "Федеральный округ"
+            default: true
+          - value: "parent_subject"
+            label: "Parent subject"
+            label_ru: "Регион-родитель"
+            default: true
+          - value: "subject"
+            label: "Subject"
+            label_ru: "Субъект РФ"
+            default: true
+          - value: "autonomous_okrug"
+            label: "Autonomous okrug"
+            label_ru: "Автономный округ"
+            default: true
+          - value: "municipality"
+            label: "Municipality"
+            label_ru: "Муниципалитет"
+            default: true
+          - value: "locality"
+            label: "Locality"
+            label_ru: "Населённый пункт"
+            default: true
+          - value: "territory"
+            label: "Territory"
+            label_ru: "Территория"
+            default: true
+          - value: "microdistrict"
+            label: "Microdistrict"
+            label_ru: "Микрорайон/квартал"
+            default: false
+          - value: "street"
+            label: "Street"
+            label_ru: "Улица"
+            default: true
+          - value: "house"
+            label: "House"
+            label_ru: "Дом"
+            default: true
+          - value: "premise"
+            label: "Premise"
+            label_ru: "Помещение"
+            default: true
+          - value: "oktmo_code"
+            label: "OKTMO code"
+            label_ru: "Код ОКТМО"
+            default: true
+          - value: "oktmo_name"
+            label: "OKTMO name"
+            label_ru: "Имя ОКТМО"
+            default: true
+          - value: "house_base"
+            label: "House base"
+            label_ru: "Номер дома"
+            default: true
+          - value: "house_mods"
+            label: "House modifiers"
+            label_ru: "Модификаторы дома"
+            default: true
+          - value: "house_modifiers"
+            label: "House modifier columns"
+            label_ru: "Колонки корпуса/строения"
+            default: true
+          - value: "street_numbers"
+            label: "Street numbers"
+            label_ru: "Номера в названии улицы"
+            default: true
+          - value: "territory_key"
+            label: "Territory key"
+            label_ru: "Ключ территории"
+            default: true
+          - value: "match_key"
+            label: "Match key"
+            label_ru: "Ключ сопоставления"
+            default: true
+      - id: slot_order
+        type: "slot_order"
+        group: "options"
+        span: "full"
+        label: "Slot order"
+        label_ru: "Порядок слотов"
+        hint: "Number dropdowns define which slot dominates sorting first. Disabled slots are dimmed and ignored."
+        hint_ru: "Dropdown с номерами задают, какой слот главенствует при сортировке. Выключенные слоты затемняются и игнорируются."
+        default:
+          postal_index: 1
+          federal_district: 2
+          parent_subject: 3
+          subject: 4
+          autonomous_okrug: 5
+          municipality: 6
+          locality: 7
+          territory: 8
+          microdistrict: 9
+          street: 10
+          house: 11
+          premise: 12
+        options:
+          - value: "postal_index"
+            label: "Postal index"
+            label_ru: "Индекс"
+            default_order: 1
+          - value: "federal_district"
+            label: "Federal district"
+            label_ru: "Федеральный округ"
+            default_order: 2
+          - value: "parent_subject"
+            label: "Parent subject"
+            label_ru: "Регион-родитель"
+            default_order: 3
+          - value: "subject"
+            label: "Subject"
+            label_ru: "Субъект"
+            default_order: 4
+          - value: "autonomous_okrug"
+            label: "Autonomous okrug"
+            label_ru: "Автономный округ"
+            default_order: 5
+          - value: "municipality"
+            label: "Municipality"
+            label_ru: "Муниципалитет"
+            default_order: 6
+          - value: "locality"
+            label: "Locality"
+            label_ru: "Населённый пункт"
+            default_order: 7
+          - value: "territory"
+            label: "Territory"
+            label_ru: "Территория"
+            default_order: 8
+          - value: "microdistrict"
+            label: "Microdistrict"
+            label_ru: "Микрорайон/квартал"
+            default_order: 9
+          - value: "street"
+            label: "Street"
+            label_ru: "Улица"
+            default_order: 10
+          - value: "house"
+            label: "House"
+            label_ru: "Дом"
+            default_order: 11
+          - value: "premise"
+            label: "Premise"
+            label_ru: "Помещение"
+            default_order: 12
+      - id: remove_source_column
+        type: "checkbox"
+        group: "options"
+        label: "Remove source address column"
+        label_ru: "Удалить исходный адресный столбец"
+        default: true
+        hint: "During deconstruction, selected slot columns are inserted and the original combined address column is removed."
+        hint_ru: "При деконструкции выбранные слот-колонки вставляются, а исходный единый адресный столбец удаляется."
+      - id: slot_header_mode
+        type: "radio"
+        group: "options"
+        label: "Slot column headers"
+        label_ru: "Заголовки слот-колонок"
+        default: "full"
+        hint: "Controls the headers written during deconstruction."
+        hint_ru: "Управляет заголовками колонок, которые записываются при деконструкции."
+        options:
+          - value: "full"
+            label: "Full"
+            label_ru: "Полное"
+          - value: "short"
+            label: "Short"
+            label_ru: "Короткое"
+      - id: reference_file
+        type: "text"
+        group: "source"
+        advanced: true
+        label: "Reference workbook"
+        label_ru: "Книга эталона"
+        default: ""
+        placeholder: "output\\AddressReference_*.xlsx"
+        hint: "Optional workbook path. Empty means latest AddressReference workbook, then first input XLSX."
+        hint_ru: "Необязательный путь к книге. Пусто = последний AddressReference, затем первый XLSX из input."
+    service: "system_core.services.address_aligner_service:run_reference_processing"
+    kind: "safe"
+
+  - id: oktmo_tools
+    title: "OKTMO"
+    title_ru: "ОКТМО / ключи проекта"
+    description: "Prepare project OKTMO focus keys, pins and Rosstat registry data outside the working address screens."
+    description_ru: "Подготовить проектные ключи фокусировки ОКТМО, пины и реестр Росстата отдельно от рабочих адресных экранов."
+    auto_open_child: "oktmo_key_console"
+    children:
+      - id: oktmo_key_console
+        title: "Project OKTMO keys"
+        title_ru: "Ключи и область ОКТМО"
+        description: "Choose a region/municipality, search exact settlements, and maintain the current OKTMO key file."
+        description_ru: "Выбрать регион/муниципалитет, найти точные населённые пункты и вести текущий файл ключей ОКТМО."
+        fields:
+          - id: oktmo_scope_region
+            type: "select"
+            group: "territory"
+            label: "OKTMO search region"
+            label_ru: "Регион ОКТМО"
+            default: ""
+            placeholder: "Тюменская область"
+            searchable: true
+            refresh_on_change: true
+            options_source: "system_core.services.address_aligner_service:oktmo_region_scope_options"
+            cache_seconds: 3600
+            hint: "Region list is read from the local Rosstat OKTMO snapshot."
+            hint_ru: "Список регионов читается из локального снимка ОКТМО Росстата."
+          - id: oktmo_scope_municipality
+            type: "select"
+            group: "territory"
+            label: "OKTMO municipality"
+            label_ru: "Муниципалитет ОКТМО"
+            default: ""
+            placeholder: "городской округ, муниципальный округ или район"
+            searchable: true
+            depends_on: ["oktmo_scope_region"]
+            options_source: "system_core.services.address_aligner_service:oktmo_municipality_scope_options"
+            cache_seconds: 0
+            hint: "Municipality list is built inside the selected region. Press + in the field to add the whole municipality and its settlements to the key file."
+            hint_ru: "Список строится внутри выбранного региона. Нажмите + в поле, чтобы добавить всё МО и его населённые пункты в файл ключей."
+          - id: oktmo_key_toolbar
+            type: "oktmo_key_toolbar"
+            group: "territory"
+            ui_only: true
+            label: "OKTMO search keys"
+            label_ru: "Ключи ОКТМО"
+            hint: "Current keys are reused by address collection, alignment and reference workflows when OKTMO is enabled there."
+            hint_ru: "Текущие ключи используются сбором, сопоставлением и эталонными режимами, когда там включён ОКТМО."
+          - id: oktmo_data_dir
+            type: "text"
+            group: "source"
+            advanced: true
+            label: "OKTMO data folder"
+            label_ru: "Папка данных ОКТМО"
+            default: ""
+            placeholder: "data"
+            hint: "Folder containing rosstat/data-*.csv. Empty means the project data folder."
+            hint_ru: "Папка, где есть rosstat/data-*.csv. Пусто = папка data проекта."
+        service: "system_core.services.address_aligner_service:oktmo_key_console"
+        kind: "safe"
+
+      - id: update_rosstat_oktmo
+        title: "Update Rosstat OKTMO"
+        title_ru: "Обновить ОКТМО Росстата"
+        description: "Download the latest Rosstat OKTMO data-*.csv snapshot into data/rosstat for address normalization."
+        description_ru: "Скачать свежий снимок Росстата data-*.csv в data/rosstat для нормализации адресов."
+        gui_hidden: true
+        fields:
+          - id: rosstat_oktmo_url
+            type: "text"
+            group: "source"
+            label: "Rosstat OKTMO URL"
+            label_ru: "URL ОКТМО Росстата"
+            default: "https://rosstat.gov.ru/opendata/7708234640-oktmo/"
+            hint: "Use the dataset page or a direct data-*.csv URL. After a successful update, old data-*.csv snapshots are removed and only the fresh file remains."
+            hint_ru: "Можно указать страницу набора или прямую ссылку data-*.csv. После успешного обновления старые снимки data-*.csv удаляются, остаётся только свежий файл."
+          - id: oktmo_data_dir
+            type: "text"
+            group: "source"
+            advanced: true
+            label: "OKTMO data folder"
+            label_ru: "Папка данных ОКТМО"
+            default: ""
+            placeholder: "data"
+            hint: "Folder containing rosstat/data-*.csv. Empty means the project data folder."
+            hint_ru: "Папка, где есть rosstat/data-*.csv. Пусто = папка data проекта."
+        service: "system_core.services.address_aligner_service:update_rosstat_oktmo_data"
+        kind: "safe"
+
+  - id: convert_legacy_office_sources
+    # English and Russian final command title.
+    # Английское и русское название финальной команды.
+    title: "Convert DOC/XLS"
+    title_ru: "Конвертация DOC/XLS"
+    # English and Russian final command description.
+    # Английское и русское описание финальной команды.
+    description: "Convert old .doc/.xls files in input to .docx/.xlsx, then delete Office temp files and same-name old/PDF/TXT/CSV/MD duplicates."
+    description_ru: "Преобразовать старые .doc/.xls из input в .docx/.xlsx, затем удалить временный мусор Office и одноимённые старые/PDF/TXT/CSV/MD дубли."
+    fields:
+      - id: overwrite_existing
+        type: "checkbox"
+        group: "options"
+        label: "Overwrite existing"
+        label_ru: "Перезаписывать существующие"
+        default: false
+        hint: "When off, existing .docx/.xlsx files are preserved; same-name old/PDF/TXT/CSV/MD duplicates are still removed."
+        hint_ru: "Если выключено, существующие .docx/.xlsx сохраняются; одноимённые старые/PDF/TXT/CSV/MD дубли всё равно удаляются."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:convert_legacy_office_sources"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+  - id: diagnostics
+    # English and Russian menu title.
+    # Английское и русское название меню.
+    title: "Diagnostics"
+    title_ru: "Диагностика"
+    # English and Russian menu description.
+    # Английское и русское описание меню.
+    description: "Parser and input inspection tools."
+    description_ru: "Инструменты проверки парсера и входных файлов."
+    children:
+      - id: run_parser_diagnostic
+        # English and Russian final command title.
+        # Английское и русское название финальной команды.
+        title: "Run parser diagnostic"
+        title_ru: "Диагностика парсера"
+        # English and Russian final command description.
+        # Английское и русское описание финальной команды.
+        description: "Extract parsed address components from input files for inspection."
+        description_ru: "Извлечь компоненты адресов из исходных файлов для проверки парсера."
+        # Python function called by the operation.
+        # Python-функция, которая будет вызвана при запуске операции.
+        service: "system_core.services.address_aligner_service:run_parser_diagnostic"
+        # safe = operation starts without a danger confirmation.
+        # safe = операция не считается опасной и запускается без подтверждения.
+        kind: "safe"
+
+      - id: validate_input
+        # English and Russian final command title.
+        # Английское и русское название финальной команды.
+        title: "Validate input"
+        title_ru: "Проверить исходники"
+        # English and Russian final command description.
+        # Английское и русское описание финальной команды.
+        description: "Check the input folder and list supported spreadsheets."
+        description_ru: "Проверить исходные файлы и показать найденные таблицы."
+        # Python function called by the operation.
+        # Python-функция, которая будет вызвана при запуске операции.
+        service: "system_core.services.address_aligner_service:validate_input"
+        # safe = operation starts without a danger confirmation.
+        # safe = операция не считается опасной и запускается без подтверждения.
+        kind: "safe"
+
+# Maintenance operations.
+# Сервисные операции обслуживания.
+maintenance_operations:
+  - id: cleanup_input_output
+    # English and Russian button title.
+    # Английское и русское название кнопки.
+    title: "Clear I/O"
+    title_ru: "Очистить папки"
+    # English and Russian operation description.
+    # Английское и русское описание операции.
+    description: "Delete contents of managed input and output folders, keeping folder structure."
+    description_ru: "Удалить содержимое управляемых папок исходников и результатов, сохранив структуру папок."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:cleanup_input_output"
+    # dangerous = operation asks for confirmation before starting.
+    # dangerous = операция требует подтверждения перед запуском.
+    kind: "dangerous"
+
+  - id: remove_empty_rows_from_output
+    # English and Russian button title.
+    # Английское и русское название кнопки.
+    title: "Remove empty rows"
+    title_ru: "Очистить пустые строки"
+    # English and Russian operation description.
+    # Английское и русское описание операции.
+    description: "Create output copies without rows that are empty across all columns."
+    description_ru: "Создать копии результатов без строк, полностью пустых по всем столбцам."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:remove_empty_rows_from_output"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
+
+  - id: package_output
+    # English and Russian button title.
+    # Английское и русское название кнопки.
+    title: "Package output as ZIP"
+    title_ru: "Упаковать результаты"
+    # English and Russian operation description.
+    # Английское и русское описание операции.
+    description: "Create release/address_aligner_output.zip from the output folder."
+    description_ru: "Создать release/address_aligner_output.zip из папки результатов."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:package_output"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"

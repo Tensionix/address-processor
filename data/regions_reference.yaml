@@ -1,0 +1,741 @@
+schema_version: 1
+generated_from: constitution_article_65_bootstrap
+notes: Минимальный reference layer по субъектам РФ. Основан на перечне субъектов из
+  статьи 65 Конституции РФ. Поля capital, federal_district, aliases и enrichments
+  будут добавляться на следующем этапе bootstrap/validation.
+regions:
+- region_id: adygeya
+  display_name: Республика Адыгея (Адыгея)
+  short_name: Адыгея
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: altay_republic
+  display_name: Республика Алтай
+  short_name: Алтай
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: bashkortostan
+  display_name: Республика Башкортостан
+  short_name: Башкортостан
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: buryatiya
+  display_name: Республика Бурятия
+  short_name: Бурятия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: dagestan
+  display_name: Республика Дагестан
+  short_name: Дагестан
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: ingushetiya
+  display_name: Республика Ингушетия
+  short_name: Ингушетия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kabardino_balkariya
+  display_name: Кабардино-Балкарская Республика
+  short_name: Кабардино-Балкария
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kalmykiya
+  display_name: Республика Калмыкия
+  short_name: Калмыкия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: karachaevo_cherkesiya
+  display_name: Карачаево-Черкесская Республика
+  short_name: Карачаево-Черкесия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kareliya
+  display_name: Республика Карелия
+  short_name: Карелия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: komi
+  display_name: Республика Коми
+  short_name: Коми
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: crimea
+  display_name: Республика Крым
+  short_name: Крым
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: mari_el
+  display_name: Республика Марий Эл
+  short_name: Марий Эл
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: mordoviya
+  display_name: Республика Мордовия
+  short_name: Мордовия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: sakha_yakutiya
+  display_name: Республика Саха (Якутия)
+  short_name: Якутия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases:
+  - Саха
+  enabled_by_default: false
+- region_id: severnaya_osetiya_alaniya
+  display_name: Республика Северная Осетия — Алания
+  short_name: Северная Осетия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases:
+  - Северная Осетия — Алания
+  - Алания
+  enabled_by_default: false
+- region_id: tatarstan
+  display_name: Республика Татарстан (Татарстан)
+  short_name: Татарстан
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: tyva
+  display_name: Республика Тыва
+  short_name: Тыва
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases:
+  - Тува
+  enabled_by_default: false
+- region_id: udmurtiya
+  display_name: Удмуртская Республика
+  short_name: Удмуртия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: khakasiya
+  display_name: Республика Хакасия
+  short_name: Хакасия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: chechnya
+  display_name: Чеченская Республика
+  short_name: Чечня
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: chuvashiya
+  display_name: Чувашская Республика — Чувашия
+  short_name: Чувашия
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases:
+  - Чувашская Республика
+  enabled_by_default: false
+- region_id: altayskiy_krai
+  display_name: Алтайский край
+  short_name: Алтайский край
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: zabaykalskiy_krai
+  display_name: Забайкальский край
+  short_name: Забайкалье
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kamchatskiy_krai
+  display_name: Камчатский край
+  short_name: Камчатка
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: krasnodarskiy_krai
+  display_name: Краснодарский край
+  short_name: Краснодарский край
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases:
+  - Кубань
+  enabled_by_default: false
+- region_id: krasnoyarskiy_krai
+  display_name: Красноярский край
+  short_name: Красноярский край
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: permskiy_krai
+  display_name: Пермский край
+  short_name: Пермский край
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: primorskiy_krai
+  display_name: Приморский край
+  short_name: Приморье
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: stavropolskiy_krai
+  display_name: Ставропольский край
+  short_name: Ставропольский край
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: khabarovskiy_krai
+  display_name: Хабаровский край
+  short_name: Хабаровский край
+  subject_type: край
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: amurskaya_oblast
+  display_name: Амурская область
+  short_name: Амурская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: arkhangelskaya_oblast
+  display_name: Архангельская область
+  short_name: Архангельская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: astrakhanskaya_oblast
+  display_name: Астраханская область
+  short_name: Астраханская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: belgorodskaya_oblast
+  display_name: Белгородская область
+  short_name: Белгородская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: bryanskaya_oblast
+  display_name: Брянская область
+  short_name: Брянская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: vladimirskaya_oblast
+  display_name: Владимирская область
+  short_name: Владимирская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: volgogradskaya_oblast
+  display_name: Волгоградская область
+  short_name: Волгоградская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: vologodskaya_oblast
+  display_name: Вологодская область
+  short_name: Вологодская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: voronezhskaya_oblast
+  display_name: Воронежская область
+  short_name: Воронежская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: ivanovskaya_oblast
+  display_name: Ивановская область
+  short_name: Ивановская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: irkutskaya_oblast
+  display_name: Иркутская область
+  short_name: Иркутская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kaliningradskaya_oblast
+  display_name: Калининградская область
+  short_name: Калининградская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kaluzhskaya_oblast
+  display_name: Калужская область
+  short_name: Калужская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kemerovskaya_oblast
+  display_name: Кемеровская область
+  short_name: Кемеровская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases:
+  - Кузбасс
+  enabled_by_default: false
+- region_id: kirovskaya_oblast
+  display_name: Кировская область
+  short_name: Кировская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kostromskaya_oblast
+  display_name: Костромская область
+  short_name: Костромская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kurganskaya_oblast
+  display_name: Курганская область
+  short_name: Курганская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: kurskaya_oblast
+  display_name: Курская область
+  short_name: Курская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: leningradskaya_oblast
+  display_name: Ленинградская область
+  short_name: Ленинградская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: lipetskaya_oblast
+  display_name: Липецкая область
+  short_name: Липецкая область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: magadanskaya_oblast
+  display_name: Магаданская область
+  short_name: Магаданская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: moskovskaya_oblast
+  display_name: Московская область
+  short_name: Московская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases:
+  - Подмосковье
+  enabled_by_default: false
+- region_id: murmanskaya_oblast
+  display_name: Мурманская область
+  short_name: Мурманская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: nizhny_novgorod_oblast
+  display_name: Нижегородская область
+  short_name: Нижегородская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: novgorodskaya_oblast
+  display_name: Новгородская область
+  short_name: Новгородская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: novosibirskaya_oblast
+  display_name: Новосибирская область
+  short_name: Новосибирская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: omskaya_oblast
+  display_name: Омская область
+  short_name: Омская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: orenburgskaya_oblast
+  display_name: Оренбургская область
+  short_name: Оренбургская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: orlovskaya_oblast
+  display_name: Орловская область
+  short_name: Орловская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: penzenskaya_oblast
+  display_name: Пензенская область
+  short_name: Пензенская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: pskovskaya_oblast
+  display_name: Псковская область
+  short_name: Псковская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: rostovskaya_oblast
+  display_name: Ростовская область
+  short_name: Ростовская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases:
+  - Донской регион
+  enabled_by_default: false
+- region_id: ryazanskaya_oblast
+  display_name: Рязанская область
+  short_name: Рязанская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: samarskaya_oblast
+  display_name: Самарская область
+  short_name: Самарская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: saratovskaya_oblast
+  display_name: Саратовская область
+  short_name: Саратовская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: sakhalinskaya_oblast
+  display_name: Сахалинская область
+  short_name: Сахалинская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: sverdlovskaya_oblast
+  display_name: Свердловская область
+  short_name: Свердловская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: smolenskaya_oblast
+  display_name: Смоленская область
+  short_name: Смоленская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: tambovskaya_oblast
+  display_name: Тамбовская область
+  short_name: Тамбовская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: tverskaya_oblast
+  display_name: Тверская область
+  short_name: Тверская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: tomskaya_oblast
+  display_name: Томская область
+  short_name: Томская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: tulskaya_oblast
+  display_name: Тульская область
+  short_name: Тульская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: tyumenskaya_oblast
+  display_name: Тюменская область
+  short_name: Тюменская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: ulyanovskaya_oblast
+  display_name: Ульяновская область
+  short_name: Ульяновская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: chelyabinskaya_oblast
+  display_name: Челябинская область
+  short_name: Челябинская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: yaroslavskaya_oblast
+  display_name: Ярославская область
+  short_name: Ярославская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: moskva
+  display_name: Москва
+  short_name: Москва
+  subject_type: город федерального значения
+  capital: Москва
+  federal_district: null
+  aliases:
+  - г. Москва
+  enabled_by_default: false
+- region_id: sankt_peterburg
+  display_name: Санкт-Петербург
+  short_name: Санкт-Петербург
+  subject_type: город федерального значения
+  capital: Санкт-Петербург
+  federal_district: null
+  aliases:
+  - Петербург
+  - СПб
+  enabled_by_default: false
+- region_id: sevastopol
+  display_name: Севастополь
+  short_name: Севастополь
+  subject_type: город федерального значения
+  capital: Севастополь
+  federal_district: null
+  aliases:
+  - г. Севастополь
+  enabled_by_default: false
+- region_id: evreyskaya_avtonomnaya_oblast
+  display_name: Еврейская автономная область
+  short_name: Еврейская автономная область
+  subject_type: автономная область
+  capital: null
+  federal_district: null
+  aliases:
+  - ЕАО
+  enabled_by_default: false
+- region_id: nenetskiy_ao
+  display_name: Ненецкий автономный округ
+  short_name: Ненецкий АО
+  subject_type: автономный округ
+  capital: null
+  federal_district: null
+  aliases:
+  - НАО
+  enabled_by_default: false
+- region_id: khanty_mansiyskiy_ao_yugra
+  display_name: Ханты-Мансийский автономный округ — Югра
+  short_name: ХМАО — Югра
+  subject_type: автономный округ
+  capital: null
+  federal_district: null
+  aliases:
+  - ХМАО
+  - Югра
+  enabled_by_default: false
+- region_id: chukotskiy_ao
+  display_name: Чукотский автономный округ
+  short_name: Чукотский АО
+  subject_type: автономный округ
+  capital: null
+  federal_district: null
+  aliases:
+  - ЧАО
+  enabled_by_default: false
+- region_id: yamalo_nenetskiy_ao
+  display_name: Ямало-Ненецкий автономный округ
+  short_name: ЯНАО
+  subject_type: автономный округ
+  capital: null
+  federal_district: null
+  aliases:
+  - Ямал
+  enabled_by_default: false
+- region_id: donetskaya_narodnaya_respublika
+  display_name: Донецкая Народная Республика
+  short_name: ДНР
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases:
+  - ДНР
+  - Донецкая Народная Республика
+  enabled_by_default: false
+- region_id: luganskaya_narodnaya_respublika
+  display_name: Луганская Народная Республика
+  short_name: ЛНР
+  subject_type: республика
+  capital: null
+  federal_district: null
+  aliases:
+  - ЛНР
+  - Луганская Народная Республика
+  enabled_by_default: false
+- region_id: zaporozhskaya_oblast
+  display_name: Запорожская область
+  short_name: Запорожская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false
+- region_id: khersonskaya_oblast
+  display_name: Херсонская область
+  short_name: Херсонская область
+  subject_type: область
+  capital: null
+  federal_district: null
+  aliases: []
+  enabled_by_default: false

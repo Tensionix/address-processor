@@ -1,0 +1,24 @@
+# Project dependencies
+pandas
+rapidfuzz
+openpyxl
+tqdm
+PyMuPDF
+pywin32
+pymorphy3
+pymorphy3-dicts-ru
+
+# GUI layer
+nicegui
+pyyaml
+rich
+setuptools
+wheel
+packaging
+pywebview
+
+# Test and audit layer
+pytest
+# NiceGUI's headless `user` fixture parses the rendered page with BeautifulSoup;
+# the Screen fixture would need selenium and is deliberately not used.
+beautifulsoup4

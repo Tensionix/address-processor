@@ -1,0 +1,396 @@
+/* Audion GUI stylesheet.
+ *
+ * Order here is load-bearing: of two equally specific rules the later one wins.
+ * Themes therefore recur instead of being grouped — a rule sits where the cascade
+ * needs it, not next to its relatives. The banners mark each run so the sequence
+ * can be read. Do not sort them.
+ *
+ * Move a rule only after checking that nothing it crosses sets the same property
+ * at the same specificity on the same element.
+ */
+
+/* ========================================================================
+   FIELDS
+   ======================================================================== */
+          .audion-choice-row .q-radio,
+          .audion-choice-row .q-checkbox,
+          .audion-single-checkbox {
+            flex: 0 1 auto !important;
+            margin-right: 10px !important;
+            min-height: 26px !important;
+          }
+          .audion-choice-row .q-radio__label,
+          .audion-choice-row .q-checkbox__label,
+          .audion-single-checkbox .q-checkbox__label {
+            font-size: 13px;
+            line-height: 1.2;
+          }
+/* ========================================================================
+   BASE
+   ======================================================================== */
+          .audion-shell {
+            display: grid;
+            grid-template-columns: minmax(460px, 1fr) 8px minmax(460px, var(--audion-terminal-width, 666px));
+            gap: 8px;
+            width: 100vw;
+            max-width: none;
+            height: calc(100vh - 42px);
+            padding: 10px;
+            overflow: hidden;
+          }
+          .audion-splitter {
+            min-height: 0;
+            height: 100%;
+            border-radius: 8px;
+            cursor: col-resize;
+            position: relative;
+            background: transparent;
+          }
+          .audion-splitter::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 3px;
+            width: 2px;
+            border-radius: 999px;
+            background: var(--audion-divider);
+          }
+          .audion-splitter:hover::before,
+          body.audion-resizing .audion-splitter::before {
+            background: var(--audion-button-text);
+          }
+          body.audion-resizing,
+          body.audion-resizing * {
+            cursor: col-resize !important;
+            user-select: none !important;
+          }
+          .audion-pane { min-height: 0; overflow: hidden; }
+          .audion-scroll {
+            min-height: 0;
+            overflow: auto;
+            scrollbar-gutter: stable;
+          }
+          .audion-pane.audion-scroll {
+            padding-right: 12px;
+          }
+          .audion-pane.audion-scroll > * {
+            max-width: 100%;
+          }
+          .audion-right {
+            display: grid;
+            grid-template-rows: auto minmax(66vh, 1fr);
+            min-height: 0;
+            height: 100%;
+            overflow: hidden;
+          }
+/* ========================================================================
+   SHELL
+   ======================================================================== */
+          .audion-panel {
+            background: var(--audion-panel-background);
+            border: 1px solid var(--audion-panel-border);
+            border-radius: 8px;
+          }
+/* ========================================================================
+   BASE
+   ======================================================================== */
+          .audion-dialog {
+            background: var(--audion-panel-background) !important;
+            color: var(--audion-text) !important;
+          }
+          .audion-confirm-card {
+            max-width: min(720px, calc(100vw - 32px));
+            padding: 16px;
+            gap: 8px;
+            border: 1px solid var(--audion-panel-border);
+          }
+          .audion-confirm-subtitle {
+            color: var(--audion-secondary-text);
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 4px;
+          }
+          .audion-confirm-note,
+          .audion-confirm-warning {
+            color: var(--audion-secondary-text);
+            font-size: 12px;
+            line-height: 1.35;
+          }
+          .audion-confirm-warning {
+            color: var(--audion-muted-text);
+          }
+/* ========================================================================
+   TERMINAL
+   ======================================================================== */
+          .audion-terminal-panel {
+            display: flex;
+            flex-direction: column;
+            background: var(--audion-panel-background);
+            border: 1px solid var(--audion-panel-border);
+            border-radius: 8px;
+            min-height: 0;
+            height: 100%;
+            overflow: hidden;
+          }
+          .audion-terminal {
+            flex: 1 1 auto;
+            min-height: 0;
+            height: 100% !important;
+            box-sizing: border-box;
+            background: var(--audion-terminal-background) !important;
+            border: 1px solid var(--audion-input-border);
+            border-radius: var(--border-radius-md);
+            color: var(--audion-muted-text) !important;
+            font-family: var(--font-mono) !important;
+            font-size: 12px !important;
+            line-height: 1.35 !important;
+            margin: 0;
+            max-width: 100%;
+            overflow: auto;
+            overflow-x: hidden;
+            padding: 10px;
+            scrollbar-gutter: stable;
+            tab-size: 4;
+            user-select: text;
+            -webkit-user-select: text;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            cursor: text;
+          }
+          .audion-terminal:hover {
+            border-color: var(--audion-input-border-hover);
+          }
+          .audion-terminal-line {
+            display: block;
+            min-height: 1.35em;
+            max-width: 100%;
+            padding-left: 5ch;
+            text-indent: -5ch;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            user-select: text;
+          }
+          .audion-terminal-line-table {
+            /* A table row keeps its columns: no wrapping, and none of the hanging
+               indent that a continuation line would otherwise be shifted by. The
+               panel scrolls sideways only while such a line is wider than it. */
+            max-width: none;
+            padding-left: 0;
+            text-indent: 0;
+            white-space: pre;
+            overflow-wrap: normal;
+            word-break: normal;
+          }
+          .audion-terminal-footer {
+            flex: 0 0 auto;
+            min-height: 26px;
+            border-top: 1px solid var(--audion-divider);
+            color: var(--audion-muted-text);
+          }
+/* ========================================================================
+   SHELL
+   ======================================================================== */
+          .audion-log-toolbar .audion-action {
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+          }
+          .audion-log-toolbar .audion-action .q-btn__content {
+            font-size: 11px;
+          }
+/* ========================================================================
+   BASE
+   ======================================================================== */
+          .audion-artifact-row {
+            min-height: 28px;
+            padding-top: 2px;
+            border-top: 1px solid var(--audion-divider);
+          }
+          .audion-artifact-title {
+            color: var(--audion-muted-text);
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1;
+            text-transform: uppercase;
+          }
+          .audion-artifact-button {
+            min-width: 0 !important;
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+          }
+          .audion-artifact-button .q-btn__content {
+            font-size: 11px;
+            gap: 4px !important;
+          }
+          .audion-artifact-button .q-icon {
+            font-size: 15px !important;
+          }
+          .audion-report-summary-grid {
+            display: grid;
+            grid-template-columns: minmax(130px, 0.28fr) minmax(0, 1fr);
+            gap: 6px 10px;
+            width: 100%;
+            max-height: min(48vh, 520px);
+            overflow: auto;
+            padding: 8px;
+            border: 1px solid var(--audion-divider);
+            border-radius: var(--border-radius-md);
+            background: var(--audion-terminal-background);
+          }
+          .audion-report-summary-key {
+            color: var(--audion-muted-text);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            min-width: 0;
+            overflow-wrap: anywhere;
+          }
+          .audion-report-summary-value {
+            color: var(--audion-text);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            min-width: 0;
+            overflow-wrap: anywhere;
+          }
+          .audion-report-json {
+            max-height: min(42vh, 460px);
+            overflow: auto;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            padding: 8px;
+            border: 1px solid var(--audion-divider);
+            border-radius: var(--border-radius-md);
+            background: var(--audion-terminal-background);
+            color: var(--audion-text);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            line-height: 1.35;
+          }
+          .audion-log-icon-button {
+            width: 30px !important;
+            min-width: 30px !important;
+            height: 30px !important;
+            min-height: 30px !important;
+            padding: 0 !important;
+          }
+          .audion-log-icon-button .q-icon {
+            font-size: 18px !important;
+          }
+/* ========================================================================
+   TERMINAL
+   ======================================================================== */
+          .audion-terminal-expanded { height: calc(100vh - 96px) !important; }
+/* ========================================================================
+   RESPONSIVE
+   ======================================================================== */
+          @media (max-width: 1320px) {
+            .audion-oktmo-key-viewer {
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+          }
+          @media (max-width: 1080px) {
+            .audion-oktmo-key-viewer {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+          }
+          @media (max-width: 900px) {
+            body { overflow: auto; }
+            .nicegui-content { height: auto; overflow: visible; }
+            .audion-shell {
+              display: flex;
+              flex-direction: column;
+              height: auto;
+              overflow: visible;
+            }
+            .audion-splitter { display: none; }
+            .audion-section-fields { grid-template-columns: minmax(0, 1fr); }
+            .audion-field-select { grid-column: 1 / -1; }
+            .audion-command-nav-actions { width: 100%; }
+            .audion-oktmo-console-actions {
+              grid-template-columns: 1fr;
+            }
+            .audion-oktmo-key-viewer {
+              grid-template-columns: 1fr;
+            }
+            .audion-nav-run-button { width: 100%; max-width: none; }
+          }
+
+/* ========================================================================
+   STATUS
+   ========================================================================
+   One row carries the whole answer: what state the run is in, what it is
+   doing, how long it has been going, and how far it has got. Colour says the
+   state, so it reads without being read. */
+          .audion-status-row {
+            --audion-status-tone: var(--audion-muted-text);
+            display: grid;
+            grid-template-columns: auto auto 1fr auto minmax(120px, 220px) auto;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--audion-panel-border);
+            border-left: 3px solid var(--audion-status-tone);
+            border-radius: var(--border-radius-md, 8px);
+            background: var(--audion-panel-background);
+          }
+          .audion-status-running { --audion-status-tone: var(--color-accent-secondary); }
+          .audion-status-done { --audion-status-tone: var(--color-border-success); }
+          .audion-status-error { --audion-status-tone: var(--color-border-danger); }
+          .audion-status-dot-mark {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--audion-status-tone);
+          }
+          .audion-status-running .audion-status-dot-mark {
+            animation: audion-status-pulse 1.4s ease-in-out infinite;
+          }
+          .audion-status-state {
+            color: var(--audion-status-tone);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+          }
+          .audion-status-message {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 13px;
+            color: var(--audion-text);
+          }
+          .audion-status-clock,
+          .audion-status-percent {
+            /* Tabular figures so the numbers do not jitter as they change. */
+            font-family: var(--font-mono);
+            font-variant-numeric: tabular-nums;
+            font-size: 12px;
+            white-space: nowrap;
+          }
+          .audion-status-clock { color: var(--audion-muted-text); }
+          .audion-status-percent {
+            color: var(--audion-text);
+            font-weight: 600;
+            min-width: 38px;
+            text-align: right;
+          }
+          .audion-status-bar {
+            height: 5px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.09);
+            overflow: hidden;
+          }
+          .audion-status-bar i {
+            display: block;
+            height: 100%;
+            border-radius: 3px;
+            background: var(--audion-status-tone);
+            transition: width 0.3s ease;
+          }
+          @keyframes audion-status-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+          }
