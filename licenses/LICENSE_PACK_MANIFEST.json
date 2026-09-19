@@ -1,36 +1,36 @@
 {
   "schema": "audion.build_licenses.pack_manifest.v1",
-  "generated_utc": "2026-09-04T02:24:52Z",
-  "run_id": "20260904T022438Z_audion-address-processor_ab42ee07",
+  "generated_utc": "2026-09-18T02:52:13Z",
+  "run_id": "20260918T025200Z_audion-address-processor_8f1d63ec",
   "project_id": "audion-address-processor",
   "project_name": "Audion Address Processor",
-  "scan_root": "S:\\Release\\Audion Address Processor",
-  "output_dir": "S:\\Release\\Audion Address Processor\\licenses",
+  "scan_root": "S:\\Releases\\Audion Address Processor",
+  "output_dir": "S:\\Releases\\Audion Address Processor\\licenses",
   "files": [
     {
       "name": "THIRD_PARTY_NOTICES.txt",
-      "sha256": "e778109a8685c340c867a76f1ef998bc3855da6a483280581ce63921e0b026f1",
-      "size": 614351
+      "sha256": "08a8dc454c1541cf26ee5a9b8bda37ba31e33334737903b6cd9587a5a9a94065",
+      "size": 614376
     },
     {
       "name": "SOURCE_CODE_AVAILABILITY.txt",
-      "sha256": "9766e946a33dbc866159a1d91ebc3dee430c81f8e8ca63ab123e51b20310e85d",
+      "sha256": "20919c893625ec76a53ce70677fe6205eba5ae18fffa0756c1af639b31c4031e",
       "size": 1357
     },
     {
       "name": "COMPONENTS.json",
-      "sha256": "4828bc4f3d66bfd020396d954367653c0d72f034605f9cd1a1906dafb1e6045e",
-      "size": 159128
+      "sha256": "77a9f58fc82ab0ce625bb6b3da1e6ce446283b744d77dd1b1e962a4b8665a075",
+      "size": 160640
     },
     {
       "name": "_records.json",
-      "sha256": "6860d2b484c64f798f4333be4dd858b6879e99d6d24942d42ab7546b5e1b384a",
-      "size": 38838
+      "sha256": "c35c14ed1217379d916f17a335f22d87af30e1bb3e3f08d2374a2186fcae5bf0",
+      "size": 39250
     },
     {
       "name": "LICENSE_SCAN_REPORT.md",
-      "sha256": "1b723fd744d1cc4157327fba73d583a8766d813ff049e4caacbfd48ae4554077",
-      "size": 6939
+      "sha256": "26f4a7c5a7332bceb36055e40fb335d73b76569f56897a90fa09e4d0ec698e6c",
+      "size": 7011
     }
   ]
 }

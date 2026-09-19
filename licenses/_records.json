@@ -81,7 +81,7 @@
   },
   {
     "name": "anyio",
-    "version": "4.15.0",
+    "version": "4.15.1",
     "license": "MIT",
     "source": "site-packages",
     "license_files": [
@@ -103,6 +103,19 @@
     "license_fingerprint": "38cd07de7d7a9ba882404c056631a143569b0436620cdfd6a7d887ce52f7cc14",
     "legal_document_hashes": [
       "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f"
+    ]
+  },
+  {
+    "name": "Audion launcher",
+    "version": "bundled",
+    "license": "Audion own code",
+    "source": "audion-first-party",
+    "license_files": [
+      "licenses/THIRD_PARTY_NOTICES.txt"
+    ],
+    "license_fingerprint": "3d34b48b986e72171636407e8241394892758ca2f4b323dd5023b828569cea85",
+    "legal_document_hashes": [
+      "f9aa24d322c0d39ff478dbcd0b3df9fa5514a44419e33fde66421029ec02a985"
     ]
   },
   {
@@ -349,7 +362,7 @@
   },
   {
     "name": "idna",
-    "version": "3.19",
+    "version": "3.20",
     "license": "BSD-3-Clause",
     "source": "site-packages",
     "license_files": [
@@ -467,20 +480,20 @@
   },
   {
     "name": "multidict",
-    "version": "6.7.1",
+    "version": "6.8.0",
     "license": "Apache License 2.0",
     "source": "site-packages",
     "license_files": [
       "licenses/THIRD_PARTY_NOTICES.txt"
     ],
-    "license_fingerprint": "f6a6a2d7189142a2bb0d3603cffe3d0f2070c4e3c98e870743d76764e77738f4",
+    "license_fingerprint": "1d6b66620c3dd7d8cad64526ef01b82cbc8047a359fb6c1cfb8e4c3008ead483",
     "legal_document_hashes": [
-      "926b19214015f0cad2a2c31c418401961379ae8d72b25a637981bb7a5158a96b"
+      "2e4be5fc6c4c72a466fcb665d726e049a6891981fe536c4f04b6366749461d23"
     ]
   },
   {
     "name": "nicegui",
-    "version": "3.16.0",
+    "version": "3.17.0",
     "license": "MIT",
     "source": "site-packages",
     "license_files": [
@@ -493,7 +506,7 @@
   },
   {
     "name": "numpy",
-    "version": "2.5.2",
+    "version": "2.5.3",
     "license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
     "source": "site-packages",
     "license_files": [
@@ -565,7 +578,7 @@
   },
   {
     "name": "pandas",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "license": "License :: OSI Approved :: BSD License",
     "source": "site-packages",
     "license_files": [
@@ -624,7 +637,7 @@
   },
   {
     "name": "propcache",
-    "version": "0.5.2",
+    "version": "0.5.4",
     "license": "Apache-2.0",
     "source": "site-packages",
     "license_files": [
@@ -822,7 +835,7 @@
   },
   {
     "name": "python-socketio",
-    "version": "5.16.4",
+    "version": "5.17.0",
     "license": "MIT",
     "source": "site-packages",
     "license_files": [
@@ -1012,7 +1025,7 @@
   },
   {
     "name": "tqdm",
-    "version": "4.70.0",
+    "version": "4.70.1",
     "license": "MPL-2.0 AND MIT",
     "source": "site-packages",
     "license_files": [
@@ -1051,7 +1064,7 @@
   },
   {
     "name": "tzdata",
-    "version": "2026.3",
+    "version": "2026.4",
     "license": "Apache-2.0",
     "source": "site-packages",
     "license_files": [
@@ -1065,7 +1078,7 @@
   },
   {
     "name": "uvicorn",
-    "version": "0.52.4",
+    "version": "0.53.0",
     "license": "BSD-3-Clause",
     "source": "site-packages",
     "license_files": [
@@ -1144,7 +1157,7 @@
   },
   {
     "name": "yarl",
-    "version": "1.24.5",
+    "version": "1.25.1",
     "license": "Apache-2.0",
     "source": "site-packages",
     "license_files": [

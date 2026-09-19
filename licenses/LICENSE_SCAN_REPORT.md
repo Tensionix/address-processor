@@ -1,13 +1,13 @@
 # Audion Build Licenses Scan Report
 
 - Project: **Audion Address Processor** (`audion-address-processor`)
-- Run: `20260904T022438Z_audion-address-processor_ab42ee07`
-- Project root: `S:\Release\Audion Address Processor`
-- Scan root: `S:\Release\Audion Address Processor`
-- Output: `S:\Release\Audion Address Processor\licenses`
+- Run: `20260918T025200Z_audion-address-processor_8f1d63ec`
+- Project root: `S:\Releases\Audion Address Processor`
+- Scan root: `S:\Releases\Audion Address Processor`
+- Output: `S:\Releases\Audion Address Processor\licenses`
 - Status: **PASS**
-- Components: 83
-- Bundled: 83
+- Components: 84
+- Bundled: 84
 - Optional runtime: 0
 
 ## Issues
@@ -24,8 +24,9 @@ No issues detected.
 | aiosignal | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.4.0 | 1.4.0 |
 | annotated-doc | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.0.5 | 0.0.5 |
 | annotated-types | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.8.0 | 0.8.0 |
-| anyio | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.15.0 | 4.15.0 |
+| anyio | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.15.1 | 4.15.1 |
 | attrs | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 26.1.0 | 26.1.0 |
+| Audion launcher | `NEW_COMPONENT_APPROVED_PROFILE` | - | bundled |
 | beautifulsoup4 | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.15.0 | 4.15.0 |
 | bidict | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.24.1 | 0.24.1 |
 | bottle | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.13.4 | 0.13.4 |
@@ -44,7 +45,7 @@ No issues detected.
 | httpcore | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.0.9 | 1.0.9 |
 | httptools | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.8.0 | 0.8.0 |
 | httpx | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.28.1 | 0.28.1 |
-| idna | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.19 | 3.19 |
+| idna | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.20 | 3.20 |
 | ifaddr | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.2.0 | 0.2.0 |
 | iniconfig | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.3.0 | 2.3.0 |
 | itsdangerous | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.2.0 | 2.2.0 |
@@ -53,16 +54,16 @@ No issues detected.
 | markdown2 | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.5.5 | 2.5.5 |
 | MarkupSafe | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.0.3 | 3.0.3 |
 | mdurl | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.1.2 | 0.1.2 |
-| multidict | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 6.7.1 | 6.7.1 |
-| nicegui | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.16.0 | 3.16.0 |
-| numpy | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.5.2 | 2.5.2 |
+| multidict | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 6.8.0 | 6.8.0 |
+| nicegui | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.17.0 | 3.17.0 |
+| numpy | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.5.3 | 2.5.3 |
 | openpyxl | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.1.5 | 3.1.5 |
 | orjson | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.12.0 | 3.12.0 |
 | packaging | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 26.3 | 26.3 |
-| pandas | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.0.5 | 3.0.5 |
+| pandas | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.0.5 | 3.0.6 |
 | pip | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 26.2.1 | 26.2.1 |
 | pluggy | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.6.0 | 1.6.0 |
-| propcache | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.5.2 | 0.5.2 |
+| propcache | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.5.4 | 0.5.4 |
 | proxy_tools | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.1.0 | 0.1.0 |
 | pycparser | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.0 | 3.0 |
 | pydantic | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.13.5 | 2.13.5 |
@@ -77,7 +78,7 @@ No issues detected.
 | Python Embedded | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.12.x | 3.12.x |
 | python-engineio | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.14.0 | 4.14.0 |
 | python-multipart | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.0.32 | 0.0.32 |
-| python-socketio | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 5.16.4 | 5.16.4 |
+| python-socketio | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 5.17.0 | 5.17.0 |
 | pythonnet | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.1.0 | 3.1.0 |
 | pywebview | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 6.2.1 | 6.2.1 |
 | pywin32 | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 312 | 312 |
@@ -90,17 +91,17 @@ No issues detected.
 | soupsieve | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.9.2 | 2.9.2 |
 | starlette | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.6.0 | 1.6.0 |
 | tinycss2 | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.5.1 | 1.5.1 |
-| tqdm | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.70.0 | 4.70.0 |
+| tqdm | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.70.1 | 4.70.1 |
 | typing_extensions | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.16.0 | 4.16.0 |
 | typing-inspection | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.4.4 | 0.4.4 |
-| tzdata | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2026.3 | 2026.3 |
-| uvicorn | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.52.4 | 0.52.4 |
+| tzdata | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2026.4 | 2026.4 |
+| uvicorn | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.53.0 | 0.53.0 |
 | watchfiles | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.2.0 | 1.2.0 |
 | webencodings | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.6.1 | 0.6.1 |
 | websockets | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 17.1 | 17.1 |
 | wheel | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.48.0 | 0.48.0 |
 | wsproto | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.3.2 | 1.3.2 |
-| yarl | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.24.5 | 1.24.5 |
+| yarl | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.25.1 | 1.25.1 |
 
 ## Scope
 

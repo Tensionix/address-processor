@@ -8,14 +8,14 @@
   <a href="https://github.com/Tensionix/address-processor/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/address-processor?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Версия 1.7.5** · 2026-09-18 · 9.4 MB
+**Версия 1.7.5** · 2026-09-20 · 218.6 MB
 
-- [Скачать напрямую](https://dl.audion.dev/address-processor/1.7.5/Audion_Address_Processor_v1.7.5.zip) — быстрая раздача, без ограничений
+- [Скачать напрямую](https://audion.dev/get/address-processor/1.7.5/Audion_Address_Processor_v1.7.5_Full.zip) — быстрая раздача, без ограничений
 - [Страница проекта](https://audion.dev/downloads/address-processor) — все версии и установка
 
 <p align="center"><img src="docs/screenshot.png" alt="Окно программы" width="560"></p>
 
-`SHA-256: 3240fa122379c8e57917346c0519dc57e7661187503cf735796bcfc7658865c6`
+`SHA-256: 36388faa5873cd1c5f337b08c2c39a8806c9ac359c535849ced60d4337e514fe`
 
 ---
 
@@ -33,6 +33,9 @@
 - [Принципы](#принципы)
 - [Документация](#документация)
 - [Техническая часть](#техническая-часть)
+  - [Источники](#источники)
+  - [Настройки](#настройки)
+  - [Диагностика](#диагностика)
 
 Работа с российскими адресными данными: сопоставление таблиц по адресу, сборка
 чистых адресов из разнородных источников, эталонный справочник, коды территорий,
