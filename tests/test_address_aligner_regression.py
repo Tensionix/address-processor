@@ -32,7 +32,11 @@ from system_core.Ultimate_GT_Aligner import (  # noqa: E402
 )
 from system_core.address_engine import AddressNormalizer  # noqa: E402
 from system_core.address_engine.address_diagnostics import record_issue_codes  # noqa: E402
-from system_core.address_engine.address_slots import build_address_parts  # noqa: E402
+from system_core.address_engine.address_slots import (  # noqa: E402
+    _format_oktmo_locality_for_address,
+    _normalize_street_segment,
+    build_address_parts,
+)
 from system_core.address_engine.reference_builder import (  # noqa: E402
     DEFAULT_SLOT_ORDER,
     DEFAULT_ENABLED_SLOTS,
@@ -333,6 +337,19 @@ class AddressParsingTests(unittest.TestCase):
             _extract_clean_address_fragments("ул. 1-я Линия, д. 7"),
             ["ул. 1-я Линия, д. 7"],
         )
+
+
+    def test_type_abbreviation_without_its_dot_gets_one(self) -> None:
+        # «ул Ленина» - это «ул. Ленина»; так же пер, наб, пл, туп, ш, проул; бульв - «б-р».
+        for written, expected in (
+            ("ул Ленина", "ул. Ленина"), ("ул. Ленина", "ул. Ленина"), ("пер Садовый", "пер. Садовый"),
+            ("наб Реки", "наб. Реки"), ("пл Мира", "пл. Мира"), ("туп Тихий", "туп. Тихий"),
+            ("ш Московское", "ш. Московское"), ("проул Кривой", "проул. Кривой"), ("бульв Мира", "б-р Мира"),
+        ):
+            self.assertEqual(_normalize_street_segment(written), expected)
+        # «пр» без точки не трогается: это и проспект, и проезд.
+        self.assertEqual(_normalize_street_segment("пр Мира"), "пр Мира")
+        self.assertEqual(_format_oktmo_locality_for_address("пос Октябрьский"), "пос. Октябрьский")
 
 
 class CompanionColumnTests(unittest.TestCase):
