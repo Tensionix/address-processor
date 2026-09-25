@@ -41,6 +41,7 @@ echo   runtime\*
 echo   wheelhouse\*
 echo   ._runtime\*
 echo   install\download\*
+echo   data\rosstat\*  (Rosstat OKTMO snapshot and lookup cache - Update Rosstat OKTMO downloads them again)
 echo   system_core\powershell\*
 echo   system_core\_pwsh_tmp\
 echo   system_core\_powershell_tmp\
@@ -48,7 +49,7 @@ echo   system_core\_fzf_tmp\
 echo   system_core\fzf.exe
 echo.
 echo Kept project data:
-echo   data\*  (OKTMO registry and local project data)
+echo   data\*  (local project data, except data\rosstat)
 echo.
 echo Also removed recursively:
 echo   __pycache__\
@@ -78,6 +79,10 @@ call :CLEAN_DIR "%BASE_DIR%\runtime"
 call :CLEAN_DIR "%BASE_DIR%\wheelhouse"
 call :CLEAN_DIR "%BASE_DIR%\._runtime"
 call :CLEAN_DIR "%BASE_DIR%\install\download"
+rem The OKTMO lookup cache grows past 100 MB, and GitHub refuses a source
+rem build that carries it. The snapshot and the cache come back from
+rem Rosstat through Update Rosstat OKTMO, so nothing here is lost.
+call :CLEAN_DIR "%BASE_DIR%\data\rosstat"
 call :CLEAN_DIR "%BASE_DIR%\system_core\powershell"
 call :DELETE_DIR "%BASE_DIR%\system_core\_pwsh_tmp"
 call :DELETE_DIR "%BASE_DIR%\system_core\_powershell_tmp"

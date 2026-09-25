@@ -1,10 +1,10 @@
 # Audion Build Licenses Scan Report
 
 - Project: **Audion Address Processor** (`audion-address-processor`)
-- Run: `20260924T192841Z_audion-address-processor_5e08da6f`
-- Project root: `E:\Release Plus\Audion Address Processor`
-- Scan root: `E:\Release Plus\Audion Address Processor`
-- Output: `E:\Release Plus\Audion Address Processor\licenses`
+- Run: `20260925T174912Z_audion-address-processor_0a626ecb`
+- Project root: `E:\Release\Audion Address Processor`
+- Scan root: `E:\Release\Audion Address Processor`
+- Output: `E:\Release\Audion Address Processor\licenses`
 - Status: **PASS**
 - Components: 84
 - Bundled: 84
@@ -95,7 +95,7 @@ No issues detected.
 | typing_extensions | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 4.16.0 | 4.16.0 |
 | typing-inspection | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.4.4 | 0.4.4 |
 | tzdata | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2026.4 | 2026.4 |
-| uvicorn | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.53.0 | 0.53.0 |
+| uvicorn | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.53.0 | 0.54.0 |
 | watchfiles | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.3.0 | 1.3.0 |
 | webencodings | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 0.6.1 | 0.6.1 |
 | websockets | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 17.1 | 17.1 |
