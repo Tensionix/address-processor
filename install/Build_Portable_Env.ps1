@@ -45,13 +45,14 @@ function Invoke-Checked {
 }
 
 Write-Host "======================================================================"
-Write-Host "AUDION ADDRESS ALIGNER - BUILD PORTABLE ENV (PS)"
+Write-Host "AUDION ADDRESS PROCESSOR - BUILD PORTABLE ENV (PS)"
 Write-Host "======================================================================"
 Write-Host "Root:        $rootDir"
 Write-Host "Install:     $installDir"
 Write-Host "Download:    $downloadDir"
 Write-Host "Runtime:     $runtimeDir"
 Write-Host "Wheelhouse:  $wheelhouseDir"
+Write-Host "PowerShell:  $($PSVersionTable.PSVersion) at $PSHOME"
 Write-Host ""
 
 New-Item -ItemType Directory -Force -Path $downloadDir | Out-Null
@@ -65,14 +66,32 @@ Write-Host "[2/7] Extracting runtime..."
 if (Test-Path $runtimeDir) {
     Get-ChildItem -Force $runtimeDir | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
 }
-Expand-Archive -Path $pythonZipPath -DestinationPath $runtimeDir -Force
+# Not Expand-Archive: the PowerShell the program carries has no Archive module, and the
+# cmdlet of the machine would bring Windows PowerShell in through a compatibility session.
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+if ($PSVersionTable.PSVersion.Major -ge 6) {
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($pythonZipPath, $runtimeDir, $true)
+} else {
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($pythonZipPath, $runtimeDir)
+}
 
 Write-Host "[3/7] Enabling import site..."
 $pthFile = Join-Path $runtimeDir "python3$pythonMinor._pth"
 if (-not (Test-Path $pthFile)) {
     throw "Missing file: $pthFile"
 }
-(Get-Content $pthFile) -replace '^#import site$', 'import site' | Set-Content $pthFile -Encoding ASCII
+$pthLines = (Get-Content $pthFile) -replace '^#import site$', 'import site'
+if ($pthLines -notcontains "..") {
+    $importIndex = [Array]::IndexOf($pthLines, "import site")
+    if ($importIndex -gt 0) {
+        $pthLines = @($pthLines[0..($importIndex - 1)]) + ".." + @($pthLines[$importIndex..($pthLines.Count - 1)])
+    } elseif ($importIndex -eq 0) {
+        $pthLines = @("..") + @($pthLines)
+    } else {
+        $pthLines = @($pthLines) + ".."
+    }
+}
+$pthLines | Set-Content $pthFile -Encoding ASCII
 
 Write-Host "[4/7] Downloading get-pip.py..."
 # A dropped connection here used to kill the whole project build.
@@ -118,7 +137,6 @@ Invoke-Checked -Label "Installing packages" -Command {
 
 Write-Host "[7/7] Verifying environment..."
 Invoke-Checked -Label "Verifying environment" -Command { & $pythonExe $doctorScript --project-root $rootDir }
-
 
 Write-Host ""
 Write-Host "[SUCCESS] Portable environment is ready."

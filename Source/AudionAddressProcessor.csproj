@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The window of Audion Address Processor on Avalonia. It processes no address itself: every button
+    runs an operation of the manifest through the console command of the engine (address_cli.cmd -
+    system_core\cli.py on the Python of the project) and shows what the operation says.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>AudionAddressProcessor</AssemblyName>
+    <RootNamespace>AudionAddressProcessor</RootNamespace>
+    <!-- The description and the product of the exe: Windows names a taskbar pin, Task Manager
+         and the Start menu by them. -->
+    <AssemblyTitle>Audion Address Processor</AssemblyTitle>
+    <Product>Audion Address Processor</Product>
+    <!-- The number has one owner, config\version.json: the window shows it from there, and the
+         exe says the same. -->
+    <VersionFile>$(MSBuildProjectDirectory)\..\config\version.json</VersionFile>
+    <Version>$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(VersionFile)')), '"version"\s*:\s*"([^"]+)"').Groups[1].Value)</Version>
+    <!-- The mark the program has had since its first window: one file, read from where it lies. -->
+    <ApplicationIcon>..\system_core\icons\app.ico</ApplicationIcon>
+    <SatelliteResourceLanguages>en;ru</SatelliteResourceLanguages>
+    <!-- Windows only (the commands are started as Windows processes): the platform analyzer has nothing to teach here. -->
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+    <!-- Source\Ps is a project of its own - the PowerShell of the program: its files are not part of the window. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);Ps\**</DefaultItemExcludes>
+    <DebugType Condition="'$(Configuration)' != 'Debug'">none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.3" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.3" />
+  </ItemGroup>
+
+  <!-- JetBrains Mono (SIL OFL) ships inside; the mark of the window is the same file the exe carries. -->
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <AvaloniaResource Include="..\system_core\icons\app.ico" Link="Assets\app.ico" />
+  </ItemGroup>
+
+  <!-- Portable: the dictionary of the window travels next to the executable (App\config\i18n.json). -->
+  <ItemGroup>
+    <None Include="config\i18n.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

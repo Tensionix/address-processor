@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <title>Audion Address Processor</title>
+  <desc>A structured address register and a blue location marker with a white house.</desc>
+  <defs>
+    <linearGradient id="tile" x1="120" y1="0" x2="844" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#23354A"/>
+      <stop offset=".52" stop-color="#132335"/>
+      <stop offset="1" stop-color="#091422"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="150" y1="0" x2="858" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#567087"/>
+      <stop offset=".43" stop-color="#263F55"/>
+      <stop offset="1" stop-color="#142539"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="164" y1="220" x2="650" y2="824" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#384A5E"/>
+      <stop offset=".48" stop-color="#253649"/>
+      <stop offset="1" stop-color="#152639"/>
+    </linearGradient>
+    <linearGradient id="paperEdge" x1="160" y1="238" x2="620" y2="838" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#223A50"/>
+      <stop offset="1" stop-color="#0C1B2A"/>
+    </linearGradient>
+    <linearGradient id="fields" x1="200" y1="300" x2="330" y2="738" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8EA4B7"/>
+      <stop offset=".48" stop-color="#657E95"/>
+      <stop offset="1" stop-color="#45627D"/>
+    </linearGradient>
+    <linearGradient id="pin" x1="516" y1="238" x2="844" y2="788" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#74EDFA"/>
+      <stop offset=".35" stop-color="#26C1E8"/>
+      <stop offset=".7" stop-color="#1689CB"/>
+      <stop offset="1" stop-color="#0D4D97"/>
+    </linearGradient>
+    <linearGradient id="pinEdge" x1="492" y1="230" x2="862" y2="864" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#168EA9"/>
+      <stop offset="1" stop-color="#062D61"/>
+    </linearGradient>
+    <linearGradient id="pinRim" x1="508" y1="210" x2="834" y2="816" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C7FBFF" stop-opacity=".86"/>
+      <stop offset=".44" stop-color="#66D9F2" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#2288BF" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="house" x1="620" y1="322" x2="768" y2="562" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DDEFF8"/>
+    </linearGradient>
+    <clipPath id="tileClip"><rect width="1024" height="1024" rx="224"/></clipPath>
+    <path id="pinShape" d="M686 202C560 202 458 303 458 428C458 584 592 746 663 848C674 864 697 864 709 848C780 746 914 584 914 428C914 303 812 202 686 202Z"/>
+    <path id="houseShape" d="M563 418L674 324Q686 314 698 324L809 418Q819 426 810 436L802 445Q795 453 786 445L778 438V544Q778 560 762 560H710V490H662V560H610Q594 560 594 544V438L586 445Q577 453 570 445L562 436Q553 426 563 418Z"/>
+  </defs>
+  <g clip-path="url(#tileClip)">
+    <rect width="1024" height="1024" rx="224" fill="url(#tile)"/>
+    <rect x="3" y="3" width="1018" height="1018" rx="221" stroke="url(#rim)" stroke-width="6"/>
+    <rect x="140" y="246" width="556" height="592" rx="72" fill="#030D19" opacity=".3"/>
+    <rect x="140" y="234" width="556" height="592" rx="72" fill="url(#paperEdge)"/>
+    <rect x="140" y="220" width="556" height="592" rx="72" fill="url(#paper)"/>
+    <rect x="143" y="223" width="550" height="586" rx="69" stroke="#8EA6BC" stroke-opacity=".48" stroke-width="6"/>
+    <rect x="206" y="326" width="72" height="72" rx="18" fill="url(#fields)"/>
+    <rect x="206" y="480" width="72" height="72" rx="18" fill="url(#fields)"/>
+    <rect x="206" y="634" width="72" height="72" rx="18" fill="url(#fields)"/>
+    <rect x="310" y="341" width="286" height="42" rx="21" fill="#96ABBE"/>
+    <rect x="310" y="495" width="252" height="42" rx="21" fill="#96ABBE"/>
+    <rect x="310" y="649" width="204" height="42" rx="21" fill="#96ABBE"/>
+    <use href="#pinShape" transform="translate(0 26)" fill="#031124" opacity=".38"/>
+    <use href="#pinShape" transform="translate(0 14)" fill="url(#pinEdge)"/>
+    <use href="#pinShape" fill="url(#pin)"/>
+    <use href="#pinShape" stroke="url(#pinRim)" stroke-width="7"/>
+    <use href="#houseShape" transform="translate(0 10)" fill="#075C93" opacity=".25"/>
+    <use href="#houseShape" fill="url(#house)"/>
+  </g>
+</svg>

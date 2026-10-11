@@ -13,7 +13,7 @@ set "REQ_FILE=%ROOT%\install\requirements_full.in"
 set "GET_PIP=%ROOT%\install\download\get-pip.py"
 
 echo ======================================================================
-echo   AUDION ADDRESS ALIGNER - OFFLINE INSTALL
+echo   AUDION ADDRESS PROCESSOR - OFFLINE INSTALL
 echo ======================================================================
 echo Root:       %ROOT%
 echo Runtime:    %RUNTIME_DIR%
@@ -44,10 +44,7 @@ if errorlevel 1 goto ERR_INSTALL
 
 echo [3/3] Verifying environment...
 call "%ROOT%\install\verify_portable_env.cmd"
-if errorlevel 1 exit /b %errorlevel%
-
-echo [INFO] Release licensing is generated later from the finalized release contents.
-exit /b 0
+exit /b %errorlevel%
 
 :ERR_PYTHON
 echo [ERROR] runtime\python.exe was not found.

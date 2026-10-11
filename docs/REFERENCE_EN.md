@@ -11,6 +11,7 @@
 - [Sources](#sources)
 - [Run Artifacts](#run-artifacts)
 - [Result Formatting](#result-formatting)
+- [Console Command](#console-command)
 - [Project Layout](#project-layout)
 
 How address parsing works, the slots, the matching passes, the configuration
@@ -169,33 +170,32 @@ safety:
 Values from the window take priority over the file: an empty field in the window
 means "take from settings or detect automatically", a filled one overrides.
 
-### `config/gui_settings.yaml`
+### `config/window_settings.json`
 
-```yaml
-gui:
-  language: "en"              # ru | en
-  theme: "code_dark"
-  emoji: false
-  allow_runtime_switching: true
-  advanced_open: false        # open the Advanced block right away
-  source_path: ''
-  destination_path: ''
-```
+The window's settings: its size, the language (`ru` | `en`), the theme (`dark`,
+`codedark`, `vault`, `light`), the font size and the width of the right column. The
+window writes the file itself; delete it to return to the defaults (Russian, the
+Code Dark theme). At start the source and the target are always the project's
+`input` and `output`: the earlier choice is not remembered, the history of paths
+is kept apart.
 
 ### Other Configuration Files
 
 | File | Contents |
 | --- | --- |
-| `config/tool_manifest.yaml` | Every command, field, hint, and service function |
+| `config/tool_manifest.yaml` | Every operation, field, hint, and service function |
+| `config/window_layout.yaml` | The layout of the window: the sections, the operations in them, the buttons of the working area and of the result panel, the icons |
 | `config/version.json` | Version and the language of the root README |
 | `config/path_history.json` | History and pins of source and target paths |
-| `config/ui_colors.yaml` | Interface colours |
 | `config/oktmo_current_keys.txt` | OKTMO search keys |
 | `config/oktmo_*_pins.json` | Pinned regions and municipalities |
 
-`tool_manifest.yaml` is what the window is built from. Each command is described
+`tool_manifest.yaml` is what the window is built from. Each operation is described
 by a title, a description, a set of fields, and a reference to a service-layer
-function. Both languages live in the same file as `label` / `label_ru` pairs.
+function. Both languages live in the same file as `label` / `label_ru` pairs. The
+window knows no operation by name: what to draw is said by the keys of the manifest
+and by the layout `window_layout.yaml`. Every operation of the manifest must stand
+in the layout — the tests and the self-check of the window verify it.
 
 ---
 
@@ -265,11 +265,43 @@ row with a long address cannot be read in a narrow column.
 
 ---
 
+## Console Command
+
+Whatever a button of the window does, the console command `address_cli.cmd` does
+too: the window is its "face" and has no way of its own to run an operation. An
+operation runs with the same field defaults and the same rules, so a run from the
+command line gives the same workbook as a run from the window.
+
+| Command | What it does |
+| --- | --- |
+| `describe` | The manifest as JSON: operations, fields, defaults, both languages, the window layout |
+| `run --operation ID` | Run an operation; keys `--source`, `--target`, `--params file.json`, `--set name=value`, `--result`, `--cancel-file`, `--session-dir` |
+| `options --operation ID --field ID` | The options of a field the engine builds (sheets and headers of workbooks, regions and municipalities) |
+| `oktmo --action NAME` | The actions of the OKTMO panel: registry, keys, pins, settlement search |
+| `serve` | A process that stays up: the same `options` and `oktmo` as lines of JSON through stdin/stdout, so the OKTMO registry is not read again for every question |
+| `stop-office --session-dir` | Close the Excel and Word that a stopped operation started (only those recorded in the session folder — the person's own Excel and Word are never touched) |
+| `version` | The number from `config/version.json` |
+
+An ordinary line of output goes to the journal. A line that begins with
+`::address::` is a service one and carries JSON: where the operation's journal is
+written, the share of the work done, the live line of a long stage, the outcome.
+The outcome of an operation is the `--result` file; stopping is the
+`--cancel-file`: the operation sees it and ends at the nearest safe point. Exit
+codes: 0 — done, 1 — the operation failed, 2 — a wrong call, 130 — stopped.
+
+The rules that assemble the parameters of a run (the defaults, the conditions for
+showing a field, the order of the slots, the reset of the normalization fields in
+the "fast" mode, values outside a list) live in one place —
+`system_core/core/operation_model.py` — and the tests hold them.
+
+---
+
 ## Project Layout
 
 | Layer | Where | Responsibility |
 | --- | --- | --- |
-| Window | `system_core/ui_nicegui/` | Interface, workspace folders, log, artifacts |
+| Window | `Source/` (sources), `App/` (built) | Avalonia 12 / .NET 10: sections, forms, journal, result, working folders |
+| Console command | `system_core/cli.py`, `system_core/core/operation_model.py` | One way to start an operation for the window and the command line |
 | Services | `system_core/services/` | Binding the window to the engines, reports, parameters |
 | Address engine | `system_core/address_engine/` | Parsing, slots, OKTMO, reference, collection |
 | Matching | `system_core/Ultimate_GT_Aligner.py` | Matching passes and linked column transfer |

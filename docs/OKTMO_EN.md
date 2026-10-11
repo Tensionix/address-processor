@@ -24,38 +24,39 @@ the code and the official name.
 
 ## The Screen
 
-The **OKTMO / project keys** tile is first in the command list. It opens the
-**Project OKTMO keys** screen directly, without an intermediate menu.
+The **OKTMO** section is the fifth in the row of sections under the window header.
+It has two tabs:
 
-Two buttons sit at the top of the screen:
+* **KEYS & AREA** — opens at once. It is a panel: the **Territory** block (choice
+  of region and municipality, settlement search), the **Keys** block (the current
+  search keys and the buttons for the file) and the **OKTMO pins** block. The
+  buttons of the panel act at once; the **RUN** button beside the title writes a
+  summary into the journal: whether the registry is ready, how many keys and pins
+  there are.
+* **UPDATE ROSSTAT** — download a fresh Rosstat registry (an ordinary operation
+  with a URL field and a **RUN** button).
 
-* **UPDATE OKTMO DATABASE** — download a fresh Rosstat registry.
-* **RESET OKTMO KEYS** — clear the current search keys. Pins are preserved.
-
-Below is the **Territory** block: region selector, municipality selector, the key
-panel, settlement search, and the pin panel.
+The line above the region field shows which registry file is in use now.
 
 ## The Registry: Download and Update
 
 **The registry is downloaded by a button.** Nothing has to be copied by hand and
 placed into a folder.
 
-While the registry file is missing, a red strip sits under the region field:
+While the registry file is missing, the line above the region field says (in
+amber):
 
-> OKTMO registry was not found: data/rosstat/data-\*.csv. Region and municipality
-> lists will be incomplete.
+> The Rosstat registry was not found: data/rosstat. Download the snapshot in the
+> UPDATE ROSSTAT tab.
 
-On the right of that same strip is the **DOWNLOAD OKTMO** button. It runs exactly
-the same operation as **UPDATE OKTMO DATABASE** at the top of the screen. The
-only difference is that the first appears when the registry is missing, while the
-second is always available.
+Open the **UPDATE ROSSTAT** tab and press **RUN** — the registry downloads.
 
-**Updating is the same button.** There is no separate "update" operation: the
+**Updating is the same operation.** There is no separate "update" operation: the
 first download and every later refresh are the same action. When Rosstat
-publishes a new monthly snapshot, press **UPDATE OKTMO DATABASE** again.
+publishes a new monthly snapshot, run **UPDATE ROSSTAT** again.
 
-Once the strip is replaced by the line `OKTMO registry: data-…-structure-….csv`,
-the registry is in place.
+Once the line above the region field changes to `Rosstat registry:
+data-…-structure-….csv`, the registry is in place.
 
 ### What Happens on Click
 
@@ -121,8 +122,8 @@ resolves to its parent. Empty means the project `data` folder.
 
 ## Search Scope: Region and Municipality
 
-**OKTMO search region** is a dropdown built from the local registry snapshot. The
-field is searchable: typed text filters the list.
+**OKTMO search region** is a list built from the local registry snapshot. The open
+list has a search line: typed text filters it.
 
 **OKTMO municipality** is built inside the selected region. Changing the region
 clears the selected municipality and rebuilds its list.
@@ -160,9 +161,9 @@ Panel buttons:
 | Load | Re-read the file from disk |
 | Clear | Empty the key file |
 
-**RESET OKTMO KEYS** at the top of the screen does what Clear does, and in
-addition resets the selected region, municipality, and settlement search fields.
-Pins remain.
+**RESET OKTMO KEYS** in the same block does what Clear does, and in addition
+resets the selected region, municipality, and settlement search fields. Pins
+remain.
 
 ### Searching for Individual Settlements
 
@@ -170,8 +171,8 @@ When you need a few villages rather than a whole district:
 
 1. Type the name into the search field and press **Find candidates**. The search
    runs inside the selected region when one is set.
-2. Choose the row you need in **Exact OKTMO row**. Found variants with codes are
-   shown in the preview field.
+2. Choose the row you need in the list under the search field. Found variants with
+   codes are shown in the preview field.
 3. Press **Add found places** — the selected row with every form of its name goes
    into the current keys.
 

@@ -6,29 +6,66 @@ set "SCRIPT_DIR=%~dp0"
 if "%SCRIPT_DIR:~-1%"=="\" set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
 for %%A in ("%SCRIPT_DIR%\..") do set "ROOT=%%~fA"
 
-set "PS1_FILE=%SCRIPT_DIR%\Repair-CmdEncoding.ps1"
-if not exist "%PS1_FILE%" goto ERR_HELPER
+set "CHECKER=%ROOT%\system_core\core\cmd_encoding.py"
+if not exist "%CHECKER%" goto ERR_CHECKER
 
-set "PS_EXE="
-if exist "%ROOT%\system_core\powershell\pwsh.exe" set "PS_EXE=%ROOT%\system_core\powershell\pwsh.exe"
-if not defined PS_EXE (
-  where pwsh.exe >nul 2>nul
-  if not errorlevel 1 set "PS_EXE=pwsh.exe"
+call :RESOLVE_PYTHON
+if errorlevel 1 goto ERR_PYTHON
+
+set "CHECK_ARGS="
+
+:ARGS
+if "%~1"=="" goto RUN
+if /I "%~1"=="-Fix" (
+  set "CHECK_ARGS=%CHECK_ARGS% --fix"
+) else if /I "%~1"=="/Fix" (
+  set "CHECK_ARGS=%CHECK_ARGS% --fix"
+) else if /I "%~1"=="--fix" (
+  set "CHECK_ARGS=%CHECK_ARGS% --fix"
+) else (
+  set "CHECK_ARGS=%CHECK_ARGS% %~1"
 )
-if not defined PS_EXE (
-  where powershell.exe >nul 2>nul
-  if not errorlevel 1 set "PS_EXE=powershell.exe"
-)
+shift
+goto ARGS
 
-if not defined PS_EXE goto ERR_POWERSHELL
-
-"%PS_EXE%" -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%PS1_FILE%" -Root "%ROOT%" %*
+:RUN
+"%PYTHON_CMD%" %PYTHON_ARGS% "%CHECKER%" --root "%ROOT%" %CHECK_ARGS%
 exit /b %errorlevel%
 
-:ERR_HELPER
-echo [ERROR] Repair-CmdEncoding.ps1 was not found.
+:RESOLVE_PYTHON
+set "PYTHON_CMD="
+set "PYTHON_ARGS="
+
+if exist "%ROOT%\runtime\python.exe" (
+  set "PYTHON_CMD=%ROOT%\runtime\python.exe"
+  exit /b 0
+)
+
+if exist "%ROOT%\runtime\python\python.exe" (
+  set "PYTHON_CMD=%ROOT%\runtime\python\python.exe"
+  exit /b 0
+)
+
+py -3.12 -V >nul 2>nul
+if not errorlevel 1 (
+  set "PYTHON_CMD=py"
+  set "PYTHON_ARGS=-3.12"
+  exit /b 0
+)
+
+python --version >nul 2>nul
+if not errorlevel 1 (
+  set "PYTHON_CMD=python"
+  exit /b 0
+)
+
 exit /b 1
 
-:ERR_POWERSHELL
-echo [ERROR] PowerShell was not found for CMD encoding check.
+:ERR_CHECKER
+echo [ERROR] CMD encoding checker was not found:
+echo %CHECKER%
+exit /b 1
+
+:ERR_PYTHON
+echo [ERROR] Python was not found for CMD encoding check.
 exit /b 1

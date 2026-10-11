@@ -1188,16 +1188,13 @@ class ManifestConsistencyTests(unittest.TestCase):
             oktmo_child_fields["oktmo_scope_region"].get("options_source"),
             "system_core.services.address_aligner_service:oktmo_region_scope_options",
         )
-        self.assertEqual(oktmo_child_fields["oktmo_scope_region"].get("refresh_on_change"), True)
         self.assertEqual(
             oktmo_child_fields["oktmo_scope_municipality"].get("options_source"),
             "system_core.services.address_aligner_service:oktmo_municipality_scope_options",
         )
         self.assertEqual(oktmo_child_fields["oktmo_scope_municipality"].get("depends_on"), ["oktmo_scope_region"])
         self.assertEqual(oktmo_child_fields["oktmo_key_toolbar"].get("type"), "oktmo_key_toolbar")
-        self.assertEqual(self.operations["oktmo_tools"].get("auto_open_child"), "oktmo_key_console")
         self.assertIn("update_rosstat_oktmo", self.operations)
-        self.assertTrue(self.operations["update_rosstat_oktmo"].get("gui_hidden"))
 
     def test_clean_output_workbook_checkbox_is_available_for_generation_modes(self) -> None:
         for operation_id in ("run_address_collection", "run_reference_normalization"):
@@ -1577,172 +1574,6 @@ class ReferenceNormalizationTests(unittest.TestCase):
             self.assertIsNone(updates["oktmo_scope_municipality"])
             self.assertEqual(updates["oktmo_candidate_options"], [])
             self.assertEqual(updates["oktmo_candidate_preview"], "")
-
-    def test_oktmo_select_pin_slot_uses_pinned_indexes(self) -> None:
-        from system_core.ui_nicegui import app as gui_app  # noqa: WPS433
-
-        fake_select = SimpleNamespace(_values=["a", "b", "c"], slots={})
-
-        def add_slot(name: str, template: str) -> None:
-            fake_select.slots[name] = SimpleNamespace(template=template)
-
-        fake_select.add_slot = add_slot
-        field = {
-            "id": "fake_oktmo_scope",
-            "options": [
-                {"value": "a", "label": "A", "pinned": "true"},
-                {"value": "b", "label": "B"},
-                {"value": "c", "label": "C", "pinned": "true"},
-            ],
-        }
-
-        gui_app.decorate_oktmo_select_option_props(fake_select, field)
-
-        template = fake_select.slots["option"].template
-        self.assertIn("[0, 2].includes(props.opt.value)", template)
-        self.assertIn("audion-select-option-pinned", template)
-        self.assertIn("push_pin", template)
-
-    def test_workspace_path_history_remembers_unpinned_and_clear_keeps_pins(self) -> None:
-        from system_core.ui_nicegui.workbench import WorkbenchConfig, WorkbenchHistory  # noqa: WPS433
-
-        with tempfile.TemporaryDirectory() as tmp:
-            tmp_path = Path(tmp)
-            history_file = tmp_path / "path_history.json"
-            history = WorkbenchHistory(
-                WorkbenchConfig(
-                    root=tmp_path,
-                    input_path=tmp_path / "input",
-                    output_path=tmp_path / "output",
-                    history_path=history_file,
-                )
-            )
-            pinned_source = tmp_path / "source_pinned"
-            recent_source = tmp_path / "source_recent"
-            target_path = tmp_path / "target_recent"
-
-            history.remember("source", str(pinned_source))
-            history.remember("source", str(recent_source))
-            history.remember("target", str(target_path))
-            history.set_pinned("source", str(pinned_source), True, required_message="path required")
-
-            data = json.loads(history_file.read_text(encoding="utf-8"))
-            sources = {item["path"]: item for item in data["sources"]}
-            self.assertIn(str(recent_source), sources)
-            self.assertFalse(sources[str(recent_source)]["pinned"])
-            self.assertTrue(sources[str(pinned_source)]["pinned"])
-            self.assertEqual(data["targets"][0]["path"], str(target_path))
-
-            result = history.clear_cache_keep_pins()
-
-            data = json.loads(history_file.read_text(encoding="utf-8"))
-            self.assertEqual(result["removed_sources"], 1)
-            self.assertEqual(result["removed_targets"], 1)
-            self.assertEqual(result["kept_pins"], 1)
-            self.assertEqual([item["path"] for item in data["sources"]], [str(pinned_source)])
-            self.assertTrue(data["sources"][0]["pinned"])
-            self.assertEqual(data["targets"], [])
-
-    def test_workspace_startup_always_returns_project_input_output(self) -> None:
-        from system_core.ui_nicegui import app as gui_app  # noqa: WPS433
-
-        with tempfile.TemporaryDirectory() as tmp:
-            history_file = Path(tmp) / "path_history.json"
-            configured = Path(tmp) / "configured_source"
-            pinned = Path(tmp) / "pinned_source"
-            default_path = Path(tmp) / "project_input"
-            history_file.write_text(
-                json.dumps(
-                    {
-                        "sources": [
-                            {"path": str(configured), "count": 1, "last_used": "2026-01-01T00:00:00", "pinned": True},
-                            {"path": str(pinned), "count": 1, "last_used": "2026-01-02T00:00:00", "pinned": True},
-                        ],
-                        "targets": [],
-                    },
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
-            original_history_file = gui_app._workspace_history_file
-            gui_app._workspace_history_file = lambda: history_file
-            try:
-                self.assertEqual(
-                    gui_app._startup_workspace_path("source", str(configured), str(pinned), default_path),
-                    str(default_path),
-                )
-                self.assertEqual(gui_app._workspace_setting_for_disk("source", str(configured), default_path), "")
-            finally:
-                gui_app._workspace_history_file = original_history_file
-
-    def test_workspace_path_select_pin_slot_uses_compact_pinned_indexes(self) -> None:
-        from system_core.ui_nicegui.workbench import (  # noqa: WPS433
-            WorkbenchAdapter,
-            WorkbenchConfig,
-            WorkbenchRenderer,
-        )
-
-        with tempfile.TemporaryDirectory() as tmp:
-            tmp_path = Path(tmp)
-            history_file = tmp_path / "path_history.json"
-            pinned_source = tmp_path / "source_pinned"
-            recent_source = tmp_path / "source_recent"
-            history_file.write_text(
-                json.dumps(
-                    {
-                        "sources": [
-                            {"path": str(recent_source), "count": 8, "last_used": "2026-01-02T00:00:00", "pinned": False},
-                            {"path": str(pinned_source), "count": 1, "last_used": "2026-01-01T00:00:00", "pinned": True},
-                        ],
-                        "targets": [],
-                    },
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
-            adapter = WorkbenchAdapter(
-                config=WorkbenchConfig(
-                    root=tmp_path,
-                    input_path=tmp_path / "input",
-                    output_path=tmp_path / "output",
-                    history_path=history_file,
-                ),
-                current_path_callback=lambda role: recent_source if role == "source" else tmp_path / "output",
-                save_path_callback=lambda role, value: None,
-                language_callback=lambda: "ru",
-                translate_callback=lambda key, **kwargs: key,
-                log_callback=lambda message: None,
-                notify_callback=lambda message, level: None,
-                reload_callback=lambda delay_ms: None,
-                busy_callback=lambda: False,
-                feedback_callback=lambda: {},
-                set_feedback_callback=lambda role, action: None,
-                clear_feedback_callback=lambda: None,
-            )
-            renderer = WorkbenchRenderer(
-                adapter=adapter,
-                handlers=SimpleNamespace(),
-                display_path_callback=str,
-            )
-            options = renderer.path_select_options("source", recent_source)
-            self.assertIn(str(pinned_source), options)
-            self.assertIn(str(recent_source), options)
-            self.assertNotIn("PIN |", "".join(options.values()))
-
-            fake_select = SimpleNamespace(_values=list(options.keys()), slots={})
-
-            def add_slot(name: str, template: str) -> None:
-                fake_select.slots[name] = SimpleNamespace(template=template)
-
-            fake_select.add_slot = add_slot
-
-            renderer.decorate_path_select_options(fake_select, "source", recent_source)
-
-            template = fake_select.slots["option"].template
-            self.assertIn("[0].includes(Number(props.opt.value))", template)
-            self.assertIn("audion-path-option-pinned", template)
-            self.assertIn("audion-path-option-pin-cell", template)
-            self.assertIn("push_pin", template)
 
     def test_oktmo_scope_extra_keys_are_weighted_and_context_aware(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

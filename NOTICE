@@ -11,3 +11,10 @@ not licensed for use as a name or brand of derivative works.
 Third-party components shipped with this product keep their own licences.
 The full list, with the notices those licences require, is in the "licenses"
 folder next to the program.
+
+This distribution includes PyMuPDF (https://pymupdf.io), which the program
+uses to read text from PDF files. PyMuPDF is distributed under the GNU Affero
+General Public License, version 3.0. Audion's own code stays under the Apache
+License 2.0; the distribution as a whole - the program together with PyMuPDF -
+is offered under the terms of the GNU AGPL 3.0. Its complete source code is in
+the repository of the project: https://github.com/Tensionix/address-processor

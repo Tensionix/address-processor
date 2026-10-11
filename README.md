@@ -8,15 +8,14 @@
   <a href="https://github.com/Tensionix/address-processor/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/address-processor?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Версия 2.0.0** · 2026-10-11 · 74.7 MB
+**Версия 2.0.0** · 2026-10-11 · 237.5 MB
 
-- [Скачать напрямую](https://dl.audion.dev/address-processor/2.0.0/Audion_Address_Processor_v2.0.0.zip) — быстрая раздача, без ограничений
+- [Скачать напрямую](https://audion.dev/get/address-processor/2.0.0/Audion_Address_Processor_v2.0.0_Full.zip) — быстрая раздача, без ограничений
 - [Страница проекта](https://audion.dev/downloads/address-processor) — все версии и установка
-- [Релиз на GitHub](https://github.com/Tensionix/address-processor/releases/tag/v2.0.0)
 
 <p align="center"><img src="docs/screenshot.png" alt="Окно программы" width="560"></p>
 
-`SHA-256: 342a61134ea5cc011949f6a9250ecee769056f0cfdb0b095970e2707886c2548`
+`SHA-256: f836b522bfc06ddf55dfdd7d3209ecfbae2b78ab1d31ccf82bb125063a5f306c`
 
 ---
 
@@ -24,7 +23,9 @@
 <!-- /audion:release -->
 
 
-[English](docs/README_EN.md) · [Руководство](docs/USER_GUIDE_RU.md) · [ОКТМО](docs/OKTMO_RU.md) · [Справочник](docs/REFERENCE_RU.md) · [Установка](docs/INSTALL_RU.md)
+[English README](docs/README_EN.md) · [User Guide](docs/USER_GUIDE_EN.md) | [Русский README](docs/README_RU.md) · [Руководство](docs/USER_GUIDE_RU.md)
+
+[ОКТМО](docs/OKTMO_RU.md) · [Справочник](docs/REFERENCE_RU.md) · [Установка](docs/INSTALL_RU.md)
 
 **Содержание**
 
@@ -111,6 +112,10 @@
 **Каждый прогон оставляет отчёт.** Рядом с результатом в `report/` появляется
 JSON: что нашлось, чем нашлось, что осталось без пары.
 
+**Окно и командная строка делают одно и то же.** Любая операция запускается и без
+окна — командой `address_cli.cmd`, с теми же умолчаниями полей, — см.
+[Справочник](docs/REFERENCE_RU.md#консольная-команда).
+
 **Таблица на выходе читаема.** Ширина столбцов подбирается по содержимому,
 длинный текст переносится, высота строк растёт. Мелочь, но без неё выгрузку
 приходится доводить руками каждый раз.
@@ -122,7 +127,7 @@ JSON: что нашлось, чем нашлось, что осталось бе
 | [Руководство пользователя](docs/USER_GUIDE_RU.md) | Окно, рабочие папки, все команды по шагам |
 | [ОКТМО и ключи проекта](docs/OKTMO_RU.md) | Реестр Росстата, скачивание, обновление, кэш, ключи, пины |
 | [Технический справочник](docs/REFERENCE_RU.md) | Слоты, проходы сопоставления, настройки, отчёты |
-| [Установка и запуск](docs/INSTALL_RU.md) | Portable-окружение, launcher-файлы, обслуживание |
+| [Установка и запуск](docs/INSTALL_RU.md) | Portable-окружение, сборка окна, обслуживание |
 | [Карта файлов проекта](docs/tools/PROJECT_FILES_GUIDE_RU.md) | Где что лежит в исходниках |
 
 ---
@@ -133,6 +138,10 @@ JSON: что нашлось, чем нашлось, что осталось бе
 
 `.xlsx`, `.docx`, `.odt`, `.txt`, `.csv`, `.md` и `.pdf` с текстовым слоем.
 Старые `.doc` и `.xls` конвертируются отдельной командой.
+
+Текст из PDF читает библиотека PyMuPDF, а она распространяется под GNU AGPL 3.0.
+Собственный код программы остаётся под Apache 2.0, но сборка целиком — программа
+вместе с PyMuPDF — идёт на условиях GNU AGPL 3.0; подробнее — в файле `NOTICE`.
 
 ### Настройки
 

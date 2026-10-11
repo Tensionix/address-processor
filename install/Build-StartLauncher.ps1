@@ -148,6 +148,7 @@ $arguments = @(
     "/target:winexe",
     "/platform:anycpu",
     "/optimize+",
+    "/codepage:65001",
     "/out:$output",
     "/win32manifest:$manifest",
     "/reference:System.dll",

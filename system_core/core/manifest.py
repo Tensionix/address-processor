@@ -39,8 +39,6 @@ class CommandNode:
     kind: str = "safe"
     title_ru: str = ""
     description_ru: str = ""
-    gui_hidden: bool = False
-    auto_open_child: str = ""
     parameters: dict[str, Any] = field(default_factory=dict)
     fields: tuple[dict[str, Any], ...] = ()
     children: tuple["CommandNode", ...] = ()
@@ -72,7 +70,6 @@ class CommandNode:
 @dataclass(frozen=True)
 class ToolManifest:
     raw: dict[str, Any]
-    operations: list[Operation]
     maintenance_operations: list[Operation]
     operation_groups: list[CommandNode]
 
@@ -134,8 +131,6 @@ def _parse_command_node(
         kind=str(item.get("kind", "safe")).strip() or "safe",
         title_ru=str(item.get("title_ru", title_i18n.get("ru", ""))).strip(),
         description_ru=str(item.get("description_ru", description_i18n.get("ru", ""))).strip(),
-        gui_hidden=bool(item.get("gui_hidden", item.get("hide_in_gui", False))),
-        auto_open_child=str(item.get("auto_open_child", "")).strip(),
         parameters=parameters,
         fields=fields,
         children=children,
@@ -144,7 +139,6 @@ def _parse_command_node(
 
 def load_manifest(path: Path) -> ToolManifest:
     raw = load_yaml_or_json(path)
-    operations = [_parse_operation(item) for item in raw.get("operations", [])]
     maintenance = [_parse_operation(item) for item in raw.get("maintenance_operations", [])]
     operation_groups = [
         _parse_command_node(item)
@@ -152,7 +146,7 @@ def load_manifest(path: Path) -> ToolManifest:
         if isinstance(item, dict)
     ]
 
-    for operation in [*operations, *maintenance]:
+    for operation in maintenance:
         if not operation.id:
             raise ValueError("Operation id is empty.")
         if ":" not in operation.service:
@@ -173,7 +167,6 @@ def load_manifest(path: Path) -> ToolManifest:
 
     return ToolManifest(
         raw=raw,
-        operations=operations,
         maintenance_operations=maintenance,
         operation_groups=operation_groups,
     )

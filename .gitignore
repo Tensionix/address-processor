@@ -218,3 +218,26 @@ config/rclone/
 # Generated documents: rebuilt by Audion Build PDF Render, shipped in archives.
 Docs/PDF/
 docs/PDF/
+
+# The Rosstat OKTMO snapshot (data-*.csv, 129 MB with its lookup cache) is data the program
+# downloads and refreshes itself, not source. And what a window remembers about a person's paths.
+data/rosstat/
+config/path_history.json
+
+# --- the window on Avalonia (Source) ---
+# Its markup, its project file and the fonts it carries are its source; what a build leaves
+# and the built program are not.
+!Source/**/*.axaml
+!Source/*.csproj
+# The PowerShell the program carries (App\AudionPs.exe) is a project of its own.
+!Source/Ps/*.csproj
+!Source/app.manifest
+!Source/Assets/**
+# The rule `tools/` above hides a folder of that name at any depth: the generator of the window's signs is source.
+!Source/Tools/
+Source/bin/
+Source/obj/
+Source/Ps/bin/
+Source/Ps/obj/
+/App/
+/config/window_settings.json*

@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
+from system_core.office_session import dispatch_own
+
 from .source_cleanup import delete_office_temp_files
 from .source_intake import discover_legacy_office_files
 
@@ -194,7 +196,7 @@ def _require_pywin32() -> tuple[Any, Any]:
 
 def _start_word_application(win32_client: Any) -> Any:
     try:
-        app = win32_client.DispatchEx("Word.Application")
+        app = dispatch_own(win32_client, "Word.Application")
         app.Visible = False
         app.DisplayAlerts = 0
         try:
@@ -208,7 +210,7 @@ def _start_word_application(win32_client: Any) -> Any:
 
 def _start_excel_application(win32_client: Any) -> Any:
     try:
-        app = win32_client.DispatchEx("Excel.Application")
+        app = dispatch_own(win32_client, "Excel.Application")
         app.Visible = False
         app.DisplayAlerts = False
         try:

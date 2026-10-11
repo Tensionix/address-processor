@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 import importlib
 import platform
-import shutil
 import sys
 
 REQUIRED_MODULES = [
@@ -11,13 +10,13 @@ REQUIRED_MODULES = [
     ("rapidfuzz", "rapidfuzz"),
     ("openpyxl", "openpyxl"),
     ("tqdm", "tqdm"),
-    ("nicegui", "nicegui"),
+    ("pymupdf", "PyMuPDF"),
+    ("win32com", "pywin32"),
+    ("pymorphy3", "pymorphy3"),
     ("yaml", "pyyaml"),
-    ("rich", "rich"),
     ("setuptools", "setuptools"),
     ("wheel", "wheel"),
     ("packaging", "packaging"),
-    ("webview", "pywebview"),
 ]
 
 OPTIONAL_MODULES: list[tuple[str, str]] = []
@@ -40,33 +39,13 @@ def detect_python_mode(root: Path) -> str:
     return "system-python"
 
 
-def check_picker_powershell(root: Path) -> tuple[bool, list[tuple[str, bool, str]]]:
-    candidates = [
-        ("portable pwsh", root / "system_core" / "powershell" / "pwsh.exe"),
-        ("PATH pwsh", "pwsh.exe"),
-        ("Windows PowerShell", "powershell.exe"),
-    ]
-    rows: list[tuple[str, bool, str]] = []
-    any_ok = False
-    for label, candidate in candidates:
-        if isinstance(candidate, Path):
-            ok = candidate.exists()
-            detail = str(candidate)
-        else:
-            resolved = shutil.which(candidate)
-            ok = bool(resolved)
-            detail = resolved or "not found"
-        rows.append((label, ok, detail))
-        any_ok = any_ok or ok
-    return any_ok, rows
-
-
 def check_manifest_operations(root: Path) -> tuple[bool, list[tuple[str, str, str]]]:
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
 
     try:
         from system_core.core.manifest import load_manifest
+        from system_core.core.operation_model import all_nodes
     except Exception as exc:
         return False, [("(loader)", "MANIFEST_FAIL", f"{exc.__class__.__name__}: {exc}")]
 
@@ -81,7 +60,9 @@ def check_manifest_operations(root: Path) -> tuple[bool, list[tuple[str, str, st
 
     rows: list[tuple[str, str, str]] = []
     all_ok = True
-    for operation in [*manifest.operations, *manifest.maintenance_operations]:
+    for operation in all_nodes(manifest):
+        if not operation.service:
+            continue
         if ":" not in operation.service:
             rows.append((operation.id, "BAD_SYNTAX", operation.service))
             all_ok = False
@@ -139,7 +120,7 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
 
     print("======================================================================")
-    print("AUDION ADDRESS ALIGNER - DOCTOR")
+    print("AUDION ADDRESS PROCESSOR - DOCTOR")
     print("======================================================================")
     print(f"Project root : {root}")
     print(f"Executable   : {sys.executable}")
@@ -157,18 +138,6 @@ def main() -> int:
         print(f"  - {package_name:<18} : {status:<4} {detail}")
         if not ok:
             failed = True
-
-    print()
-    print("[GUI portability]")
-    picker_ok, picker_rows = check_picker_powershell(root)
-    for label, ok, detail in picker_rows:
-        status = "OK" if ok else "MISS"
-        print(f"  - {label:<18} : {status:<4} {detail}")
-    if not picker_ok:
-        print("  - picker dialogs     : FAIL PowerShell was not found")
-        failed = True
-    else:
-        print("  - picker dialogs     : OK   PowerShell-backed Windows dialogs available")
 
     print()
     print("[Optional modules]")

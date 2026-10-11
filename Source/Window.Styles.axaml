@@ -1,0 +1,543 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- What the window of Audion Address Processor adds to the shell of App.axaml.
+         Heights are multiples of 4: at the owner's 125% they come out as whole pixels. -->
+
+    <!-- Row 1: a section of the manifest. -->
+    <Style Selector="ToggleButton.switch.tab">
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="MinHeight" Value="28"/>
+        <Setter Property="Padding" Value="11,0"/>
+        <Setter Property="Margin" Value="0,0,4,0"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontHeader}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- Row 2: what the section holds - its parts, its operations or the groups of its form. -->
+    <Style Selector="ToggleButton.switch.sub">
+        <Setter Property="Margin" Value="0,0,4,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.sub">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="8,0"/>
+        <Setter Property="Margin" Value="0,0,4,0"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="Background" Value="{DynamicResource SwitchBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SwitchBorder}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- The number of an operation in a row where the order is the order of work. -->
+    <Style Selector="TextBlock.order">
+        <Setter Property="Foreground" Value="{DynamicResource Quasar}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="0,0,6,0"/>
+    </Style>
+    <!-- How many operations a part holds. -->
+    <Style Selector="TextBlock.tally">
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+        <Setter Property="Margin" Value="6,0,0,0"/>
+    </Style>
+
+    <!-- The card of an operation: its name, what it does, the button that runs it, its form. -->
+    <Style Selector="Border.opcard">
+        <Setter Property="Background" Value="{DynamicResource ListBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoft}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="12,8,12,10"/>
+        <Setter Property="Margin" Value="0,0,0,8"/>
+    </Style>
+    <!-- A card of a list (the steps of the pass): one line until it is opened. -->
+    <Style Selector="Border.opcard.row">
+        <Setter Property="Padding" Value="10,4,6,4"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+        <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+    <Style Selector="Border.opcard.row.open">
+        <Setter Property="BorderBrush" Value="{DynamicResource FocusBorder}"/>
+        <Setter Property="Padding" Value="10,4,6,8"/>
+    </Style>
+    <Style Selector="TextBlock.optitle">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMain}"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    </Style>
+    <Style Selector="Border.opcard.row TextBlock.optitle">
+        <Setter Property="FontSize" Value="{DynamicResource FontPanel}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="TextBlock.opabout">
+        <Setter Property="FontSize" Value="{DynamicResource FontHeader}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="MaxLines" Value="2"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+    <!-- The button that runs an operation. -->
+    <Style Selector="Button.go">
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="MinHeight" Value="28"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="Padding" Value="12,0"/>
+        <Setter Property="Margin" Value="8,0,0,0"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+    <Style Selector="Border.opcard.row Button.go">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Padding" Value="10,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.go Path.icon">
+        <Setter Property="Stroke" Value="{DynamicResource Run}"/>
+    </Style>
+    <!-- The arrow that opens a card of a list. -->
+    <Style Selector="Button.fold">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="-4,0,2,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.fold:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style Selector="Button.fold:pointerover Path.icon">
+        <Setter Property="Stroke" Value="{DynamicResource TextMain}"/>
+    </Style>
+
+    <!-- A group of fields: a thin frame with its name on the first line. -->
+    <Style Selector="Border.group">
+        <Setter Property="BorderBrush" Value="{DynamicResource SepInk}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Padding" Value="9,5,9,6"/>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+    <Style Selector="TextBlock.grouptitle">
+        <Setter Property="FontSize" Value="{DynamicResource FontButton}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource SeaInk}"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+    <!-- A block of a group: its name on the left, its fields in a row. No rule between blocks:
+         the column of names is the structure, and every rule costs a form of forty fields a line. -->
+    <Style Selector="Border.blockrow">
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    <Style Selector="Border.blockname">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="MinWidth" Value="64"/>
+    </Style>
+    <Style Selector="Border.blockname TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontButton}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- The name of a field over or beside its value. -->
+    <Style Selector="TextBlock.flabel">
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,7,0"/>
+    </Style>
+    <!-- A value typed in: a number, a text, a path. -->
+    <Style Selector="TextBox.field">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="7,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontPanel}"/>
+        <Setter Property="Background" Value="{DynamicResource InputBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoftRim}"/>
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+    <Style Selector="TextBox.field.number">
+        <Setter Property="Width" Value="62"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+    </Style>
+    <!-- The unit after a number. -->
+    <Style Selector="TextBlock.unit">
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+    </Style>
+    <!-- A value that is not the default of the manifest is marked: before a run of forty fields
+         it is seen at a glance what was changed for this document. -->
+    <Style Selector="Ellipse.changed">
+        <Setter Property="Width" Value="5"/>
+        <Setter Property="Height" Value="5"/>
+        <Setter Property="Fill" Value="{DynamicResource Tangerine}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,5,0"/>
+    </Style>
+    <!-- One cell of a form: a field with its name. -->
+    <Style Selector="StackPanel.cell">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="0,0,12,4"/>
+        <Setter Property="Height" Value="24"/>
+    </Style>
+    <!-- A flag in a table of flags: no margins, the table keeps the gaps. -->
+    <Style Selector="Grid.flagcell">
+        <Setter Property="MinHeight" Value="24"/>
+    </Style>
+    <Style Selector="Grid.flagcell ToggleButton.switch">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="StackPanel.cell ToggleButton.switch">
+        <Setter Property="Margin" Value="0,0,3,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- The working folders: the name of a line. -->
+    <Style Selector="TextBlock.ioname">
+        <Setter Property="FontSize" Value="{DynamicResource FontButton}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.tool.io">
+        <Setter Property="Margin" Value="4,0,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- A button with a sign and a word: the row under the working folders, the folders beside the journal. -->
+    <Style Selector="Button.small.word">
+        <Setter Property="Margin" Value="0,0,4,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- Deleting is Burn Orange, never red. -->
+    <Style Selector="Button.small.burn">
+        <Setter Property="BorderBrush" Value="{DynamicResource WarnBorder}"/>
+        <Setter Property="Foreground" Value="{DynamicResource BurnInk}"/>
+    </Style>
+    <Style Selector="Button.small.burn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource BurnInk}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BurnInk}"/>
+    </Style>
+    <Style Selector="Button.small.burn Path.icon">
+        <Setter Property="Stroke" Value="{DynamicResource BurnInk}"/>
+    </Style>
+
+    <!-- The head of a panel of the right column. -->
+    <Style Selector="TextBlock.panelname">
+        <Setter Property="FontSize" Value="{DynamicResource FontButton}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- The result of the last run: one word in its colour, then what there is to say. -->
+    <Style Selector="TextBlock.verdict">
+        <Setter Property="FontSize" Value="{DynamicResource FontPanel}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="TextBlock.verdict.run"><Setter Property="Foreground" Value="{DynamicResource Quasar}"/></Style>
+    <Style Selector="TextBlock.verdict.done"><Setter Property="Foreground" Value="{DynamicResource Run}"/></Style>
+    <Style Selector="TextBlock.verdict.remarks"><Setter Property="Foreground" Value="{DynamicResource AmberInk}"/></Style>
+    <Style Selector="TextBlock.verdict.failed"><Setter Property="Foreground" Value="{DynamicResource BurnInk}"/></Style>
+    <Style Selector="TextBlock.verdict.stopped"><Setter Property="Foreground" Value="{DynamicResource MarkInk}"/></Style>
+    <!-- A remark of a step: which step, which document, what. -->
+    <Style Selector="Border.remark">
+        <Setter Property="BorderBrush" Value="{DynamicResource RuleInk}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Padding" Value="2,3,2,4"/>
+    </Style>
+    <Style Selector="Border.remark TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontHeader}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style Selector="Border.remark TextBlock.who">
+        <Setter Property="Foreground" Value="{DynamicResource AmberInk}"/>
+    </Style>
+    <Style Selector="Border.remark TextBlock.what">
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+    </Style>
+
+    <!-- The status line: the dot and the word of the state. -->
+    <Style Selector="Ellipse.state">
+        <Setter Property="Width" Value="8"/>
+        <Setter Property="Height" Value="8"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Fill" Value="{DynamicResource DotIdle}"/>
+    </Style>
+    <Style Selector="Ellipse.state.run"><Setter Property="Fill" Value="{DynamicResource Quasar}"/></Style>
+    <Style Selector="Ellipse.state.done"><Setter Property="Fill" Value="{DynamicResource DotOk}"/></Style>
+    <Style Selector="Ellipse.state.remarks"><Setter Property="Fill" Value="{DynamicResource DotWarn}"/></Style>
+    <Style Selector="Ellipse.state.failed"><Setter Property="Fill" Value="{DynamicResource DotBad}"/></Style>
+    <Style Selector="Ellipse.state.stopped"><Setter Property="Fill" Value="{DynamicResource MarkInk}"/></Style>
+    <Style Selector="TextBlock.state">
+        <Setter Property="FontSize" Value="{DynamicResource FontCaption}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="TextBlock.state.run"><Setter Property="Foreground" Value="{DynamicResource Quasar}"/></Style>
+    <Style Selector="TextBlock.state.done"><Setter Property="Foreground" Value="{DynamicResource Run}"/></Style>
+    <Style Selector="TextBlock.state.remarks"><Setter Property="Foreground" Value="{DynamicResource AmberInk}"/></Style>
+    <Style Selector="TextBlock.state.failed"><Setter Property="Foreground" Value="{DynamicResource BurnInk}"/></Style>
+    <Style Selector="TextBlock.state.stopped"><Setter Property="Foreground" Value="{DynamicResource MarkInk}"/></Style>
+    <!-- A short word of the window in the status line: a refusal is amber for a few seconds. -->
+    <Style Selector="TextBlock.status.refused">
+        <Setter Property="Foreground" Value="{DynamicResource AmberInk}"/>
+    </Style>
+    <Style Selector="TextBlock.clock">
+        <Setter Property="FontFamily" Value="{DynamicResource FontGrid}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontCaption}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMuted}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- STOP in the status line: as tall as the line. -->
+    <Style Selector="Button.stop">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="12,0"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.stop Path.icon">
+        <Setter Property="Stroke" Value="{DynamicResource BurnInk}"/>
+    </Style>
+
+    <!-- The pin of a path that is pinned: amber, as every pin of the Audion programs. -->
+    <Style Selector="Button.tool.io.on">
+        <Setter Property="Background" Value="{DynamicResource PinBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PinBorder}"/>
+    </Style>
+    <Style Selector="Button.tool.io.on:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource PinBg}"/>
+    </Style>
+    <Style Selector="Button.tool.io.on Path.icon, Path.icon.amber">
+        <Setter Property="Stroke" Value="{DynamicResource AmberInk}"/>
+    </Style>
+
+    <!-- A line of a list that opens under a button: a path of the history, a file to pick. -->
+    <Style Selector="Button.histrow">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="8,0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontPanel}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+    <Style Selector="Button.histrow:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource RowHover}"/>
+    </Style>
+    <Style Selector="Button.histrow.current /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource RowPickedIdle}"/>
+    </Style>
+    <Style Selector="Button.histrow.gone">
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+    </Style>
+    <!-- A field that shows a choice and opens its list: looks like a text box, behaves like a button. -->
+    <Style Selector="Button.pickline">
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="7,0,6,0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontPanel}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Background" Value="{DynamicResource InputBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoft}"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.pickline:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource InputBg}"/>
+    </Style>
+    <Style Selector="TextBlock.quiet">
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+    </Style>
+
+    <!-- A picked section of a note: its number and title whole - a long one wraps inside the chip. -->
+    <Style Selector="Border.chip">
+        <Setter Property="Background" Value="{DynamicResource SwitchOn}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Quasar}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Padding" Value="8,2,2,2"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <!-- 8 px after the cross: the next chip is not pressed by a hand that aimed at this one. -->
+        <Setter Property="Margin" Value="0,0,8,4"/>
+    </Style>
+    <Style Selector="Border.chip TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMain}"/>
+    </Style>
+    <Style Selector="Button.chipoff">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="4,0,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.chipoff:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource RowHover}"/>
+    </Style>
+    <Style Selector="Button.chipoff:pointerover Path.icon">
+        <Setter Property="Stroke" Value="{DynamicResource TextMain}"/>
+    </Style>
+    <!-- The list of sections under the chips. -->
+    <Style Selector="Border.listbox">
+        <Setter Property="Background" Value="{DynamicResource InputBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoft}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="3"/>
+    </Style>
+    <Style Selector="ToggleButton.switch.listrow">
+        <Setter Property="Height" Value="NaN"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="7,3"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+    <Style Selector="ToggleButton.switch.listrow:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource RowHover}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+    <Style Selector="ToggleButton.switch.listrow:checked /template/ ContentPresenter#PART_ContentPresenter, ToggleButton.switch.listrow:checked:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource RowPickedIdle}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+
+    <!-- A shelf of a section: how many files lie in a folder of the project, and the folder at a press. -->
+    <Style Selector="Button.shelf">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="Padding" Value="11,0,10,0"/>
+        <Setter Property="Margin" Value="0,0,6,0"/>
+        <Setter Property="Background" Value="{DynamicResource ListBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoft}"/>
+        <Setter Property="CornerRadius" Value="7"/>
+    </Style>
+    <Style Selector="Button.shelf:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource ListBg}"/>
+    </Style>
+    <Style Selector="TextBlock.shelfcount">
+        <Setter Property="FontSize" Value="{DynamicResource FontCount}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMain}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,10,0"/>
+    </Style>
+    <Style Selector="TextBlock.shelfcount.idle">
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+    </Style>
+    <Style Selector="TextBlock.shelfname">
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextMain}"/>
+    </Style>
+
+    <!-- ============================================================================================
+         Audion Address Processor: what the window adds to the shell and to the styles above.
+         ============================================================================================ -->
+
+    <!-- A tick box drawn by a button (the chip of a slot): lit by a class, not by a toggle. -->
+    <Style Selector="Border.tickbox.on">
+        <Setter Property="BorderBrush" Value="{DynamicResource TextMain}"/>
+    </Style>
+    <Style Selector="Border.tickbox.on Path.tick">
+        <Setter Property="IsVisible" Value="True"/>
+    </Style>
+
+    <!-- The line of the address: the address as it will be written, then a chip for each slot. -->
+    <Style Selector="Border.slotline">
+        <Setter Property="Background" Value="{DynamicResource ListBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoft}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="9,6"/>
+        <Setter Property="Margin" Value="0,0,0,6"/>
+    </Style>
+    <Style Selector="TextBlock.slotpreview">
+        <Setter Property="Foreground" Value="{DynamicResource Quasar}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource FontGrid}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontPanel}"/>
+    </Style>
+    <Style Selector="Border.slotchip">
+        <Setter Property="Background" Value="{DynamicResource InputBg}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderSoftRim}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="MinHeight" Value="26"/>
+    </Style>
+    <!-- The rule between the name of a chip and its place. -->
+    <Style Selector="Border.slotsep">
+        <Setter Property="Width" Value="1"/>
+        <Setter Property="Background" Value="{DynamicResource BorderSoft}"/>
+        <Setter Property="Margin" Value="0,4"/>
+    </Style>
+    <Style Selector="Border.slotchip TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+    </Style>
+    <Style Selector="Border.slotchip.off">
+        <Setter Property="Opacity" Value="0.55"/>
+    </Style>
+    <Style Selector="Border.slotchip.dragging">
+        <Setter Property="BorderBrush" Value="{DynamicResource QuasarRim}"/>
+        <Setter Property="Opacity" Value="0.85"/>
+    </Style>
+    <Style Selector="Button.slottick">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="Height" Value="NaN"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.slottick:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style Selector="TextBlock.slotnum">
+        <Setter Property="Foreground" Value="{DynamicResource CrumbInk}"/>
+        <Setter Property="MinWidth" Value="32"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- A key of the OKTMO file: the size of the other text of the form, not the default one. -->
+    <Style Selector="Border.tag TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource FontSwitch}"/>
+    </Style>
+
+    <!-- A section of the window: a big button under the header, a sign, a name, a line of what it is for. -->
+    <Style Selector="TextBlock.sectionname">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontHeader}"/>
+    </Style>
+</Styles>

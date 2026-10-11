@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The PowerShell 7 of Audion Address Processor: the console host of Microsoft.PowerShell.SDK under the
+    program's own name. The scripts of the builder (install\*.ps1) run with this file, so no
+    PowerShell of the machine - neither 5.1 nor 7 - takes part, and none is downloaded when the
+    project is built. The window and the engine need none: the dialogs are the window's own, and
+    Excel and Word are driven by pywin32. It is published into App\ beside the window and shares
+    the runtime with it. The pattern is Source\Ps of Audion DocFlow.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AssemblyName>AudionPs</AssemblyName>
+    <RootNamespace>AudionAddressProcessor.Ps</RootNamespace>
+    <Product>Audion Address Processor</Product>
+    <AssemblyTitle>Audion Address Processor - PowerShell 7</AssemblyTitle>
+    <!-- The number has one owner, config\version.json, as the window's has. -->
+    <VersionFile>$(MSBuildProjectDirectory)\..\..\config\version.json</VersionFile>
+    <Version>$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(VersionFile)')), '"version"\s*:\s*"([^"]+)"').Groups[1].Value)</Version>
+    <SatelliteResourceLanguages>en;ru</SatelliteResourceLanguages>
+    <ApplicationIcon>..\..\system_core\icons\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.6.6" />
+  </ItemGroup>
+
+  <!-- A win-x64 publish puts System.Management.Automation.dll in the root of the output, and
+       PowerShell looks for its built-in modules (Management, Utility, Security...) next to it, in
+       Modules\. The SDK leaves them under runtimes\win\...\Modules: copied up, and the Unix ones
+       dropped. ref\ stays: a script that compiles with Add-Type needs it. Debug symbols go: nobody
+       running the program needs them. -->
+  <Target Name="ArrangePublish" AfterTargets="Publish">
+    <ItemGroup>
+      <PackagePdb Include="$(PublishDir)*.pdb" />
+      <PsModule Include="$(PublishDir)runtimes\win\lib\net10.0\Modules\**\*" />
+    </ItemGroup>
+    <Delete Files="@(PackagePdb)" />
+    <Copy SourceFiles="@(PsModule)" DestinationFiles="@(PsModule->'$(PublishDir)Modules\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <RemoveDir Directories="$(PublishDir)runtimes\unix" />
+  </Target>
+</Project>

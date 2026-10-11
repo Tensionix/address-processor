@@ -8,6 +8,7 @@ import shutil
 from typing import Callable, Iterable
 
 from system_core.excel_layout import format_excel_worksheet
+from system_core.office_session import dispatch_own
 
 
 _SPACE_RE = re.compile(r"\s+")
@@ -152,7 +153,7 @@ def build_comparison_workbook(options: ComparisonOptions, log: Callable[[str], N
     pythoncom.CoInitialize()
     excel = book_a = book_b = output_book = None
     try:
-        excel = win32com.client.DispatchEx("Excel.Application")
+        excel = dispatch_own(win32com.client, "Excel.Application")
         excel.Visible = False
         excel.DisplayAlerts = False
         excel.ScreenUpdating = False
@@ -349,7 +350,7 @@ def safe_join_workbooks(options: JoinOptions, log: Callable[[str], None] | None 
     primary_book = None
     source_book = None
     try:
-        excel = win32com.client.DispatchEx("Excel.Application")
+        excel = dispatch_own(win32com.client, "Excel.Application")
         excel.Visible = False
         excel.DisplayAlerts = False
         excel.ScreenUpdating = False

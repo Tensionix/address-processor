@@ -12,7 +12,7 @@ tool:
   category: "Address Processing"
   # Tool/configuration version.
   # Версия конфигурации/инструмента.
-  version: "1.0.0"
+  version: "2.0.0"
 
 # Project-managed folders.
 # Управляемые папки проекта.
@@ -39,81 +39,8 @@ paths:
   # Архивы и релизные артефакты.
   release: "release"
 
-# GUI startup settings.
-# Настройки запуска GUI.
-ui:
-  # Window/page title.
-  # Заголовок окна/страницы.
-  title: "Audion Address Processor"
-  # Local GUI host.
-  # Локальный адрес GUI.
-  host: "127.0.0.1"
-  # GUI port.
-  # Порт GUI.
-  port: 8080
-  # true = run as a native window, false = regular web UI.
-  # true = запускать как native-окно, false = обычный web-интерфейс.
-  native: false
-  # true = reload GUI on code changes; portable builds usually keep this false.
-  # true = перезагружать GUI при изменениях кода; для portable-сборки обычно false.
-  reload: false
-  # true = open browser when GUI starts.
-  # true = открывать браузер при запуске GUI.
-  open_browser: true
-
-# Main operations shown in the GUI.
-# Основные операции, отображаемые в GUI.
-operations:
-  - id: run_address_aligner
-    # English and Russian button title.
-    # Английское и русское название кнопки.
-    title: "Run address aligner"
-    title_ru: "Выровнять адреса"
-    # English and Russian operation description.
-    # Английское и русское описание операции.
-    description: "Process .xlsx files from input and write aligned workbooks to output."
-    description_ru: "Обработать .xlsx-файлы из исходников и записать выровненные книги в результаты."
-    # Python function called by the operation.
-    # Python-функция, которая будет вызвана при запуске операции.
-    service: "system_core.services.address_aligner_service:run_address_aligner"
-    # safe = operation starts without a danger confirmation.
-    # safe = операция не считается опасной и запускается без подтверждения.
-    kind: "safe"
-
-  - id: run_parser_diagnostic
-    # English and Russian button title.
-    # Английское и русское название кнопки.
-    title: "Run parser diagnostic"
-    title_ru: "Диагностика"
-    # English and Russian operation description.
-    # Английское и русское описание операции.
-    description: "Extract parsed address components from input files for inspection."
-    description_ru: "Извлечь компоненты адресов из исходных файлов для проверки парсера."
-    # Python function called by the operation.
-    # Python-функция, которая будет вызвана при запуске операции.
-    service: "system_core.services.address_aligner_service:run_parser_diagnostic"
-    # safe = operation starts without a danger confirmation.
-    # safe = операция не считается опасной и запускается без подтверждения.
-    kind: "safe"
-
-  - id: validate_input
-    # English and Russian button title.
-    # Английское и русское название кнопки.
-    title: "Validate input"
-    title_ru: "Проверить исходники"
-    # English and Russian operation description.
-    # Английское и русское описание операции.
-    description: "Check the input folder and list supported spreadsheets."
-    description_ru: "Проверить исходные файлы и показать найденные таблицы."
-    # Python function called by the operation.
-    # Python-функция, которая будет вызвана при запуске операции.
-    service: "system_core.services.address_aligner_service:validate_input"
-    # safe = operation starts without a danger confirmation.
-    # safe = операция не считается опасной и запускается без подтверждения.
-    kind: "safe"
-
-# Command-tree operations shown in the GUI when present.
-# Операции дерева команд GUI, если этот раздел присутствует.
+# Operations of the program, by the groups of the window.
+# Операции программы, по группам окна.
 operation_groups:
   - id: run_table_comparison
     title: "Compare tables A and B"
@@ -131,7 +58,6 @@ operation_groups:
         default: ""
         hint: "Choose the first Excel workbook from any folder."
         hint_ru: "Выберите первую книгу Excel в любой папке. Переносить её в input не нужно."
-        refresh_on_change: true
       - id: file_b
         type: "xlsx_file_picker"
         group: "files"
@@ -140,7 +66,6 @@ operation_groups:
         default: ""
         hint: "Choose the second Excel workbook from any folder."
         hint_ru: "Выберите вторую книгу Excel в любой папке. Переносить её в input не нужно."
-        refresh_on_change: true
       - id: sheet_a
         type: "select"
         group: "sheets"
@@ -214,7 +139,6 @@ operation_groups:
         default: ""
         hint: "The workbook is copied to output and is never overwritten."
         hint_ru: "Выберите книгу, которую нужно дополнить. Оригинал не изменится — результат будет отдельным файлом в output."
-        refresh_on_change: true
       - id: source_file
         type: "xlsx_file_picker"
         group: "files"
@@ -223,7 +147,6 @@ operation_groups:
         default: ""
         hint: "Read-only source of fields to append."
         hint_ru: "Выберите книгу, из которой нужно перенести данные. Оригинал открывается только для чтения."
-        refresh_on_change: true
       - id: primary_sheet
         type: "select"
         group: "sheets"
@@ -295,7 +218,6 @@ operation_groups:
         label: "Action"
         label_ru: "Действие"
         default: "generate"
-        refresh_on_change: true
         hint: "Create a new table, or append collected addresses to the ready workbook from the address table folder."
         hint_ru: "Собрать новую таблицу или перенести новые адреса в выбранную готовую книгу."
         options:
@@ -336,6 +258,9 @@ operation_groups:
       - id: source_root
         type: "text"
         group: "source"
+        # The work area holds this path (the source folder); the form does not draw the field.
+        # Рабочая зона уже держит этот путь (источник); форма поле не рисует.
+        route: "source"
         label: "Source folder"
         label_ru: "Папка источников"
         default: ""
@@ -384,6 +309,9 @@ operation_groups:
       - id: target_column_header
         type: "select"
         group: "columns"
+        # Another operation has a field of this name with other options: the value is kept per operation.
+        # У другой операции есть поле с этим именем и другими вариантами: значение хранится по операции.
+        scope: "operation"
         label: "Target address header"
         label_ru: "Название адресного столбца"
         default: ""
@@ -413,7 +341,6 @@ operation_groups:
       - id: slot_preview
         type: "slot_preview"
         group: "options"
-        span: "full"
         label: "Address line"
         label_ru: "Линейка адреса"
         default: "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10"
@@ -422,7 +349,6 @@ operation_groups:
       - id: enabled_slots
         type: "checkboxes"
         group: "options"
-        span: "full"
         label: "Enabled slots"
         label_ru: "Включённые слоты"
         hint: "Checked slots participate in the generated address column and in output columns. Microdistrict/quartal is off by default."
@@ -511,7 +437,6 @@ operation_groups:
       - id: slot_order
         type: "slot_order"
         group: "options"
-        span: "full"
         label: "Slot order"
         label_ru: "Порядок слотов"
         hint: "Number dropdowns define the generated address line order. Disabled slots are ignored."
@@ -664,6 +589,7 @@ operation_groups:
       - id: target_column_header
         type: "select"
         group: "columns"
+        scope: "operation"
         label: "Address header"
         label_ru: "Название адресной колонки"
         default: ""
@@ -762,6 +688,10 @@ operation_groups:
       - id: use_oktmo
         type: "checkbox"
         group: "alignment_normalization"
+        # Drawn only in the mode with normalization; in the fast mode the service still gets its
+        # default (the rule of the console command, operation_model.apply_parameter_guards).
+        # Рисуется только в режиме с нормализацией; в быстром сервис всё равно получает умолчание.
+        draw_when: {alignment_mode: "normalized"}
         label: "Enable OKTMO keys"
         label_ru: "Подключить ключи ОКТМО"
         default: true
@@ -852,7 +782,6 @@ operation_groups:
       - id: slot_preview
         type: "slot_preview"
         group: "options"
-        span: "full"
         label: "Address construction"
         label_ru: "Линейка адреса"
         default: "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10"
@@ -861,7 +790,6 @@ operation_groups:
       - id: enabled_slots
         type: "checkboxes"
         group: "options"
-        span: "full"
         label: "Enabled slots"
         label_ru: "Включённые слоты"
         hint: "Checked slots are used in the normalized address and in the reference columns. Microdistrict/quartal is off by default."
@@ -950,7 +878,6 @@ operation_groups:
       - id: slot_order
         type: "slot_order"
         group: "options"
-        span: "full"
         label: "Slot order"
         label_ru: "Порядок слотов"
         hint: "Small number dropdowns define the order of the normalized address line. Disabled slots are ignored."
@@ -1053,6 +980,12 @@ operation_groups:
         type: "text"
         group: "source"
         advanced: true
+        # The window on NiceGUI never drew this field (its rule of words took "reference" + "folder"
+        # for a route). The service takes an explicit workbook when one is given, else the latest
+        # AddressReference*.xlsx of input and output. To show the field, remove gui_hidden.
+        # Прежнее окно это поле не рисовало (его правило по словам приняло его за путь). Сервис берёт
+        # названную книгу, а без неё - последнюю AddressReference*.xlsx из input и output.
+        gui_hidden: true
         label: "Existing reference"
         label_ru: "Существующий эталон"
         default: ""
@@ -1120,7 +1053,6 @@ operation_groups:
       - id: slot_preview
         type: "slot_preview"
         group: "options"
-        span: "full"
         label: "Sort key"
         label_ru: "Линейка сортировки"
         default: "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10"
@@ -1129,7 +1061,6 @@ operation_groups:
       - id: enabled_slots
         type: "checkboxes"
         group: "options"
-        span: "full"
         label: "Enabled slots"
         label_ru: "Включённые слоты"
         hint: "Checked slots participate in sorting and are written during deconstruction. Microdistrict/quartal is off by default."
@@ -1218,7 +1149,6 @@ operation_groups:
       - id: slot_order
         type: "slot_order"
         group: "options"
-        span: "full"
         label: "Slot order"
         label_ru: "Порядок слотов"
         hint: "Number dropdowns define which slot dominates sorting first. Disabled slots are dimmed and ignored."
@@ -1312,6 +1242,7 @@ operation_groups:
         type: "text"
         group: "source"
         advanced: true
+        gui_hidden: true
         label: "Reference workbook"
         label_ru: "Книга эталона"
         default: ""
@@ -1321,93 +1252,84 @@ operation_groups:
     service: "system_core.services.address_aligner_service:run_reference_processing"
     kind: "safe"
 
-  - id: oktmo_tools
-    title: "OKTMO"
-    title_ru: "ОКТМО / ключи проекта"
-    description: "Prepare project OKTMO focus keys, pins and Rosstat registry data outside the working address screens."
-    description_ru: "Подготовить проектные ключи фокусировки ОКТМО, пины и реестр Росстата отдельно от рабочих адресных экранов."
-    auto_open_child: "oktmo_key_console"
-    children:
-      - id: oktmo_key_console
-        title: "Project OKTMO keys"
-        title_ru: "Ключи и область ОКТМО"
-        description: "Choose a region/municipality, search exact settlements, and maintain the current OKTMO key file."
-        description_ru: "Выбрать регион/муниципалитет, найти точные населённые пункты и вести текущий файл ключей ОКТМО."
-        fields:
-          - id: oktmo_scope_region
-            type: "select"
-            group: "territory"
-            label: "OKTMO search region"
-            label_ru: "Регион ОКТМО"
-            default: ""
-            placeholder: "Тюменская область"
-            searchable: true
-            refresh_on_change: true
-            options_source: "system_core.services.address_aligner_service:oktmo_region_scope_options"
-            cache_seconds: 3600
-            hint: "Region list is read from the local Rosstat OKTMO snapshot."
-            hint_ru: "Список регионов читается из локального снимка ОКТМО Росстата."
-          - id: oktmo_scope_municipality
-            type: "select"
-            group: "territory"
-            label: "OKTMO municipality"
-            label_ru: "Муниципалитет ОКТМО"
-            default: ""
-            placeholder: "городской округ, муниципальный округ или район"
-            searchable: true
-            depends_on: ["oktmo_scope_region"]
-            options_source: "system_core.services.address_aligner_service:oktmo_municipality_scope_options"
-            cache_seconds: 0
-            hint: "Municipality list is built inside the selected region. Press + in the field to add the whole municipality and its settlements to the key file."
-            hint_ru: "Список строится внутри выбранного региона. Нажмите + в поле, чтобы добавить всё МО и его населённые пункты в файл ключей."
-          - id: oktmo_key_toolbar
-            type: "oktmo_key_toolbar"
-            group: "territory"
-            ui_only: true
-            label: "OKTMO search keys"
-            label_ru: "Ключи ОКТМО"
-            hint: "Current keys are reused by address collection, alignment and reference workflows when OKTMO is enabled there."
-            hint_ru: "Текущие ключи используются сбором, сопоставлением и эталонными режимами, когда там включён ОКТМО."
-          - id: oktmo_data_dir
-            type: "text"
-            group: "source"
-            advanced: true
-            label: "OKTMO data folder"
-            label_ru: "Папка данных ОКТМО"
-            default: ""
-            placeholder: "data"
-            hint: "Folder containing rosstat/data-*.csv. Empty means the project data folder."
-            hint_ru: "Папка, где есть rosstat/data-*.csv. Пусто = папка data проекта."
-        service: "system_core.services.address_aligner_service:oktmo_key_console"
-        kind: "safe"
+  - id: oktmo_key_console
+    title: "Project OKTMO keys"
+    title_ru: "Ключи и область ОКТМО"
+    description: "Choose a region/municipality, search exact settlements, and maintain the current OKTMO key file."
+    description_ru: "Выбрать регион/муниципалитет, найти точные населённые пункты и вести текущий файл ключей ОКТМО."
+    fields:
+      - id: oktmo_scope_region
+        type: "select"
+        group: "territory"
+        label: "OKTMO search region"
+        label_ru: "Регион ОКТМО"
+        default: ""
+        placeholder: "Тюменская область"
+        searchable: true
+        options_source: "system_core.services.address_aligner_service:oktmo_region_scope_options"
+        cache_seconds: 3600
+        hint: "Region list is read from the local Rosstat OKTMO snapshot."
+        hint_ru: "Список регионов читается из локального снимка ОКТМО Росстата."
+      - id: oktmo_scope_municipality
+        type: "select"
+        group: "territory"
+        label: "OKTMO municipality"
+        label_ru: "Муниципалитет ОКТМО"
+        default: ""
+        placeholder: "городской округ, муниципальный округ или район"
+        searchable: true
+        depends_on: ["oktmo_scope_region"]
+        options_source: "system_core.services.address_aligner_service:oktmo_municipality_scope_options"
+        cache_seconds: 0
+        hint: "Municipality list is built inside the selected region. Press + in the field to add the whole municipality and its settlements to the key file."
+        hint_ru: "Список строится внутри выбранного региона. Нажмите + в поле, чтобы добавить всё МО и его населённые пункты в файл ключей."
+      - id: oktmo_key_toolbar
+        type: "oktmo_key_toolbar"
+        group: "territory"
+        ui_only: true
+        label: "OKTMO search keys"
+        label_ru: "Ключи ОКТМО"
+        hint: "Current keys are reused by address collection, alignment and reference workflows when OKTMO is enabled there."
+        hint_ru: "Текущие ключи используются сбором, сопоставлением и эталонными режимами, когда там включён ОКТМО."
+      - id: oktmo_data_dir
+        type: "text"
+        group: "source"
+        advanced: true
+        label: "OKTMO data folder"
+        label_ru: "Папка данных ОКТМО"
+        default: ""
+        placeholder: "data"
+        hint: "Folder containing rosstat/data-*.csv. Empty means the project data folder."
+        hint_ru: "Папка, где есть rosstat/data-*.csv. Пусто = папка data проекта."
+    service: "system_core.services.address_aligner_service:oktmo_key_console"
+    kind: "safe"
 
-      - id: update_rosstat_oktmo
-        title: "Update Rosstat OKTMO"
-        title_ru: "Обновить ОКТМО Росстата"
-        description: "Download the latest Rosstat OKTMO data-*.csv snapshot into data/rosstat for address normalization."
-        description_ru: "Скачать свежий снимок Росстата data-*.csv в data/rosstat для нормализации адресов."
-        gui_hidden: true
-        fields:
-          - id: rosstat_oktmo_url
-            type: "text"
-            group: "source"
-            label: "Rosstat OKTMO URL"
-            label_ru: "URL ОКТМО Росстата"
-            default: "https://rosstat.gov.ru/opendata/7708234640-oktmo/"
-            hint: "Use the dataset page or a direct data-*.csv URL. After a successful update, old data-*.csv snapshots are removed and only the fresh file remains."
-            hint_ru: "Можно указать страницу набора или прямую ссылку data-*.csv. После успешного обновления старые снимки data-*.csv удаляются, остаётся только свежий файл."
-          - id: oktmo_data_dir
-            type: "text"
-            group: "source"
-            advanced: true
-            label: "OKTMO data folder"
-            label_ru: "Папка данных ОКТМО"
-            default: ""
-            placeholder: "data"
-            hint: "Folder containing rosstat/data-*.csv. Empty means the project data folder."
-            hint_ru: "Папка, где есть rosstat/data-*.csv. Пусто = папка data проекта."
-        service: "system_core.services.address_aligner_service:update_rosstat_oktmo_data"
-        kind: "safe"
+  - id: update_rosstat_oktmo
+    title: "Update Rosstat OKTMO"
+    title_ru: "Обновить ОКТМО Росстата"
+    description: "Download the latest Rosstat OKTMO data-*.csv snapshot into data/rosstat for address normalization."
+    description_ru: "Скачать свежий снимок Росстата data-*.csv в data/rosstat для нормализации адресов."
+    fields:
+      - id: rosstat_oktmo_url
+        type: "text"
+        group: "source"
+        label: "Rosstat OKTMO URL"
+        label_ru: "URL ОКТМО Росстата"
+        default: "https://rosstat.gov.ru/opendata/7708234640-oktmo/"
+        hint: "Use the dataset page or a direct data-*.csv URL. After a successful update, old data-*.csv snapshots are removed and only the fresh file remains."
+        hint_ru: "Можно указать страницу набора или прямую ссылку data-*.csv. После успешного обновления старые снимки data-*.csv удаляются, остаётся только свежий файл."
+      - id: oktmo_data_dir
+        type: "text"
+        group: "source"
+        advanced: true
+        label: "OKTMO data folder"
+        label_ru: "Папка данных ОКТМО"
+        default: ""
+        placeholder: "data"
+        hint: "Folder containing rosstat/data-*.csv. Empty means the project data folder."
+        hint_ru: "Папка, где есть rosstat/data-*.csv. Пусто = папка data проекта."
+    service: "system_core.services.address_aligner_service:update_rosstat_oktmo_data"
+    kind: "safe"
 
   - id: convert_legacy_office_sources
     # English and Russian final command title.
@@ -1434,47 +1356,37 @@ operation_groups:
     # safe = операция не считается опасной и запускается без подтверждения.
     kind: "safe"
 
-  - id: diagnostics
-    # English and Russian menu title.
-    # Английское и русское название меню.
-    title: "Diagnostics"
-    title_ru: "Диагностика"
-    # English and Russian menu description.
-    # Английское и русское описание меню.
-    description: "Parser and input inspection tools."
-    description_ru: "Инструменты проверки парсера и входных файлов."
-    children:
-      - id: run_parser_diagnostic
-        # English and Russian final command title.
-        # Английское и русское название финальной команды.
-        title: "Run parser diagnostic"
-        title_ru: "Диагностика парсера"
-        # English and Russian final command description.
-        # Английское и русское описание финальной команды.
-        description: "Extract parsed address components from input files for inspection."
-        description_ru: "Извлечь компоненты адресов из исходных файлов для проверки парсера."
-        # Python function called by the operation.
-        # Python-функция, которая будет вызвана при запуске операции.
-        service: "system_core.services.address_aligner_service:run_parser_diagnostic"
-        # safe = operation starts without a danger confirmation.
-        # safe = операция не считается опасной и запускается без подтверждения.
-        kind: "safe"
+  - id: run_parser_diagnostic
+    # English and Russian final command title.
+    # Английское и русское название финальной команды.
+    title: "Run parser diagnostic"
+    title_ru: "Диагностика парсера"
+    # English and Russian final command description.
+    # Английское и русское описание финальной команды.
+    description: "Extract parsed address components from input files for inspection."
+    description_ru: "Извлечь компоненты адресов из исходных файлов для проверки парсера."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:run_parser_diagnostic"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
 
-      - id: validate_input
-        # English and Russian final command title.
-        # Английское и русское название финальной команды.
-        title: "Validate input"
-        title_ru: "Проверить исходники"
-        # English and Russian final command description.
-        # Английское и русское описание финальной команды.
-        description: "Check the input folder and list supported spreadsheets."
-        description_ru: "Проверить исходные файлы и показать найденные таблицы."
-        # Python function called by the operation.
-        # Python-функция, которая будет вызвана при запуске операции.
-        service: "system_core.services.address_aligner_service:validate_input"
-        # safe = operation starts without a danger confirmation.
-        # safe = операция не считается опасной и запускается без подтверждения.
-        kind: "safe"
+  - id: validate_input
+    # English and Russian final command title.
+    # Английское и русское название финальной команды.
+    title: "Validate input"
+    title_ru: "Проверить исходники"
+    # English and Russian final command description.
+    # Английское и русское описание финальной команды.
+    description: "Check the input folder and list supported spreadsheets."
+    description_ru: "Проверить исходные файлы и показать найденные таблицы."
+    # Python function called by the operation.
+    # Python-функция, которая будет вызвана при запуске операции.
+    service: "system_core.services.address_aligner_service:validate_input"
+    # safe = operation starts without a danger confirmation.
+    # safe = операция не считается опасной и запускается без подтверждения.
+    kind: "safe"
 
 # Maintenance operations.
 # Сервисные операции обслуживания.

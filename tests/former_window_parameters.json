@@ -1,0 +1,2613 @@
+{
+ "run_table_comparison": {
+  "fields": [
+   [
+    "file_a",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "file_b",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "sheet_a",
+    "select",
+    ""
+   ],
+   [
+    "sheet_b",
+    "select",
+    ""
+   ],
+   [
+    "address_columns_a",
+    "text",
+    ""
+   ],
+   [
+    "address_columns_b",
+    "text",
+    ""
+   ],
+   [
+    "start_row_a",
+    "number",
+    5
+   ],
+   [
+    "start_row_b",
+    "number",
+    7
+   ],
+   [
+    "sort_addresses",
+    "checkbox",
+    false
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "file_a": "",
+     "file_b": "",
+     "address_columns_a": "",
+     "address_columns_b": "",
+     "start_row_a": 5,
+     "start_row_b": 7,
+     "sort_addresses": false
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "file_a": "C:\\sample\\file_a.xlsx",
+     "file_b": "C:\\sample\\file_b.xlsx",
+     "sheet_a": "sample",
+     "sheet_b": "sample",
+     "address_columns_a": "Q-address_columns_a",
+     "address_columns_b": "Q-address_columns_b",
+     "start_row_a": 6,
+     "start_row_b": 8,
+     "sort_addresses": true
+    },
+    "parameters": {
+     "file_a": "C:\\sample\\file_a.xlsx",
+     "file_b": "C:\\sample\\file_b.xlsx",
+     "sheet_a": "sample",
+     "sheet_b": "sample",
+     "address_columns_a": "Q-address_columns_a",
+     "address_columns_b": "Q-address_columns_b",
+     "start_row_a": 6,
+     "start_row_b": 8,
+     "sort_addresses": true
+    }
+   }
+  ]
+ },
+ "run_safe_table_join": {
+  "fields": [
+   [
+    "primary_file",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "source_file",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "primary_sheet",
+    "select",
+    ""
+   ],
+   [
+    "source_sheets",
+    "checkboxes",
+    []
+   ],
+   [
+    "primary_address_columns",
+    "text",
+    "B,C,D"
+   ],
+   [
+    "source_address_columns",
+    "text",
+    "B,C"
+   ],
+   [
+    "source_payload_columns",
+    "text",
+    "D,E,F,G,H,I,J,K"
+   ],
+   [
+    "primary_start_row",
+    "number",
+    5
+   ],
+   [
+    "source_start_row",
+    "number",
+    7
+   ],
+   [
+    "output_header_row",
+    "number",
+    1
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "primary_file": "",
+     "source_file": "",
+     "primary_address_columns": "B,C,D",
+     "source_address_columns": "B,C",
+     "source_payload_columns": "D,E,F,G,H,I,J,K",
+     "primary_start_row": 5,
+     "source_start_row": 7,
+     "output_header_row": 1
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "primary_file": "C:\\sample\\primary_file.xlsx",
+     "source_file": "C:\\sample\\source_file.xlsx",
+     "primary_sheet": "sample",
+     "source_sheets": [
+      "sample"
+     ],
+     "primary_address_columns": "Q-primary_address_columns",
+     "source_address_columns": "Q-source_address_columns",
+     "source_payload_columns": "Q-source_payload_columns",
+     "primary_start_row": 6,
+     "source_start_row": 8,
+     "output_header_row": 2
+    },
+    "parameters": {
+     "primary_file": "C:\\sample\\primary_file.xlsx",
+     "source_file": "C:\\sample\\source_file.xlsx",
+     "primary_sheet": "sample",
+     "source_sheets": [
+      "sample"
+     ],
+     "primary_address_columns": "Q-primary_address_columns",
+     "source_address_columns": "Q-source_address_columns",
+     "source_payload_columns": "Q-source_payload_columns",
+     "primary_start_row": 6,
+     "source_start_row": 8,
+     "output_header_row": 2
+    }
+   }
+  ]
+ },
+ "run_address_collection": {
+  "fields": [
+   [
+    "address_collection_action",
+    "radio",
+    "generate"
+   ],
+   [
+    "use_oktmo",
+    "checkbox",
+    true
+   ],
+   [
+    "reference_file",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "collected_file",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "source_root",
+    "text",
+    ""
+   ],
+   [
+    "address_collection_dir",
+    "text",
+    "address_collection"
+   ],
+   [
+    "source_columns",
+    "text",
+    ""
+   ],
+   [
+    "collected_column",
+    "text",
+    "A"
+   ],
+   [
+    "target_column",
+    "text",
+    "A"
+   ],
+   [
+    "target_column_header",
+    "select",
+    ""
+   ],
+   [
+    "benchmark_file",
+    "xlsx_file_picker",
+    ""
+   ],
+   [
+    "benchmark_column",
+    "text",
+    "Местоположение"
+   ],
+   [
+    "slot_preview",
+    "slot_preview",
+    "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10"
+   ],
+   [
+    "enabled_slots",
+    "checkboxes",
+    [
+     "postal_index",
+     "federal_district",
+     "parent_subject",
+     "subject",
+     "autonomous_okrug",
+     "municipality",
+     "locality",
+     "territory",
+     "street",
+     "house",
+     "premise",
+     "oktmo_code",
+     "oktmo_name",
+     "house_base",
+     "house_mods",
+     "house_modifiers",
+     "street_numbers",
+     "territory_key",
+     "match_key"
+    ]
+   ],
+   [
+    "slot_order",
+    "slot_order",
+    {
+     "postal_index": 1,
+     "federal_district": 2,
+     "parent_subject": 3,
+     "subject": 4,
+     "autonomous_okrug": 5,
+     "municipality": 6,
+     "locality": 7,
+     "territory": 8,
+     "microdistrict": 9,
+     "street": 10,
+     "house": 11,
+     "premise": 12
+    }
+   ],
+   [
+    "omit_microdistrict_when_street_found",
+    "checkbox",
+    true
+   ],
+   [
+    "clean_output_workbook",
+    "checkbox",
+    false
+   ],
+   [
+    "clean_duplicates",
+    "checkbox",
+    true
+   ],
+   [
+    "sanitize_incomplete",
+    "checkbox",
+    true
+   ],
+   [
+    "write_rejected",
+    "checkbox",
+    true
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "address_collection_action": "generate",
+     "use_oktmo": true,
+     "address_collection_dir": "address_collection",
+     "source_columns": "",
+     "benchmark_file": "",
+     "benchmark_column": "Местоположение",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_duplicates": true,
+     "sanitize_incomplete": true,
+     "write_rejected": true
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "address_collection_action": "update",
+     "use_oktmo": false,
+     "reference_file": "C:\\sample\\reference_file.xlsx",
+     "collected_file": "C:\\sample\\collected_file.xlsx",
+     "source_root": "Q-source_root",
+     "address_collection_dir": "Q-address_collection_dir",
+     "source_columns": "Q-source_columns",
+     "collected_column": "Q-collected_column",
+     "target_column": "Q-target_column",
+     "target_column_header": "sample",
+     "benchmark_file": "C:\\sample\\benchmark_file.xlsx",
+     "benchmark_column": "Q-benchmark_column",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_duplicates": false,
+     "sanitize_incomplete": false,
+     "write_rejected": false
+    },
+    "parameters": {
+     "address_collection_action": "update",
+     "use_oktmo": false,
+     "reference_file": "C:\\sample\\reference_file.xlsx",
+     "collected_file": "C:\\sample\\collected_file.xlsx",
+     "address_collection_dir": "Q-address_collection_dir",
+     "source_columns": "Q-source_columns",
+     "collected_column": "Q-collected_column",
+     "target_column": "Q-target_column",
+     "target_column_header": "sample",
+     "benchmark_file": "C:\\sample\\benchmark_file.xlsx",
+     "benchmark_column": "Q-benchmark_column",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_duplicates": false,
+     "sanitize_incomplete": false,
+     "write_rejected": false
+    }
+   },
+   {
+    "case": "address_collection_action=generate",
+    "values": {
+     "address_collection_action": "generate"
+    },
+    "parameters": {
+     "address_collection_action": "generate",
+     "use_oktmo": true,
+     "address_collection_dir": "address_collection",
+     "source_columns": "",
+     "benchmark_file": "",
+     "benchmark_column": "Местоположение",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_duplicates": true,
+     "sanitize_incomplete": true,
+     "write_rejected": true
+    }
+   },
+   {
+    "case": "all changed, address_collection_action=generate",
+    "values": {
+     "address_collection_action": "generate",
+     "use_oktmo": false,
+     "reference_file": "C:\\sample\\reference_file.xlsx",
+     "collected_file": "C:\\sample\\collected_file.xlsx",
+     "source_root": "Q-source_root",
+     "address_collection_dir": "Q-address_collection_dir",
+     "source_columns": "Q-source_columns",
+     "collected_column": "Q-collected_column",
+     "target_column": "Q-target_column",
+     "target_column_header": "sample",
+     "benchmark_file": "C:\\sample\\benchmark_file.xlsx",
+     "benchmark_column": "Q-benchmark_column",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_duplicates": false,
+     "sanitize_incomplete": false,
+     "write_rejected": false
+    },
+    "parameters": {
+     "address_collection_action": "generate",
+     "use_oktmo": false,
+     "address_collection_dir": "Q-address_collection_dir",
+     "source_columns": "Q-source_columns",
+     "benchmark_file": "C:\\sample\\benchmark_file.xlsx",
+     "benchmark_column": "Q-benchmark_column",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_duplicates": false,
+     "sanitize_incomplete": false,
+     "write_rejected": false
+    }
+   },
+   {
+    "case": "address_collection_action=update",
+    "values": {
+     "address_collection_action": "update"
+    },
+    "parameters": {
+     "address_collection_action": "update",
+     "use_oktmo": true,
+     "reference_file": "",
+     "collected_file": "",
+     "address_collection_dir": "address_collection",
+     "source_columns": "",
+     "collected_column": "A",
+     "target_column": "A",
+     "target_column_header": "",
+     "benchmark_file": "",
+     "benchmark_column": "Местоположение",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_duplicates": true,
+     "sanitize_incomplete": true,
+     "write_rejected": true
+    }
+   },
+   {
+    "case": "all changed, address_collection_action=update",
+    "values": {
+     "address_collection_action": "update",
+     "use_oktmo": false,
+     "reference_file": "C:\\sample\\reference_file.xlsx",
+     "collected_file": "C:\\sample\\collected_file.xlsx",
+     "source_root": "Q-source_root",
+     "address_collection_dir": "Q-address_collection_dir",
+     "source_columns": "Q-source_columns",
+     "collected_column": "Q-collected_column",
+     "target_column": "Q-target_column",
+     "target_column_header": "sample",
+     "benchmark_file": "C:\\sample\\benchmark_file.xlsx",
+     "benchmark_column": "Q-benchmark_column",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_duplicates": false,
+     "sanitize_incomplete": false,
+     "write_rejected": false
+    },
+    "parameters": {
+     "address_collection_action": "update",
+     "use_oktmo": false,
+     "reference_file": "C:\\sample\\reference_file.xlsx",
+     "collected_file": "C:\\sample\\collected_file.xlsx",
+     "address_collection_dir": "Q-address_collection_dir",
+     "source_columns": "Q-source_columns",
+     "collected_column": "Q-collected_column",
+     "target_column": "Q-target_column",
+     "target_column_header": "sample",
+     "benchmark_file": "C:\\sample\\benchmark_file.xlsx",
+     "benchmark_column": "Q-benchmark_column",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Тюменский муниципальный округ · г. Тюмень · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_duplicates": false,
+     "sanitize_incomplete": false,
+     "write_rejected": false
+    }
+   }
+  ]
+ },
+ "run_address_aligner": {
+  "fields": [
+   [
+    "ground_truth_column",
+    "text",
+    ""
+   ],
+   [
+    "ground_truth_column_header",
+    "select",
+    ""
+   ],
+   [
+    "target_columns",
+    "text",
+    ""
+   ],
+   [
+    "target_column_header",
+    "select",
+    ""
+   ],
+   [
+    "alignment_mode",
+    "radio",
+    "fast"
+   ],
+   [
+    "companion_mode",
+    "radio",
+    "auto"
+   ],
+   [
+    "satellite_columns",
+    "text",
+    ""
+   ],
+   [
+    "normalize_before_match",
+    "checkbox",
+    false
+   ],
+   [
+    "normalize_after_match",
+    "checkbox",
+    false
+   ],
+   [
+    "collect_before_match",
+    "checkbox",
+    false
+   ],
+   [
+    "collect_whole_document",
+    "checkbox",
+    false
+   ],
+   [
+    "use_oktmo",
+    "checkbox",
+    true
+   ],
+   [
+    "city",
+    "text",
+    ""
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "auto",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   },
+   {
+    "case": "alignment_mode=fast",
+    "values": {
+     "alignment_mode": "fast"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "auto",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, alignment_mode=fast",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "fast",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "fast",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "alignment_mode=normalized",
+    "values": {
+     "alignment_mode": "normalized"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "normalized",
+     "companion_mode": "auto",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, alignment_mode=normalized",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   },
+   {
+    "case": "companion_mode=auto",
+    "values": {
+     "companion_mode": "auto"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "auto",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, companion_mode=auto",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "auto",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "auto",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   },
+   {
+    "case": "companion_mode=none",
+    "values": {
+     "companion_mode": "none"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "none",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, companion_mode=none",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "none",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "none",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   },
+   {
+    "case": "companion_mode=left",
+    "values": {
+     "companion_mode": "left"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "left",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, companion_mode=left",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "left",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "left",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   },
+   {
+    "case": "companion_mode=right",
+    "values": {
+     "companion_mode": "right"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "right",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, companion_mode=right",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "right",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "right",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   },
+   {
+    "case": "companion_mode=between",
+    "values": {
+     "companion_mode": "between"
+    },
+    "parameters": {
+     "ground_truth_column": "",
+     "ground_truth_column_header": "",
+     "target_columns": "",
+     "target_column_header": "",
+     "alignment_mode": "fast",
+     "companion_mode": "between",
+     "satellite_columns": "",
+     "use_oktmo": true
+    }
+   },
+   {
+    "case": "all changed, companion_mode=between",
+    "values": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "normalize_before_match": true,
+     "normalize_after_match": true,
+     "collect_before_match": true,
+     "collect_whole_document": true,
+     "use_oktmo": false,
+     "city": "Q-city"
+    },
+    "parameters": {
+     "ground_truth_column": "Q-ground_truth_column",
+     "ground_truth_column_header": "sample",
+     "target_columns": "Q-target_columns",
+     "target_column_header": "sample",
+     "alignment_mode": "normalized",
+     "companion_mode": "between",
+     "satellite_columns": "Q-satellite_columns",
+     "use_oktmo": false
+    }
+   }
+  ]
+ },
+ "run_reference_normalization": {
+  "fields": [
+   [
+    "reference_action",
+    "radio",
+    "generate"
+   ],
+   [
+    "use_oktmo",
+    "checkbox",
+    true
+   ],
+   [
+    "source_columns",
+    "text",
+    ""
+   ],
+   [
+    "reference_columns",
+    "text",
+    ""
+   ],
+   [
+    "reference_column_header",
+    "select",
+    ""
+   ],
+   [
+    "slot_preview",
+    "slot_preview",
+    "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10"
+   ],
+   [
+    "enabled_slots",
+    "checkboxes",
+    [
+     "postal_index",
+     "federal_district",
+     "parent_subject",
+     "subject",
+     "autonomous_okrug",
+     "municipality",
+     "locality",
+     "territory",
+     "street",
+     "house",
+     "premise",
+     "oktmo_code",
+     "oktmo_name",
+     "house_base",
+     "house_mods",
+     "house_modifiers",
+     "street_numbers",
+     "territory_key",
+     "match_key"
+    ]
+   ],
+   [
+    "slot_order",
+    "slot_order",
+    {
+     "postal_index": 1,
+     "federal_district": 2,
+     "parent_subject": 3,
+     "subject": 4,
+     "autonomous_okrug": 5,
+     "municipality": 6,
+     "locality": 7,
+     "territory": 8,
+     "microdistrict": 9,
+     "street": 10,
+     "house": 11,
+     "premise": 12
+    }
+   ],
+   [
+    "omit_microdistrict_when_street_found",
+    "checkbox",
+    true
+   ],
+   [
+    "clean_output_workbook",
+    "checkbox",
+    false
+   ],
+   [
+    "clean_old_values",
+    "checkbox",
+    true
+   ],
+   [
+    "clean_old_slots",
+    "checkbox",
+    true
+   ],
+   [
+    "reference_file",
+    "text",
+    ""
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "reference_action": "generate",
+     "use_oktmo": true,
+     "source_columns": "",
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_old_values": true,
+     "clean_old_slots": true
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "reference_action": "clean",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false,
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_action": "clean",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false
+    }
+   },
+   {
+    "case": "reference_action=generate",
+    "values": {
+     "reference_action": "generate"
+    },
+    "parameters": {
+     "reference_action": "generate",
+     "use_oktmo": true,
+     "source_columns": "",
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_old_values": true,
+     "clean_old_slots": true
+    }
+   },
+   {
+    "case": "all changed, reference_action=generate",
+    "values": {
+     "reference_action": "generate",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false,
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_action": "generate",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false
+    }
+   },
+   {
+    "case": "reference_action=update",
+    "values": {
+     "reference_action": "update"
+    },
+    "parameters": {
+     "reference_action": "update",
+     "use_oktmo": true,
+     "source_columns": "",
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_old_values": true,
+     "clean_old_slots": true
+    }
+   },
+   {
+    "case": "all changed, reference_action=update",
+    "values": {
+     "reference_action": "update",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false,
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_action": "update",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false
+    }
+   },
+   {
+    "case": "reference_action=clean",
+    "values": {
+     "reference_action": "clean"
+    },
+    "parameters": {
+     "reference_action": "clean",
+     "use_oktmo": true,
+     "source_columns": "",
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "omit_microdistrict_when_street_found": true,
+     "clean_output_workbook": false,
+     "clean_old_values": true,
+     "clean_old_slots": true
+    }
+   },
+   {
+    "case": "all changed, reference_action=clean",
+    "values": {
+     "reference_action": "clean",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false,
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_action": "clean",
+     "use_oktmo": false,
+     "source_columns": "Q-source_columns",
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "omit_microdistrict_when_street_found": false,
+     "clean_output_workbook": true,
+     "clean_old_values": false,
+     "clean_old_slots": false
+    }
+   }
+  ]
+ },
+ "run_reference_processing": {
+  "fields": [
+   [
+    "reference_processing_action",
+    "radio",
+    "sort"
+   ],
+   [
+    "use_oktmo",
+    "checkbox",
+    true
+   ],
+   [
+    "reference_columns",
+    "text",
+    ""
+   ],
+   [
+    "reference_column_header",
+    "select",
+    ""
+   ],
+   [
+    "slot_preview",
+    "slot_preview",
+    "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10"
+   ],
+   [
+    "enabled_slots",
+    "checkboxes",
+    [
+     "postal_index",
+     "federal_district",
+     "parent_subject",
+     "subject",
+     "autonomous_okrug",
+     "municipality",
+     "locality",
+     "territory",
+     "street",
+     "house",
+     "premise",
+     "oktmo_code",
+     "oktmo_name",
+     "house_base",
+     "house_mods",
+     "house_modifiers",
+     "street_numbers",
+     "territory_key",
+     "match_key"
+    ]
+   ],
+   [
+    "slot_order",
+    "slot_order",
+    {
+     "postal_index": 1,
+     "federal_district": 2,
+     "parent_subject": 3,
+     "subject": 4,
+     "autonomous_okrug": 5,
+     "municipality": 6,
+     "locality": 7,
+     "territory": 8,
+     "microdistrict": 9,
+     "street": 10,
+     "house": 11,
+     "premise": 12
+    }
+   ],
+   [
+    "remove_source_column",
+    "checkbox",
+    true
+   ],
+   [
+    "slot_header_mode",
+    "radio",
+    "full"
+   ],
+   [
+    "reference_file",
+    "text",
+    ""
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "reference_processing_action": "sort",
+     "use_oktmo": true,
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "remove_source_column": true,
+     "slot_header_mode": "full"
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short",
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short"
+    }
+   },
+   {
+    "case": "reference_processing_action=sort",
+    "values": {
+     "reference_processing_action": "sort"
+    },
+    "parameters": {
+     "reference_processing_action": "sort",
+     "use_oktmo": true,
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "remove_source_column": true,
+     "slot_header_mode": "full"
+    }
+   },
+   {
+    "case": "all changed, reference_processing_action=sort",
+    "values": {
+     "reference_processing_action": "sort",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short",
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_processing_action": "sort",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short"
+    }
+   },
+   {
+    "case": "reference_processing_action=deconstruct",
+    "values": {
+     "reference_processing_action": "deconstruct"
+    },
+    "parameters": {
+     "reference_processing_action": "deconstruct",
+     "use_oktmo": true,
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "remove_source_column": true,
+     "slot_header_mode": "full"
+    }
+   },
+   {
+    "case": "all changed, reference_processing_action=deconstruct",
+    "values": {
+     "reference_processing_action": "deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short",
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_processing_action": "deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short"
+    }
+   },
+   {
+    "case": "reference_processing_action=sort_deconstruct",
+    "values": {
+     "reference_processing_action": "sort_deconstruct"
+    },
+    "parameters": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": true,
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "remove_source_column": true,
+     "slot_header_mode": "full"
+    }
+   },
+   {
+    "case": "all changed, reference_processing_action=sort_deconstruct",
+    "values": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short",
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short"
+    }
+   },
+   {
+    "case": "slot_header_mode=full",
+    "values": {
+     "slot_header_mode": "full"
+    },
+    "parameters": {
+     "reference_processing_action": "sort",
+     "use_oktmo": true,
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "remove_source_column": true,
+     "slot_header_mode": "full"
+    }
+   },
+   {
+    "case": "all changed, slot_header_mode=full",
+    "values": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "full",
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "full"
+    }
+   },
+   {
+    "case": "slot_header_mode=short",
+    "values": {
+     "slot_header_mode": "short"
+    },
+    "parameters": {
+     "reference_processing_action": "sort",
+     "use_oktmo": true,
+     "reference_columns": "",
+     "reference_column_header": "",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index",
+      "federal_district",
+      "parent_subject",
+      "subject",
+      "autonomous_okrug",
+      "municipality",
+      "locality",
+      "territory",
+      "street",
+      "house",
+      "premise",
+      "oktmo_code",
+      "oktmo_name",
+      "house_base",
+      "house_mods",
+      "house_modifiers",
+      "street_numbers",
+      "territory_key",
+      "match_key"
+     ],
+     "slot_order": {
+      "postal_index": 1,
+      "federal_district": 2,
+      "parent_subject": 3,
+      "subject": 4,
+      "autonomous_okrug": 5,
+      "municipality": 6,
+      "locality": 7,
+      "territory": 8,
+      "microdistrict": 9,
+      "street": 10,
+      "house": 11,
+      "premise": 12
+     },
+     "remove_source_column": true,
+     "slot_header_mode": "short"
+    }
+   },
+   {
+    "case": "all changed, slot_header_mode=short",
+    "values": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short",
+     "reference_file": "Q-reference_file"
+    },
+    "parameters": {
+     "reference_processing_action": "sort_deconstruct",
+     "use_oktmo": false,
+     "reference_columns": "Q-reference_columns",
+     "reference_column_header": "sample",
+     "slot_preview": "625000 · Уральский федеральный округ · Тюменская область · Ханты-Мансийский автономный округ — Югра · Тюменский муниципальный округ · д. Патрушева · ул. Ленина · д. 10",
+     "enabled_slots": [
+      "postal_index"
+     ],
+     "slot_order": {
+      "postal_index": 12,
+      "federal_district": 11,
+      "parent_subject": 10,
+      "subject": 9,
+      "autonomous_okrug": 8,
+      "municipality": 7,
+      "locality": 6,
+      "territory": 5,
+      "microdistrict": 4,
+      "street": 3,
+      "house": 2,
+      "premise": 1
+     },
+     "remove_source_column": false,
+     "slot_header_mode": "short"
+    }
+   }
+  ]
+ },
+ "oktmo_key_console": {
+  "fields": [
+   [
+    "oktmo_scope_region",
+    "select",
+    ""
+   ],
+   [
+    "oktmo_scope_municipality",
+    "select",
+    ""
+   ],
+   [
+    "oktmo_key_toolbar",
+    "oktmo_key_toolbar",
+    ""
+   ],
+   [
+    "oktmo_data_dir",
+    "text",
+    ""
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "oktmo_scope_region": "",
+     "oktmo_data_dir": ""
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "oktmo_scope_region": "sample",
+     "oktmo_scope_municipality": "sample",
+     "oktmo_key_toolbar": "",
+     "oktmo_data_dir": "Q-oktmo_data_dir"
+    },
+    "parameters": {
+     "oktmo_scope_region": "sample",
+     "oktmo_scope_municipality": "sample",
+     "oktmo_data_dir": "Q-oktmo_data_dir"
+    }
+   }
+  ]
+ },
+ "update_rosstat_oktmo": {
+  "fields": [
+   [
+    "rosstat_oktmo_url",
+    "text",
+    "https://rosstat.gov.ru/opendata/7708234640-oktmo/"
+   ],
+   [
+    "oktmo_data_dir",
+    "text",
+    ""
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "rosstat_oktmo_url": "https://rosstat.gov.ru/opendata/7708234640-oktmo/",
+     "oktmo_data_dir": ""
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "rosstat_oktmo_url": "Q-rosstat_oktmo_url",
+     "oktmo_data_dir": "Q-oktmo_data_dir"
+    },
+    "parameters": {
+     "rosstat_oktmo_url": "Q-rosstat_oktmo_url",
+     "oktmo_data_dir": "Q-oktmo_data_dir"
+    }
+   }
+  ]
+ },
+ "convert_legacy_office_sources": {
+  "fields": [
+   [
+    "overwrite_existing",
+    "checkbox",
+    false
+   ]
+  ],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {
+     "overwrite_existing": false
+    }
+   },
+   {
+    "case": "all changed",
+    "values": {
+     "overwrite_existing": true
+    },
+    "parameters": {
+     "overwrite_existing": true
+    }
+   }
+  ]
+ },
+ "run_parser_diagnostic": {
+  "fields": [],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {}
+   },
+   {
+    "case": "all changed",
+    "values": {},
+    "parameters": {}
+   }
+  ]
+ },
+ "validate_input": {
+  "fields": [],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {}
+   },
+   {
+    "case": "all changed",
+    "values": {},
+    "parameters": {}
+   }
+  ]
+ },
+ "cleanup_input_output": {
+  "fields": [],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {}
+   },
+   {
+    "case": "all changed",
+    "values": {},
+    "parameters": {}
+   }
+  ]
+ },
+ "remove_empty_rows_from_output": {
+  "fields": [],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {}
+   },
+   {
+    "case": "all changed",
+    "values": {},
+    "parameters": {}
+   }
+  ]
+ },
+ "package_output": {
+  "fields": [],
+  "cases": [
+   {
+    "case": "defaults",
+    "values": {},
+    "parameters": {}
+   },
+   {
+    "case": "all changed",
+    "values": {},
+    "parameters": {}
+   }
+  ]
+ }
+}

@@ -20,6 +20,7 @@ from .paths import ProjectPaths
 LogCallback = Callable[[str], None]
 ProgressCallback = Callable[[float], None]
 CancelCallback = Callable[[], bool]
+StartedCallback = Callable[["JobContext"], None]
 
 
 @dataclass
@@ -31,11 +32,20 @@ class JobContext:
     log_callback: LogCallback | None = None
     progress_callback: ProgressCallback | None = None
     cancel_callback: CancelCallback | None = None
+    # Where the one live line goes (the bar of a long stage, rewritten in place). A caller that has
+    # no such line gets it as an ordinary line of the log, as before.
+    live_callback: LogCallback | None = None
 
     def log(self, message: str) -> None:
         append_log(self.log_file, message)
         if self.log_callback:
             self.log_callback(message)
+
+    def live(self, message: str) -> None:
+        if self.live_callback:
+            self.live_callback(message)
+        else:
+            self.log(message)
 
     def progress(self, value: float) -> None:
         if self.progress_callback:
@@ -50,6 +60,8 @@ class JobResult:
     ok: bool
     message: str
     data: dict[str, Any]
+    log_file: str = ""
+    report_dir: str = ""
 
 
 @dataclass(frozen=True)
@@ -342,12 +354,16 @@ def execute_operation(
     log_callback: LogCallback | None = None,
     progress_callback: ProgressCallback | None = None,
     cancel_callback: CancelCallback | None = None,
+    started_callback: StartedCallback | None = None,
+    live_callback: LogCallback | None = None,
 ) -> JobResult:
     run_stamp = timestamp().replace(":", "-")
     log_file = paths.logs / f"{run_stamp}_{operation.id}.log"
     report_dir = paths.report / f"{run_stamp}_{operation.id}"
     report_dir.mkdir(parents=True, exist_ok=True)
-    context = JobContext(paths, operation, log_file, report_dir, log_callback, progress_callback, cancel_callback)
+    context = JobContext(paths, operation, log_file, report_dir, log_callback, progress_callback, cancel_callback, live_callback)
+    if started_callback:
+        started_callback(context)
 
     try:
         context.log(f"Starting operation: {operation.id}")
@@ -364,9 +380,9 @@ def execute_operation(
         context.log(f"Finished operation: {operation.id}")
 
         if isinstance(result, dict):
-            return JobResult(True, "Operation finished.", result)
-        return JobResult(True, str(result or "Operation finished."), {})
+            return JobResult(True, "Operation finished.", result, str(log_file), str(report_dir))
+        return JobResult(True, str(result or "Operation finished."), {}, str(log_file), str(report_dir))
 
     except Exception as exc:
         context.log(traceback.format_exc())
-        return JobResult(False, f"{exc.__class__.__name__}: {exc}", {})
+        return JobResult(False, f"{exc.__class__.__name__}: {exc}", {}, str(log_file), str(report_dir))

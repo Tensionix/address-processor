@@ -5,33 +5,53 @@
 **Contents**
 
 - [1. Launching](#1-launching)
-- [2. Workspace Folders](#2-workspace-folders)
-- [3. How a Command Screen Works](#3-how-a-command-screen-works)
-- [4. Commands](#4-commands)
+- [2. The Window and the Workspace Folders](#2-the-window-and-the-workspace-folders)
+- [3. How an Operation Card Works](#3-how-an-operation-card-works)
+- [4. Operations](#4-operations)
 - [5. Maintenance](#5-maintenance)
 - [6. Working Order](#6-working-order)
 
-The program is driven from a window: commands are chosen with the mouse, columns
+The program is driven from a window: operations are chosen with the mouse, columns
 are given as Excel letters, and results go into a separate folder. Ordinary work
-requires no editing of configuration files.
+requires no editing of configuration files. The same operations also run without
+the window, with the console command (see the
+[Reference](REFERENCE_EN.md#console-command)).
 
 ---
 
 ## 1. Launching
 
-`launcher_gui.cmd` in the project root is the usual way. `Start.exe` does the
-same.
+`Start.exe` in the project root opens the program window. If the window is
+already open, a second start brings it to the front instead of opening another. On
+the first start the window is Russian; the **RU** and **EN** buttons at the right
+of the header switch the language on the fly, and the choice is remembered.
 
-The launcher resolves the portable environment (`runtime\pythonw.exe`, then
-`runtime\python.exe`, then `runtime\python\`, then a system `py -3.12`) and
-raises a local interface on `127.0.0.1:8080` in its own window.
-
-If no window appears, set `AUDION_GUI_CONSOLE=1` and run the launcher again — it
-opens in a console with error messages. Details are in [Install](INSTALL_EN.md).
+If no window appears, or the journal says there is no project Python, see
+[Install](INSTALL_EN.md#if-the-window-does-not-open).
 
 ---
 
-## 2. Workspace Folders
+## 2. The Window and the Workspace Folders
+
+The window has three parts.
+
+**The header.** The name, the version and the badges of the machine: the date of
+the OKTMO registry snapshot and whether Excel and Word are present (a green dot
+means they are; Excel is needed to move columns and compare tables, Word to
+convert old `.doc` files). On the right: **SERVICE** (open the program's folders,
+clear `input` and `output`), **Aa** (font size: normal, larger, smaller),
+**RU / EN**, the theme switch and **ABOUT** (version, folders, author, licence).
+
+**The sections.** Under the header there are five big buttons: SOURCES, COLLECT,
+REFERENCE, MATCH, OKTMO. When a section has several operations, a second row under
+them holds the tabs of the operations.
+
+**Two columns.** On the left is the card of the chosen operation. On the right are
+the working area (SOURCE and TARGET), the RESULT and the JOURNAL. At the bottom is
+the status line: while an operation runs it shows the course, the time and the
+**STOP** button.
+
+### Workspace Folders
 
 The project works with six managed folders:
 
@@ -44,19 +64,23 @@ The project works with six managed folders:
 | `workspace` | Intermediate files |
 | `release` | Result archives |
 
-**Source** and **Target** at the top of the window override `input` and `output`
-for the current work. A path can be pinned, which keeps it first in the recent
-list. Path history is stored in `config/path_history.json`.
+**SOURCE** is where operations take tables and documents from: a folder or a
+single file. **TARGET** is where they put the result. At start these are always the
+project's `input` and `output`: the earlier choice is not remembered. A path can be
+chosen with the folder button (the source also has a file button), typed into the
+line, picked from the history, or a file or a folder can be dropped straight onto
+the window. A path can be pinned — pinned ones come first in the list — and opened
+in the file manager. The history of paths is kept in `config/path_history.json`.
+While an operation runs the paths do not change.
 
-Source buttons:
+The buttons under the paths:
 
 | Button | Action |
 | --- | --- |
-| Add file… / Add files… | Copy selected files into the sources |
-| Add folder… | Copy the contents of a folder |
-| List | Show the current source set |
-| Delete | Remove one selected entry |
-| Reset | Return to the initial state |
+| RESET | Return both paths to `input` and `output`; pins stay |
+| LIST | Name the files of the source in the journal: alphabetically, numbered |
+| CHECK | The "Validate input" operation: list the supported spreadsheets |
+| CLEAR | Delete the contents of the source and the target; the folders themselves stay. The window asks and names both paths; what is deleted goes to the Recycle Bin |
 
 Spaces and Cyrillic in paths are supported.
 
@@ -65,20 +89,33 @@ files, not with the last one you opened in Explorer.
 
 ---
 
-## 3. How a Command Screen Works
+## 3. How an Operation Card Works
 
-Every command opens the same way.
+Every operation opens the same way.
 
-* At the top: the command name, a **BACK** button, and a **RUN** button.
-* **Parameters** — fields grouped by meaning: Files, Sheets, Columns, Data rows,
-  Territory, Options.
+* At the top: the name, a line saying what it is for and, on the right, the filled
+  **RUN** button (Ctrl+Enter). The explanations of fields and buttons are in
+  tooltips: they show when the pointer rests on a thing.
+* The **fields** are grouped in frames by meaning: Files, Sheets, Columns, Rows,
+  Options, Mode. The frames stand in one, two or three columns by the width of the
+  window. A short field has its name on the left; a choice of several variants and
+  sets of flags are named above. A small orange dot beside a field means its value
+  differs from the default.
 * **Advanced** — fields rarely needed: data folder paths, manual overrides.
-* **Operation log** — live output. The operation can be cancelled.
-* **Artifacts** — three buttons after completion: **OUTPUT**, **REPORT**,
-  **AUDIT**. They open the result folder, the report, and the audit sheet.
+* The **JOURNAL** on the right is the live course of the operation; a long stage
+  shows one live line instead of a hundred identical ones. The LOGS, REPORT and
+  CONFIG tabs open folders; the buttons on the right copy the journal, clear the
+  panel (the files in `logs` stay) and expand the journal over the whole column.
+* The **RESULT** is the outcome of the last operation: what it found and how much.
+  Buttons: **REPORT** (a summary of the report), **FOLDER** (where the workbooks
+  went), **TO SOURCE** (make that folder the source of the next operation); below
+  are **REMOVE EMPTY ROWS** and **PACKAGE OUTPUT AS ZIP** (see
+  [Maintenance](#5-maintenance)).
 
-One operation runs at a time. While a run is in progress, a second command will
-not start.
+One operation runs at a time. While one runs, another will not start. **STOP** asks
+the operation to end at the nearest safe point: the workbooks already done stay,
+and the operation's own Excel and Word are closed. The window may be closed during
+a run — it asks, and closes once the operation has stopped.
 
 Operations that change the managed workspace ask for confirmation and show what
 exactly will be affected.
@@ -96,24 +133,21 @@ header.
 
 ---
 
-## 4. Commands
+## 4. Operations
 
-The tiles appear in this order:
-
-1. OKTMO / project keys
-2. Address collection
-3. Address alignment
-4. Reference normalization
-5. Reference processing
-6. Compare two tables
-7. Move columns by address
-8. Convert DOC/XLS
-9. Diagnostics
+| Section | Tabs | Described in |
+| --- | --- | --- |
+| SOURCES | CONVERT DOC/XLS · CHECK INPUT · PARSER DIAGNOSTIC | 4.8, 4.9 |
+| COLLECT | — | 4.2 |
+| REFERENCE | NORMALIZE · PROCESS | 4.4, 4.5 |
+| MATCH | ALIGN · TWO TABLES · MOVE COLUMNS | 4.3, 4.6, 4.7 |
+| OKTMO | KEYS & AREA · UPDATE ROSSTAT | 4.1 |
 
 ### 4.1. OKTMO / Project Keys
 
-The territory registry, search keys, and pins. The registry **is downloaded by a
-button** and refreshed by the same button; the cache is rebuilt immediately.
+The territory registry, search keys, and pins. The registry **is downloaded by the
+UPDATE ROSSTAT operation** and refreshed by the same one; the cache is rebuilt
+immediately.
 
 This has its own document: [OKTMO and project keys](OKTMO_EN.md).
 
@@ -138,10 +172,14 @@ workbook lives.
 means all cells and all supported files are scanned. For append mode, set
 "Collected address column" and "Target address column".
 
-**Slots.** "Enabled slots" decide what the address line is built from; "Slot
-order" decides in which order. The "Address line" field shows a read-only example
-of the resulting address. The full slot list is in the
-[Reference](REFERENCE_EN.md#slots).
+**Slots.** One field — the **Address ruler**. At the top it shows how the address
+will be written (an example; it cannot be edited). Under the example there is a
+chip for each slot of the hierarchy: its tick switches the slot on, the number at
+the right is its place among the switched-on ones, and the chip itself can be
+dragged to change the order. Below are the "Technical keys" (the OKTMO code, the
+base of a house and others): they only have ticks. The arrow button returns the
+enabled slots and the order to the defaults of the manifest. The full slot list is
+in the [Reference](REFERENCE_EN.md#slots).
 
 **Options**
 
@@ -327,11 +365,12 @@ clears Office temporary files along the way.
 
 ## 5. Maintenance
 
-| Command | What it does |
+| Button | What it does |
 | --- | --- |
-| Clear I/O | Delete the contents of the managed `input` and `output`; the folders remain |
-| Remove empty rows | Create copies of results without rows that are empty across all columns |
-| Package output as ZIP | Build `release/address_aligner_output.zip` from the result folder |
+| CLEAR (working area) | Delete the contents of the chosen source and target; the folders remain, what is deleted goes to the Recycle Bin |
+| SERVICE → "Clear the input and output of the program (an operation)" | An operation: delete the contents of the project's managed `input` and `output`; the folders remain |
+| REMOVE EMPTY ROWS (result panel) | Create copies of results without rows that are empty across all columns |
+| PACKAGE OUTPUT AS ZIP (result panel) | Build `release/address_aligner_output.zip` from the result folder |
 
 Empty-row removal only drops rows that are empty entirely. A row with data in a
 single column counts as non-empty and stays.
@@ -347,9 +386,9 @@ originals.
 
 A typical run:
 
-1. **Prepare the OKTMO registry** if you work with territorial context — once by
-   button, then again as new snapshots are published.
-2. **Collect the keys** of the region or municipality on the OKTMO screen.
+1. **Prepare the OKTMO registry** if you work with territorial context — once with
+   the UPDATE ROSSTAT operation, then again as new snapshots are published.
+2. **Collect the keys** of the region or municipality in the OKTMO section.
 3. **Place the sources**, check the list.
 4. **Run on a small controlled set** — a dozen rows whose answer you know in
    advance.

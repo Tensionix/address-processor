@@ -25,7 +25,7 @@ set "PYTHON_ZIP_PATH=%DOWNLOAD_DIR%\%PYTHON_ZIP%"
 call "%INSTALL_DIR%\init_folders.cmd"
 
 echo ======================================================================
-echo   AUDION ADDRESS ALIGNER - BUILD PORTABLE ENV
+echo   AUDION ADDRESS PROCESSOR - BUILD PORTABLE ENV
 echo ======================================================================
 echo Root:       %ROOT%
 echo Install:    %INSTALL_DIR%
@@ -86,7 +86,6 @@ if errorlevel 1 goto ERR_VERIFY
 
 echo.
 echo [SUCCESS] Portable environment is ready.
-echo [INFO] Release licensing is generated later from the finalized release contents.
 if not defined AUDION_NO_PAUSE pause
 exit /b 0
 
@@ -100,15 +99,22 @@ exit /b %errorlevel%
 set "PTH_FILE=%~1"
 if not exist "%PTH_FILE%" exit /b 1
 set "TMP_FILE=%PTH_FILE%.tmp"
+set "HAS_PARENT_PATH="
 break > "%TMP_FILE%"
 for /f "usebackq delims=" %%L in ("%PTH_FILE%") do (
   set "LINE=%%L"
+  if "!LINE!"==".." set "HAS_PARENT_PATH=1"
   if "!LINE!"=="#import site" (
+    if not defined HAS_PARENT_PATH (
+      >>"%TMP_FILE%" echo ..
+      set "HAS_PARENT_PATH=1"
+    )
     >>"%TMP_FILE%" echo import site
   ) else (
     >>"%TMP_FILE%" echo %%L
   )
 )
+if not defined HAS_PARENT_PATH >>"%TMP_FILE%" echo ..
 move /y "%TMP_FILE%" "%PTH_FILE%" >nul
 exit /b 0
 

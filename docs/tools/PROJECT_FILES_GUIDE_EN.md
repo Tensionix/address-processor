@@ -15,11 +15,8 @@ contents are produced by runs and rebuilt.
 
 | File | What it is |
 | --- | --- |
-| `Start.exe` | Compiled window launcher |
-| `launcher_gui.cmd` | Window launcher |
-| `launcher_project.cmd` | Project menu, English |
-| `launcher_project_ru.cmd` | Project menu, Russian |
-| `launcher_tools.cmd` | Service menu: doctor, licenses, release |
+| `Start.exe` | Compiled window launcher: opens `App\AudionAddressProcessor.exe` |
+| `address_cli.cmd` | The console command: the same operations without a window; the window itself stands on it |
 | `builder_main.cmd` | Portable environment build |
 | `cleanup_project.cmd` | Cleanup of generated artifacts |
 | `pytest.ini` | Test settings |
@@ -31,16 +28,26 @@ CMD files must stay UTF-8 without BOM with CRLF line endings. After editing, run
 
 ---
 
+## `App` and `Source` — The Window
+
+| Path | What it is |
+| --- | --- |
+| `Source/` | The window sources: Avalonia 12 / .NET 10. `Core/` — running the command, the manifest, field values, the journal, settings; `Views/` — the form, panels, dialogs; `MainWindow.*.cs` — sections, working area, running, OKTMO; `Ps/` — source of the program's own PowerShell; `Tools/` — icons and the check without a mouse |
+| `Source/config/i18n.json` | The English pairs of every Russian text of the window |
+| `App/` | The built window (`AudionAddressProcessor.exe`) and the own PowerShell `AudionPs.exe` for the build scripts; built by `install\Build-App.cmd`, travels with a release as it is |
+
+---
+
 ## `config` — Settings
 
 | File | What it is |
 | --- | --- |
 | `project.yaml` | Engine settings: city, reference column, target columns, linked columns, safety limits |
-| `gui_settings.yaml` | Language, theme, window behaviour |
-| `tool_manifest.yaml` | Every command and field of the window; the interface is built from it |
+| `window_layout.yaml` | The layout of the window: sections, the operations in them, the buttons of the working area and of the result panel, icons |
+| `tool_manifest.yaml` | Every operation and field of the window; the interface is built from it |
 | `version.json` | Version and the language of the root README |
-| `ui_colors.yaml` | Interface colours |
 | `path_history.json` | History and pins of source and target paths |
+| `window_settings.json` | The window's settings: size, language, theme, font (made by the window itself) |
 | `oktmo_current_keys.txt` | Current OKTMO search keys |
 | `oktmo_region_pins.json` | Pinned regions |
 | `oktmo_municipality_pins.json` | Pinned municipalities |
@@ -62,7 +69,8 @@ CMD files must stay UTF-8 without BOM with CRLF line endings. After editing, run
 | `inspect_md_tables.py` | Markdown table inspection |
 | `doctor.py` | Environment and import checks |
 | `main.py` | Direct matching run without the window |
-| `fzf.exe` | Menu for the CMD launchers |
+| `cli.py` | The console command: `describe`, `run`, `options`, `oktmo`, `serve`, `stop-office`, `version` |
+| `office_session.py` | Keeps track of an operation's own Excel and Word, so a stop closes only them |
 
 ### `address_engine` — The Address Engine
 
@@ -93,26 +101,17 @@ CMD files must stay UTF-8 without BOM with CRLF line endings. After editing, run
 function here: the service takes the parameters, calls the engine, and writes the
 log, the report, and the artifact list.
 
-### `ui_nicegui` — The Window
-
-| File | What it does |
-| --- | --- |
-| `window.py` | Window wrapper: port, icon, WebView2 engine |
-| `app.py` | The interface itself: commands, fields, log, OKTMO panels |
-| `workbench.py` | Source and target, path history, pins |
-| `i18n.py` | Language switching |
-| `tokens.css`, `base.css`, `theme.css` | Styling |
-
 ### `core` — Core
 
 | File | What it does |
 | --- | --- |
-| `jobs.py` | Running operations, cancellation, progress |
+| `jobs.py` | Running operations, cancellation, progress, the live line of a long stage |
+| `operation_model.py` | The rules that assemble the parameters of a run: defaults, conditions for showing fields, slot order; the manifest as the window takes it |
+| `window_layout.py` | Reading `window_layout.yaml` and checking that every operation stands in the window |
 | `manifest.py` | Parsing `tool_manifest.yaml` |
 | `paths.py` | Managed project folders |
 | `config.py` | Reading settings |
-| `ui_settings.py` | Window settings |
-| `ansi_terminal.py` | Terminal output into the log |
+| `ansi_terminal.py` | Stripping the colour control codes from program output |
 | `cmd_encoding.py` | CMD encoding checks |
 | `output_decode.py` | Decoding subprocess output |
 | `logging_utils.py` | Logging |
@@ -121,10 +120,8 @@ log, the report, and the artifact list.
 
 | Path | What it is |
 | --- | --- |
-| `license/` | Collection, deduplication, and pruning of third-party licenses |
-| `icons/` | Window icons |
+| `icons/` | The program icon |
 | `start_launcher/` | Source of `Start.exe` |
-| `powershell/` | Helper scripts |
 
 ---
 
@@ -136,12 +133,11 @@ log, the report, and the artifact list.
 | `install_portable_offline.cmd` | Install from the local `wheelhouse` |
 | `verify_portable_env.cmd` | Verify the built environment |
 | `init_folders.cmd` | Create the working folders |
-| `Check-CmdEncoding.cmd`, `Repair-CmdEncoding.ps1` | Check and repair CMD encodings |
+| `Check-CmdEncoding.cmd` | Check CMD encodings |
 | `Clean-Install-Cache.cmd` / `.ps1` | Clean the build cache |
 | `Update-Requirements-Lock.cmd` | Update the dependency lock file |
-| `make_release_archive.cmd` | Build the release archive |
 | `Build-StartLauncher.cmd` / `.ps1` | Build `Start.exe` |
-| `launcher-tools-update_fzf.cmd` | Update `fzf.exe` |
+| `Build-App.cmd` | Build the window `App\` from `Source\` |
 | `requirements_full.in` | Dependency list |
 | `README_INSTALL.md` | Install notes |
 
@@ -167,6 +163,7 @@ log, the report, and the artifact list.
 | `REFERENCE_RU.md`, `REFERENCE_EN.md` | Technical reference |
 | `INSTALL_RU.md`, `INSTALL_EN.md` | Install and launch |
 | `tools/PROJECT_FILES_GUIDE_*.md` | This document |
+| `tools/WINDOW_INVENTORY.md` | The inventory of the earlier window (NiceGUI) and its check against the new one: what is covered where (in Russian) |
 | `PDF/` | Rendered PDFs of every document in two themes |
 
 PDFs are built by a separate tool from every `.md` in `docs`, nested folders
@@ -181,17 +178,20 @@ included. The folder structure is preserved.
 | `test_address_aligner_regression.py` | The matching passes |
 | `test_safe_table_join.py` | Moving columns by address |
 | `test_excel_layout.py` | Result workbook formatting |
-| `test_gui_render.py` | Window rendering |
-| `test_workbench_route_regression.py` | Source and target |
-| `test_ansi_terminal.py` | Terminal output |
+| `test_console_output.py` | Stripping colour codes from output, the encodings of subprocess output |
+| `test_cli_door.py` | The console command: the same run parameters as the earlier window, stopping, Excel and Word |
+| `test_window_avalonia.py` | The window and the command read the same keys; the English pairs; the self-check of the built window |
+| `former_window_parameters.json` | The parameters of the 14 operations recorded from the earlier window on 11.10.2026: the command is checked against them |
 
-The window is tested with NiceGUI's headless fixture, parsing the rendered page
-with BeautifulSoup; selenium is deliberately not used.
+The window is checked not by a page in a browser but by itself:
+`App\AudionAddressProcessor.exe --self-check` builds every section and compares
+them with the manifest.
 
 ---
 
 ## `licenses` — Licenses
 
 License texts of third-party components, `THIRD_PARTY_NOTICES.txt`,
-`COMPONENTS.json`, the scan report, and the pack manifest. Produced by the tools
-in `system_core/license/`.
+`COMPONENTS.json`, the scan report, and the pack manifest. Produced by the
+Audion Build Licenses tool from the finished contents of the project, not edited
+by hand.

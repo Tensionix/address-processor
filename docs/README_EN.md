@@ -1,6 +1,8 @@
 # Audion Address Processor
 
-[Русский](README_RU.md) · [User Guide](USER_GUIDE_EN.md) · [OKTMO](OKTMO_EN.md) · [Reference](REFERENCE_EN.md) · [Install](INSTALL_EN.md)
+[English README](README_EN.md) · [User Guide](USER_GUIDE_EN.md) | [Русский README](README_RU.md) · [Руководство](USER_GUIDE_RU.md)
+
+[OKTMO](OKTMO_EN.md) · [Reference](REFERENCE_EN.md) · [Install](INSTALL_EN.md)
 
 **Contents**
 
@@ -89,6 +91,10 @@ but columns can be set safely from the window.
 **Every run leaves a report.** A JSON file appears in `report/` next to the
 result: what was found, by which pass, and what was left without a pair.
 
+**The window and the command line do the same.** Any operation also runs without the
+window — with `address_cli.cmd`, with the same field defaults; see the
+[Reference](REFERENCE_EN.md#console-command).
+
 **The output spreadsheet is readable.** Column widths are fitted to the content,
 long text wraps, row heights grow. A small thing, but without it every export has
 to be tidied by hand.
@@ -100,7 +106,7 @@ to be tidied by hand.
 | [User Guide](USER_GUIDE_EN.md) | The window, workspace folders, every command step by step |
 | [OKTMO and project keys](OKTMO_EN.md) | Rosstat registry, download, update, cache, keys, pins |
 | [Technical Reference](REFERENCE_EN.md) | Slots, matching passes, settings, reports |
-| [Install and launch](INSTALL_EN.md) | Portable environment, launchers, maintenance |
+| [Install and launch](INSTALL_EN.md) | Portable environment, building the window, maintenance |
 | [Project file map](tools/PROJECT_FILES_GUIDE_EN.md) | Where everything lives in the sources |
 
 ---
@@ -111,6 +117,11 @@ to be tidied by hand.
 
 `.xlsx`, `.docx`, `.odt`, `.txt`, `.csv`, `.md`, and `.pdf` with a text layer.
 Legacy `.doc` and `.xls` are converted by a separate command.
+
+Text is read from PDF by the PyMuPDF library, which is distributed under the GNU AGPL
+3.0. The program's own code stays under Apache 2.0, but the build as a whole — the
+program together with PyMuPDF — is offered under the terms of the GNU AGPL 3.0; see
+the `NOTICE` file.
 
 ### Settings
 

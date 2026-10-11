@@ -60,7 +60,7 @@ from system_core.address_engine.source_table_assembly import (
     assemble_address_workbook,
     benchmark_address_collection,
 )
-from system_core.core.jobs import JobContext
+from system_core.core.jobs import JobContext, resolve_project_path
 from system_core.Parser_Diagnostic import run_diagnostic
 from system_core.remove_empty_rows import clean_workbook, default_output_path
 from system_core.safe_table_join import ComparisonOptions, JoinOptions, build_comparison_workbook, parse_column_spec, safe_join_workbooks
@@ -827,6 +827,13 @@ def _is_inside(child: Path, parent: Path) -> bool:
     return common == parent_resolved
 
 
+# Folders of the program itself: the cleanup of a working folder never reaches into them, whatever it was pointed at.
+_PROTECTED_PROJECT_FOLDERS = frozenset({
+    "system_core", "config", "runtime", "wheelhouse", "app", "source", "install", "docs", "tests", "licenses", "data",
+    "._runtime", "work",
+})
+
+
 def _clean_managed_folder(context: JobContext, folder: Path, label: str) -> dict[str, object]:
     root = context.paths.root.resolve()
     if folder.is_symlink():
@@ -836,6 +843,9 @@ def _clean_managed_folder(context: JobContext, folder: Path, label: str) -> dict
     folder_resolved = folder.resolve()
     if not _is_inside(folder_resolved, root):
         raise RuntimeError(f"{label} path is outside project root. Cleanup blocked.")
+    # The project itself and the folders of its program are not working folders: a window may point a source or a target anywhere.
+    if folder_resolved == root or folder_resolved.relative_to(root).parts[0].lower() in _PROTECTED_PROJECT_FOLDERS:
+        raise RuntimeError(f"{label} is the project or a folder of the program. Cleanup blocked.")
 
     removed = 0
     skipped: list[str] = []
@@ -898,7 +908,11 @@ class _LogStream:
         if now - self.last_progress_emit < 0.5:
             return
         self.last_progress_emit = now
-        self._emit(self.buffer)
+        # A bar that is rewritten in place (tqdm ends its frames with \r) is the live line of the
+        # window; a caller that has none gets it as a line of the log, as it always did.
+        line = self.buffer.rstrip()
+        if line:
+            self.context.live(line)
 
 
 @contextlib.contextmanager

@@ -1,24 +1,21 @@
-{
-  "project": "Audion Address Processor",
-  "source_file": "E:\\TOOLS\\PROJECTS\\_incoming_gpt_image_icons\\Сгенерированное изображение 1.png",
-  "pipeline": "GPT-Image bitmap candidate saved from UI, normalized to 1024 PNG and multi-size ICO",
-  "sizes": {
-    "app.png": "1024x1024",
-    "app.ico": [
-      "16x16",
-      "24x24",
-      "32x32",
-      "48x48",
-      "64x64",
-      "128x128",
-      "256x256"
-    ]
-  },
-  "style_rules": [
-    "background #17212B",
-    "maximum 3 objects",
-    "no repeated objects",
-    "no text",
-    "bitmap-first"
-  ]
-}
+Audion Address Processor - the application icon, put in place on 11.10.2026 (version 2.0.0, version 2 of the drawing).
+
+Meaning: address records in a structured register plus one canonical building/location marker.
+Mark: a dark blue-grey register sheet with three rows (silver data glyphs) and a cyan-to-blue location
+pin with a white house over it, on a graphite rounded tile; the outer corners are transparent.
+
+Files:
+  app.svg   the editable source, a native SVG, 1024 x 1024
+  app.png   1024 x 1024, rasterized from the SVG
+  app.ico   32-bit, frames 16, 20, 24, 32, 40, 48, 64, 96, 128, 256
+            SHA256 f0e7af104b16c4873dcee32d5354a9792b44321dc7673ad63389080ea110b439
+
+Made in E:\TOOLS\output\audion-address-processor-icon-v2 (its export script, its size preview and its check of every
+frame lie there). Version 1 of the drawing (a white register sheet) is in E:\TOOLS\output\audion-address-processor-icon-v1;
+the owner darkened the sheet so that the marker stands out.
+
+app.ico is the one file the program takes its icon from: the window (Source\AudionAddressProcessor.csproj)
+and Start.exe, which embeds it when it is built (install\Build-StartLauncher.cmd).
+
+The icon before it (1.9.0 and earlier, a bitmap made by GPT-Image) is kept in
+E:\TOOLS\Audion Address Processor NiceGUI\system_core\icons.

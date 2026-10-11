@@ -1,0 +1,116 @@
+# The layout of the window: which sections it has and what stands in each.
+# Раскладка окна: какие в нём разделы и что в каждом стоит.
+#
+# The window knows no operation by name: it draws what this file and tool_manifest.yaml say.
+# Окно не знает ни одной операции по имени: оно рисует то, что говорят этот файл и tool_manifest.yaml.
+# Every operation of the manifest stands here at least once (tests/test_cli_door.py checks it).
+# Каждая операция манифеста стоит здесь хотя бы раз (проверяет tests/test_cli_door.py).
+#
+# A section is a big button under the header (title, hint); its operations are the second row.
+# Раздел - крупная кнопка под заголовком (название, строка «для чего»); его операции - второй ряд.
+# `tab` / `tab_ru` is the short name of an operation in that row; an operation alone in its
+# section has none: its blocks of fields take the second row.
+# `tab` / `tab_ru` - короткое имя операции в этом ряду; у единственной операции раздела его нет:
+# второй ряд занимают блоки её полей.
+
+sections:
+  - id: sources
+    icon: folder-input
+    title: "SOURCES"
+    title_ru: "ИСТОЧНИКИ"
+    hint: "Prepare the input files"
+    hint_ru: "Подготовить входные файлы"
+    operations:
+      - id: convert_legacy_office_sources
+        icon: replace
+        tab: "CONVERT DOC/XLS"
+        tab_ru: "КОНВЕРТАЦИЯ DOC/XLS"
+      - id: validate_input
+        icon: scan-search
+        tab: "CHECK INPUT"
+        tab_ru: "ПРОВЕРКА ИСХОДНИКОВ"
+      - id: run_parser_diagnostic
+        icon: activity
+        tab: "PARSER DIAGNOSTIC"
+        tab_ru: "ДИАГНОСТИКА ПАРСЕРА"
+
+  - id: collect
+    icon: text-search
+    title: "COLLECT"
+    title_ru: "СБОР"
+    hint: "Clean addresses from anything"
+    hint_ru: "Чистые адреса из чего угодно"
+    operations:
+      - id: run_address_collection
+
+  - id: reference
+    icon: book-marked
+    title: "REFERENCE"
+    title_ru: "ЭТАЛОН"
+    hint: "The reference book with slots"
+    hint_ru: "Справочник со слотами"
+    operations:
+      - id: run_reference_normalization
+        icon: wand-sparkles
+        tab: "NORMALIZE"
+        tab_ru: "НОРМАЛИЗАЦИЯ"
+      - id: run_reference_processing
+        icon: list-ordered
+        tab: "PROCESS"
+        tab_ru: "ОБРАБОТКА"
+
+  - id: match
+    icon: git-compare
+    title: "MATCH"
+    title_ru: "СОПОСТАВЛЕНИЕ"
+    hint: "Tables by address"
+    hint_ru: "Таблицы по адресу"
+    operations:
+      - id: run_address_aligner
+        icon: columns-2
+        tab: "ALIGN"
+        tab_ru: "АДРЕСА"
+      - id: run_table_comparison
+        icon: table-2
+        tab: "TWO TABLES"
+        tab_ru: "ДВЕ ТАБЛИЦЫ"
+      - id: run_safe_table_join
+        icon: merge
+        tab: "MOVE COLUMNS"
+        tab_ru: "ПЕРЕНОС КОЛОНОК"
+
+  - id: oktmo
+    icon: map-pinned
+    title: "OKTMO"
+    title_ru: "ОКТМО"
+    hint: "Territory keys"
+    hint_ru: "Ключи территории"
+    operations:
+      - id: oktmo_key_console
+        icon: key-round
+        tab: "KEYS & AREA"
+        tab_ru: "КЛЮЧИ И ОБЛАСТЬ"
+      - id: update_rosstat_oktmo
+        icon: cloud-download
+        tab: "UPDATE ROSSTAT"
+        tab_ru: "ОБНОВИТЬ РОССТАТ"
+
+# Buttons of the work area (the two paths, source and target). The operation is the manifest's.
+# Кнопки рабочей зоны (два пути, источник и назначение). Операция - из манифеста.
+workspace:
+  check: validate_input
+  clear: cleanup_input_output
+
+# Buttons of the panel under the result: operations without fields that work on the result.
+# Кнопки панели результата: операции без полей, которые работают с результатом.
+result_actions:
+  - remove_empty_rows_from_output
+  - package_output
+
+# Signs of the buttons that stand outside the rows of the sections (names in the set of Lucide).
+# Знаки кнопок, которые стоят вне рядов разделов (имена в наборе Lucide).
+icons:
+  validate_input: scan-search
+  cleanup_input_output: eraser
+  remove_empty_rows_from_output: rows-3
+  package_output: archive

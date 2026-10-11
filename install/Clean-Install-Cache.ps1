@@ -9,8 +9,8 @@
   Removed when present:
     - cached files/folders inside install\download\, except the preserve list
       below;
-    - exact installer staging directories system_core\_pwsh_tmp and
-      system_core\_fzf_tmp;
+    - what building the window leaves in Source\: bin and obj of the window
+      and of its PowerShell;
     - Python __pycache__ directories and *.pyc/*.pyo files outside payload and
       user-data zones.
 
@@ -19,9 +19,10 @@
     - get-pip.py
     - 7z*-extra.7z
 
-  The script does not touch runtime\, wheelhouse\, system_core\powershell\,
-  system_core\fzf.exe, input/output/logs/report/data/release/workspace, user
-  config, or project business data.
+  The script does not touch runtime\, wheelhouse\, the built window in App\,
+  the sources of the window,
+  input/output/logs/report/data/release/workspace, user config, or project
+  business data.
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
@@ -155,7 +156,7 @@ Write-Host '====================================================================
 Write-Host '  AUDION - CLEAN INSTALL CACHE'
 Write-Host '======================================================================'
 Write-Host "Project: $root"
-Write-Host 'Targets: install\download\, installer staging dirs, Python bytecode caches'
+Write-Host 'Targets: install\download\, build leftovers of the window, Python bytecode caches'
 Write-Host ''
 
 if (Test-Path -LiteralPath $downloadDir) {
@@ -182,22 +183,24 @@ else {
     Write-Host "[skip] $downloadDir does not exist."
 }
 
-$stagingDirs = @(
-    (Join-ProjectPath 'system_core\_pwsh_tmp'),
-    (Join-ProjectPath 'system_core\_fzf_tmp')
-)
-foreach ($stagingDir in $stagingDirs) {
-    if (Test-Path -LiteralPath $stagingDir) {
-        $item = Get-Item -LiteralPath $stagingDir -Force
-        Add-Candidate -Item $item -Reason 'Remove installer staging directory'
+# What building the window leaves in Source\: bin and obj of the window and of its PowerShell -
+# close to a gigabyte after a day of work on the window. The built window, App\, and the sources
+# stay.
+$buildReason = 'Remove build leftovers of the window'
+foreach ($relative in 'Source\bin', 'Source\obj', 'Source\Ps\bin', 'Source\Ps\obj') {
+    $buildDir = Join-ProjectPath $relative
+    if (Test-Path -LiteralPath $buildDir -PathType Container) {
+        Add-Candidate -Item (Get-Item -LiteralPath $buildDir -Force) -Reason $buildReason
+        $script:candidates[-1].Name = $relative
     }
 }
 
 if (-not $SkipBytecode) {
     $excludedBytecodeRoots = @(
         (Join-ProjectPath 'runtime'),
+        (Join-ProjectPath 'Source'),
         (Join-ProjectPath 'wheelhouse'),
-        (Join-ProjectPath 'system_core\powershell'),
+        (Join-ProjectPath 'App'),
         (Join-ProjectPath 'input'),
         (Join-ProjectPath 'output'),
         (Join-ProjectPath 'logs'),
@@ -217,7 +220,15 @@ Write-Host ('Found removable: {0} item(s), {1:N1} MB total.' -f $script:candidat
 Write-Host ''
 
 foreach ($candidate in $script:candidates) {
-    Remove-Candidate -Candidate $candidate
+    try {
+        Remove-Candidate -Candidate $candidate
+    }
+    catch {
+        # A debug copy of the window that is still open holds its own folder: that is said,
+        # the cleanup does not fail on it.
+        if ($candidate.Reason -ne $buildReason) { throw }
+        Write-Host ('[WARN] still present, something holds it: {0}' -f $candidate.Name)
+    }
 }
 
 Write-Host '----------------------------------------------------------------------'

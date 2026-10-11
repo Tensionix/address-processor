@@ -7,18 +7,14 @@ PyMuPDF
 pywin32
 pymorphy3
 pymorphy3-dicts-ru
+# Fallback of the morphology when pymorphy3 is missing - not installed, used when present:
+# pymorphy2
 
-# GUI layer
-nicegui
+# Manifest and the build of the environment. The window is not Python: Source\ builds it on .NET.
 pyyaml
-rich
 setuptools
 wheel
 packaging
-pywebview
 
 # Test and audit layer
 pytest
-# NiceGUI's headless `user` fixture parses the rendered page with BeautifulSoup;
-# the Screen fixture would need selenium and is deliberately not used.
-beautifulsoup4
