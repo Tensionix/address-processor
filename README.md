@@ -3,19 +3,20 @@
 <!-- audion:release -->
 <p align="center">
   <a href="https://audion.dev/downloads/address-processor"><img alt="Windows" src="https://img.shields.io/badge/Windows-10%20%7C%2011-0b6db8?style=flat-square&logo=windows&logoColor=white"></a>
-  <a href="https://github.com/Tensionix/address-processor/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Tensionix/address-processor?style=flat-square&label=release&color=e08a63"></a>
+  <a href="https://github.com/Tensionix/address-processor/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Tensionix/address-processor?style=flat-square&label=release&color=2a7488"></a>
   <a href="https://github.com/Tensionix/address-processor/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/Tensionix/address-processor/total?style=flat-square&label=downloads&color=5fd08a"></a>
   <a href="https://github.com/Tensionix/address-processor/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/address-processor?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Версия 1.9.0** · 2026-09-25 · 215.9 MB
+**Версия 2.0.0** · 2026-10-11 · 237.5 MB
 
-- [Скачать напрямую](https://audion.dev/get/address-processor/1.9.0/Audion_Address_Processor_v1.9.0_Full.zip) — быстрая раздача, без ограничений
+- [Скачать напрямую](https://dl.audion.dev/address-processor/2.0.0/Audion_Address_Processor_v2.0.0_Full.zip) — быстрая раздача, без ограничений
 - [Страница проекта](https://audion.dev/downloads/address-processor) — все версии и установка
+- [Релиз на GitHub](https://github.com/Tensionix/address-processor/releases/tag/v2.0.0)
 
 <p align="center"><img src="docs/screenshot.png" alt="Окно программы" width="560"></p>
 
-`SHA-256: 5b99eb78d18a13d6e722c19c3ef41d67b328798d81516a4434ec7dda6f93c131`
+`SHA-256: f836b522bfc06ddf55dfdd7d3209ecfbae2b78ab1d31ccf82bb125063a5f306c`
 
 ---
 
