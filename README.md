@@ -8,7 +8,7 @@
   <a href="https://github.com/Tensionix/address-processor/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/address-processor?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Версия 2.0.0** · 2026-10-11 · 237.5 MB
+**Версия 2.0.0** · 2026-10-12 · 237.5 MB
 
 - [Скачать напрямую](https://audion.dev/get/address-processor/2.0.0/Audion_Address_Processor_v2.0.0_Full.zip) — быстрая раздача, без ограничений
 - [Страница проекта](https://audion.dev/downloads/address-processor) — все версии и установка
