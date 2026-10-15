@@ -1,0 +1,429 @@
+{
+  "backup": [],
+  "protected": [
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\gui_settings.yaml",
+      "sha256": "c19824548ed247db1de02f35470ecc78bd81b1c05db7d39b53f0a9c6590aa8f7"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\oktmo_current_keys.txt",
+      "sha256": "c6d19bbe8dd1001823d51ab659082ab8231f2237bb8c9a69468b0a5bd2a915b3"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\oktmo_municipality_pins.json",
+      "sha256": "2fe63cbd9a7e8a40317313170b9e4c8f6b3a4de15aeb4455c0abf5be4d1d7377"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\oktmo_pins_bundle.json",
+      "sha256": "90292f14e0a1a4226ed1f283afa32316a9693b99b9ffc38ec666ca5dee1e693a"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\oktmo_region_pins.json",
+      "sha256": "f767a0972f8e2299bf561a0c3f5851cb57cccafd25a141700e2d571107215e8d"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\path_history.json",
+      "sha256": "f086aca2c41f9ac3904ae6374871d5e7a11437349f09a47ebcc5380d1afd1416"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\project.yaml",
+      "sha256": "fc9d0d2e761748aad27f7e33df806806fefd744b6d049ce745b56e14c6f3a983"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\tool_manifest.yaml",
+      "sha256": "713d38890adafa463213302ffe68d07b0f2406864d7bbc7e3de0eb8c834d1ea7"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\ui_colors.yaml",
+      "sha256": "fc6b9d0200b9666e5501364149e1548c23bd68d56ab0b420b39bc2daf3905410"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\config\\version.json",
+      "sha256": "063f1250b233fbd40dcc6b7ae95c0872bde425d65b100430fb843be35961a247"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\data\\regions_reference.yaml",
+      "sha256": "396d5c504d6242efb2a9a955e5b8242e6f2e7be687eb411ed29ab3155905afdf"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\__init__.py",
+      "sha256": "39a6f1a5e447898ace2fba9e6d38f38ae2b25a55749dcde5451bbb48f32fdc9c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\address_diagnostics.py",
+      "sha256": "2926f9eb04298c9e5fb6657e3b7348be714a46ea96b26f66564cf9a746e92263"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\address_slots.py",
+      "sha256": "b6f8507b24611523e06477c1d84852e71668f8672d02f8d06682593af707f221"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\audion_address_core.py",
+      "sha256": "d8d1a9d258802900ace778ef457666a438b8b24788ce3546277df7dec444cf22"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\legacy_office_converter.py",
+      "sha256": "35f0b95cbc21a83c3a712978d313a04f1d17df69f103d16fe295a37b46b46a47"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\models.py",
+      "sha256": "8d8ca8361f041549fe58b26ebe0543b03222665a4bcba121f67dec9598a1b70d"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\normalizer_runtime.py",
+      "sha256": "cf2b8397805aea7b3454df9983208c7b5b5ffa132bf6c029e1da8316a6078ba9"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\oktmo_lookup.py",
+      "sha256": "13617337c3f3b9e0c3925ab2cf862b6a7c2b0668376acb8ee99c07c798c6c763"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\oktmo_user_keys.py",
+      "sha256": "1573acca3789589becc93349c437cc9fde08787fb73f8a567629aec1872ed525"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\reference_builder.py",
+      "sha256": "e6e86e74bae5922f1bcf4747b183e7daf33705ca90ecc4715ac414568a242590"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\reference_processor.py",
+      "sha256": "7caf03cb421f1f5d36067ddf680588c92e6597b6869126084c2ec93c09272751"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\region_reference.py",
+      "sha256": "4d908ecbac4474792c78b31a02c431651b1a407d7312733611c937fe09bec778"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\rosstat_update.py",
+      "sha256": "724a2ab85b0b2dd851e42f8ff810f19a3dcf41586a3913b9138aefc150ac6b40"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\russian_morphology.py",
+      "sha256": "4603d07738bed9d24632e4e4dd418cba32e07181e57e1b1616c527c0b34d2aef"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\slot_fill.py",
+      "sha256": "6e48f8e91f2f069fc7f46ac2e8f2f763271a653753b4df4c3831e0cdee1fb81c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\source_cleanup.py",
+      "sha256": "c75d2d458a77832a5a2750d391a952d1483aada94deac2a167de9c3912712577"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\source_intake.py",
+      "sha256": "23f79030598df2a9946e96dd7bb9b4666d7affd77df2885032ec0b63e1dd7d99"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\source_table_assembly.py",
+      "sha256": "eb3392fd606a24da5808ada7ff1f649253b72bfb026673fd21cb9ceda5264638"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\address_engine\\universal_address.py",
+      "sha256": "3c9f51969ac2e545a9baab5109a460538a9bb421e0277e9303a9f32320936793"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\ansi_terminal.py",
+      "sha256": "04746225eabd366861feccc9d37a304782f969294a0b165f458896a3520f911d"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\cmd_encoding.py",
+      "sha256": "9264cdf7db6e23d8cc370623e5edd75d76ee89a327a21a9de3460c9f17cbbbd6"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\config.py",
+      "sha256": "da997011f8d32fcbd71ab2d048c14d5272ae5c7632e71976c091b00443d2bf2c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\jobs.py",
+      "sha256": "1c6510d61f2aaeec53229813c1376274d536caa49ff008099329f9e0efef8dc4"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\logging_utils.py",
+      "sha256": "ff7a03538ab403a5b41237b5f9e0141de9499ec604fa6598443f082be10c0a2c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\manifest.py",
+      "sha256": "0a44cc5e04e550f29a1b57023fe33c25b57a25bd035c71bf70d59851cd307fa1"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\output_decode.py",
+      "sha256": "dcbe3380b9f79d662c3bd63861e081ba2f03d2adf3a0e3e42e6f64fbe9100119"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\paths.py",
+      "sha256": "98ed29ddfcae10ba67ca48673740d76b4688b8f980963b1ce211bbe069aae6fc"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\core\\ui_settings.py",
+      "sha256": "6f8213d21eb8d8e714637b2b6097ac2145925928265af4d4faa73efc4db658a4"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\doctor.py",
+      "sha256": "4450040587232a912507e156f15c10be079d799f14074829ae6c89c762fdbccb"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\excel_layout.py",
+      "sha256": "0bd361cb9b4fd056821a8b63299d90f36d47912c68a9829d559977ffed596f67"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\fzf.exe",
+      "sha256": "98876481305a0933ed699ef5734772e374ceb22e742cb63ec5e3b762a79a00ce"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\icons\\app.ico",
+      "sha256": "4b4443f41c2a71b1ddb97b453d4e621104d403848994f8c1a6784f17be4985ed"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\icons\\app.png",
+      "sha256": "669182daaeda24b5bc089acf5e233741e379bc59a8a04898170c6f55e2133e78"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\icons\\prompt.txt",
+      "sha256": "c0a7d7a67a5875745d0b4513ffffac19ec0f3097612a56a0da4825d6df4ad770"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\icons\\source.png",
+      "sha256": "669182daaeda24b5bc089acf5e233741e379bc59a8a04898170c6f55e2133e78"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\inspect_md_tables.py",
+      "sha256": "24c5f5a61ff9c5a52fc6b7a825bc33e46c203c8d7e685d245a32f74741ee8e82"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\collect_third_party_licenses.py",
+      "sha256": "a6a4407f6a728bc8042306d1c1d56a2d9393a03d3bab1a016956d0f75d21f9f1"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\deduplicate_collected_licenses.py",
+      "sha256": "47e1df4650582289bcbd158faeec424e94f0118fd1314965e3af33e26abadfbc"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\certifi\\LICENSE.txt",
+      "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\colorama\\LICENSE.txt",
+      "sha256": "cac35c02686e5d04a5a7140bfb3b36e73aed496656e891102e428886d7930318"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\lxml\\LICENSE.txt",
+      "sha256": "e7c3ce8d76331b0101cc46790ab43958ea90a364bcf962ed8763d5a818340e69"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\nicegui\\LICENSE.txt",
+      "sha256": "41c065c2081141886f7d3004e3cd4000c1507cc4bf37a063f12be1d53e9db272"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\pydantic\\LICENSE.txt",
+      "sha256": "fbe7f615f18d135c07000e5a86325db27f42c7729699ef166ac1f7a3f4586bf4"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\python-docx\\LICENSE.txt",
+      "sha256": "7652f271e46d0d533e9dc463f3b5fcbdcacf4d6a9c8d6b554d15efd0f37f6132"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\fallbacks\\tqdm\\LICENSE.txt",
+      "sha256": "fcff87c3a47ce8028a8512aa182d4fcf0ad1c90544ee75cf9b343684cac194de"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-7-Zip.txt",
+      "sha256": "3a184aa13dc8ad30734e28ff901b478ccbcb5b41be52427a5e7609c8fd9e5ddb"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-AGPL-3.0.txt",
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-Apache-2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-fzf.txt",
+      "sha256": "a296f423c0d30ce3581435e78e7e36c5fe73984a882d8720c72e713b4593588b"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-GPL-2.0.txt",
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-GPL-3.0.txt",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-ImageMagick.txt",
+      "sha256": "131447ad0099069beaa32acf1700716eea294a5bdf936d8211d7026b1849e5d4"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-MPL-2.0.txt",
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-NiceGUI.txt",
+      "sha256": "41c065c2081141886f7d3004e3cd4000c1507cc4bf37a063f12be1d53e9db272"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-PowerShell.txt",
+      "sha256": "7c77a44a8acd9b41fdc209864a8016b3d430b5d0e09309818d5b7444336df744"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-Python-Embedded.txt",
+      "sha256": "a4771d2216653fca4e3472566a762ba8ce5358f6f6599455fe7cfaceb60d14b3"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-tessdata_fast.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-Tesseract-OCR.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\LICENSE-yt-dlp.txt",
+      "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-FFmpeg-Build-Review.md",
+      "sha256": "32cc15d484d7e472e70962d1c991829fd266d287f1023b0f0f9c941fc5e1cfae"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-Ghostscript-Distribution-Review.md",
+      "sha256": "def4fde06df5832fa769c1307cef85254dba0961011c542a91b0b9117bed0ddf"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-ImageMagick-Delegate-Review.md",
+      "sha256": "a5244431e2ff8922286b86ee3da599d7bc03f45e9e95384b47faea2bcb5421da"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-LibreOffice-Bundled-Licenses.md",
+      "sha256": "2f7ed072d2786791e6e008fd3cec085073a29428d01ecd8e9dadeb79a734b11c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-Pandoc-GPL-Review.md",
+      "sha256": "8aa7bd9d074e919b3fe31f4185ada3b10bf4bdcf77d6f65a4f4b7a46ed19f6fa"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-Playwright-Browser-Payloads.md",
+      "sha256": "1cfbbe5625572afcb19910ad1079f750018f36f522f1287ed38a05942950837e"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-Poppler-GPL-Build-Review.md",
+      "sha256": "62d85ef4e17f42e7de1f9ce310094b35161a9e96a8109696e43dbdf90df280e5"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\files\\NOTICE-Tesseract-Portable-Dependencies.md",
+      "sha256": "1531d347485ed3ff5992843353881d1bad87568e86f6adef7b4435deeec21ded"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\manifest.json",
+      "sha256": "bd48ef2c0bf86d5be6dc3ac5b62fb140c051c2e407b002c258a4b12739089f10"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\manifest.sample.json",
+      "sha256": "bd48ef2c0bf86d5be6dc3ac5b62fb140c051c2e407b002c258a4b12739089f10"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\prune_stale_collected_licenses.py",
+      "sha256": "2e60279c81919a8ff92ae8f07785cfe65f0bbd6d33eacd9c84973380a89b5ed6"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\Run-Collect-And-Deduplicate-ThirdPartyLicenses.cmd",
+      "sha256": "391d976dc21f1ca272f17566e40feb1c0370a6dd8ce06824830f92dfa6a289e3"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\Run-Collect-ThirdPartyLicenses-Python.cmd",
+      "sha256": "af0c505e0e1c5b6a2c7b4313360a12c3a087329074befd0c05a44e713f4509c1"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\Run-Collect-ThirdPartyLicenses.cmd",
+      "sha256": "91238c3ddbf54a407cf60088f4abcd0ccfd512ece2559cd7ad5f3b4e8ceaf2c7"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\Run-Collect-ThirdPartyLicenses.sh",
+      "sha256": "38d4c975b97d7facd0e22ccc84cca804ef3e17dfe7edeb48bf7d03c369d7f135"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\Run-Deduplicate-ThirdPartyLicenses.cmd",
+      "sha256": "d27191d0b01f77dedb2189a3ec7fc5d22bcbf3771b6d83f5ee71e3f1c4e6ba73"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\license\\Run-Prune-Stale-ThirdPartyLicenses.cmd",
+      "sha256": "c93d1529dd2f80e330a3c7fdc40aee6c0e9561857841559d660d477b5a806f0c"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\main.py",
+      "sha256": "1caea52ba9fe34af711d276602841c242ac4c95d3f5a99ec39e5ad4878f92cd6"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\Parser_Diagnostic.py",
+      "sha256": "fc140f592f5df6b7a390bb27e104e0eaa439d43336f3d9d8e766651f6cc66f67"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\remove_empty_rows.cmd",
+      "sha256": "e84d6b13c1ba2ceb237af9af8332132f6207b55d1788a626e90510d2c61ad7ca"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\remove_empty_rows.py",
+      "sha256": "c4a22e05964f961f20f2a8447f501856c2d813f34c1d63382271f3765a2b565f"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\safe_table_join.py",
+      "sha256": "8a9db419a07537af14c508a2a8c9eb5201eefc6c5e85b0ccf6396f8c3634d649"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\services\\__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\services\\address_aligner_service.py",
+      "sha256": "7228744de51e0326cd595292b0696ae6c162423803af27200a1258e39c77d4d4"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\start_launcher\\StartLauncher.cs",
+      "sha256": "e6b2baa928beb24b22e8ae51187ae4902c415db6f93061df3d1e497179dc1168"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\start_launcher\\StartLauncher.manifest",
+      "sha256": "bc196c2b13d4d9f13c7fb0c6bb79d84adff9756fec384dc6bd70796dfc7665ea"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\app.py",
+      "sha256": "5c9401d6393f31a21c8e1fa8b3dc46f2a00561181202d96c5eb8ea1d48c08bda"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\base.css",
+      "sha256": "9e7185ae335dbaa4a317849013c7e59b84715ef7127c6033b744c7af372d9a1e"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\i18n.py",
+      "sha256": "924543e85b0cc94462d8f73b47b17ab0f5c78356ba49741abdf3f7e4befdc261"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\theme.css",
+      "sha256": "5d25c5ff32400afff443adb399d7b2cbc512c51d0d9ca76f0f8bef09a9db09e3"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\tokens.css",
+      "sha256": "e0e2b1fe575cf1d60add1b73acc333c6d3aca81e80e1eb8925c764195a8d5533"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\window.py",
+      "sha256": "5d8a8c77ee8b74799d2870d1e3a4c143f3f6dd5bdb97a43e407968628acd77d7"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\ui_nicegui\\workbench.py",
+      "sha256": "81695288ae6c85c53faadce72bd056f4f4f974fe68e0fa561ffcf396e4a31730"
+    },
+    {
+      "path": "E:\\TOOLS\\Audion Address Processor\\system_core\\Ultimate_GT_Aligner.py",
+      "sha256": "968708bfa57e4ebd5fe25a7db37688cc724e522dd5f354eb3402c11e702a3ce2"
+    }
+  ]
+}

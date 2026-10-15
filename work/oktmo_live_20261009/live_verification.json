@@ -1,0 +1,60 @@
+{
+  "saved_cache_accepted_in_fresh_process": true,
+  "cache_source_matches_csv": true,
+  "source_sha256_matches_auditor": true,
+  "cache": {
+    "cache_path": "E:\\TOOLS\\Audion Address Processor\\data\\rosstat\\oktmo_lookup_cache.json",
+    "cache_exists": true,
+    "cache_bytes": 115054736,
+    "index_keys": 92077,
+    "contexts": 186531,
+    "municipalities": 186531,
+    "regions": 89
+  },
+  "terney_localities_found": [
+    {
+      "name": "пгт Терней",
+      "code": "05540000051"
+    },
+    {
+      "name": "пгт Пластун",
+      "code": "05540000056"
+    },
+    {
+      "name": "пгт Светлая",
+      "code": "05540000061"
+    },
+    {
+      "name": "с Агзу",
+      "code": "05540000106"
+    },
+    {
+      "name": "с Амгу",
+      "code": "05540000111"
+    },
+    {
+      "name": "с Единка",
+      "code": "05540000116"
+    },
+    {
+      "name": "с Максимовка",
+      "code": "05540000121"
+    },
+    {
+      "name": "с Малая Кема",
+      "code": "05540000126"
+    },
+    {
+      "name": "с Перетычиха",
+      "code": "05540000131"
+    },
+    {
+      "name": "с Самарга",
+      "code": "05540000136"
+    },
+    {
+      "name": "с Усть-Соболевка",
+      "code": "05540000141"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "message": "Operation finished.",
+  "data": {
+    "mode": "update-rosstat-oktmo",
+    "requested_url": "https://rosstat.gov.ru/opendata/7708234640-oktmo/",
+    "resolved_url": "https://rosstat.gov.ru/opendata/7708234640-oktmo/data-20261001T1110-structure-20260210T1102.csv",
+    "resolved_source": "discovered_from_page",
+    "output_path": "E:\\TOOLS\\Audion Address Processor\\data\\rosstat\\data-20261001T1110-structure-20260210T1102.csv",
+    "downloaded_bytes": 20125676,
+    "removed_data_files": [],
+    "cleanup_errors": [],
+    "available_data_files": [
+      "data-20261001T1110-structure-20260210T1102.csv"
+    ],
+    "latest_data_file": "data-20261001T1110-structure-20260210T1102.csv",
+    "summary_path": "E:\\TOOLS\\Audion Address Processor\\report\\rosstat_oktmo_update_summary.json",
+    "caches_cleared": true,
+    "cache": {
+      "cache_path": "E:\\TOOLS\\Audion Address Processor\\data\\rosstat\\oktmo_lookup_cache.json",
+      "cache_exists": true,
+      "cache_bytes": 115054736,
+      "index_keys": 92077,
+      "contexts": 186531,
+      "municipalities": 186531,
+      "regions": 89
+    }
+  }
+}

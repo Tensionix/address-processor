@@ -13,7 +13,7 @@ import traceback
 
 from .logging_utils import append_log, timestamp
 from .manifest import Operation
-from .output_decode import decode_process_bytes
+from .output_decode import StreamDecoder
 from .paths import ProjectPaths
 
 
@@ -218,8 +218,10 @@ def _decode_utf16ish(raw_line: bytes) -> str | None:
         return data.decode(encoding, errors="replace")
 
 
-def decode_process_line(raw_line: bytes) -> str:
-    return decode_process_bytes(raw_line)
+def decode_process_line(raw_line: bytes, decoder: StreamDecoder | None = None) -> str:
+    """A line of a program that is not Python, in the encoding it was written in (core/output_decode.py): the decoder of the
+    program keeps the encoding its first telling line showed."""
+    return (decoder or StreamDecoder()).decode(raw_line)
 
 
 SPINNER_FRAME_CHARS = set("-\\|/ \t")
@@ -230,8 +232,8 @@ def _is_spinner_only_line(line: str) -> bool:
     return bool(stripped) and all(char in SPINNER_FRAME_CHARS for char in line)
 
 
-def decoded_process_lines(raw_line: bytes | str) -> list[str]:
-    text = str(raw_line) if isinstance(raw_line, str) else decode_process_bytes(raw_line)
+def decoded_process_lines(raw_line: bytes | str, decoder: StreamDecoder | None = None) -> list[str]:
+    text = str(raw_line) if isinstance(raw_line, str) else decode_process_line(raw_line, decoder).replace("\x00", "")
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     lines: list[str] = []
     for part in text.split("\n"):
@@ -251,8 +253,10 @@ def run_process(
     input_text: str | None = None,
     check: bool = True,
     progress_seconds: float = 600.0,
+    encoding: str | None = None,
 ) -> ProcessResult:
-    """Run a child process hidden, stream stdout/stderr into the GUI log."""
+    """Run a child process hidden, stream stdout/stderr into the GUI log. `encoding` - the encoding of a program that is not
+    Python when it is known (cp866 of a console tool, UTF-16 of another): its output is not guessed then."""
     if not command:
         raise ValueError("Command is empty.")
 
@@ -287,6 +291,7 @@ def run_process(
     lines: list[str] = []
     start = time.monotonic()
     last_progress = start
+    decoder = StreamDecoder(encoding)
 
     assert process.stdout is not None
     for raw_line in process.stdout:
@@ -299,7 +304,7 @@ def run_process(
                 process.kill()
             raise RuntimeError("Operation cancelled by user.")
 
-        for line in decoded_process_lines(raw_line):
+        for line in decoded_process_lines(raw_line, decoder):
             lines.append(line)
             context.log(line)
 

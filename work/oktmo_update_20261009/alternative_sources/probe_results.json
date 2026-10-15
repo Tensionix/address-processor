@@ -1,0 +1,34 @@
+[
+  {
+    "url": "https://rosstat.gov.ru/classification",
+    "error": "HTTPError: HTTP Error 426: "
+  },
+  {
+    "url": "https://www.rosstat.gov.ru/classification?print=1",
+    "error": "HTTPError: HTTP Error 426: "
+  },
+  {
+    "url": "https://www.gks.ru/opendata/7708234640-oktmo/data-20261001T1110-structure-20260210T1102.csv",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://gks.ru/opendata/7708234640-oktmo/",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://gks.ru/opendata/7708234640-oktmo/data-20261001T1110-structure-20260210T1102.csv",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://www.gks.ru/opendata/7708234640-oktmo/",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://www.gks.ru/opendata/dataset/7708234640-oktmo",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://gks.ru/opendata/dataset/7708234640-oktmo",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  }
+]

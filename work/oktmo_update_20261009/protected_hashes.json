@@ -1,0 +1,13 @@
+{
+  "config\\gui_settings.yaml": "c19824548ed247db1de02f35470ecc78bd81b1c05db7d39b53f0a9c6590aa8f7",
+  "config\\oktmo_current_keys.txt": "c6d19bbe8dd1001823d51ab659082ab8231f2237bb8c9a69468b0a5bd2a915b3",
+  "config\\oktmo_municipality_pins.json": "2fe63cbd9a7e8a40317313170b9e4c8f6b3a4de15aeb4455c0abf5be4d1d7377",
+  "config\\oktmo_pins_bundle.json": "90292f14e0a1a4226ed1f283afa32316a9693b99b9ffc38ec666ca5dee1e693a",
+  "config\\oktmo_region_pins.json": "f767a0972f8e2299bf561a0c3f5851cb57cccafd25a141700e2d571107215e8d",
+  "config\\path_history.json": "f086aca2c41f9ac3904ae6374871d5e7a11437349f09a47ebcc5380d1afd1416",
+  "config\\project.yaml": "fc9d0d2e761748aad27f7e33df806806fefd744b6d049ce745b56e14c6f3a983",
+  "config\\tool_manifest.yaml": "713d38890adafa463213302ffe68d07b0f2406864d7bbc7e3de0eb8c834d1ea7",
+  "config\\ui_colors.yaml": "fc6b9d0200b9666e5501364149e1548c23bd68d56ab0b420b39bc2daf3905410",
+  "config\\version.json": "063f1250b233fbd40dcc6b7ae95c0872bde425d65b100430fb843be35961a247",
+  "data\\regions_reference.yaml": "396d5c504d6242efb2a9a955e5b8242e6f2e7be687eb411ed29ab3155905afdf"
+}

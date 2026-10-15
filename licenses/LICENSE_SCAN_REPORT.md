@@ -1,7 +1,7 @@
 # Audion Build Licenses Scan Report
 
 - Project: **Audion Address Processor** (`audion-address-processor`)
-- Run: `20261011T171218Z_audion-address-processor_675014a2`
+- Run: `20261015T231850Z_audion-address-processor_4cdebd1a`
 - Scan root (from the project root): `.`
 - Output (from the project root): `licenses`
 - Status: **REVIEW**
@@ -56,7 +56,7 @@
 | Microsoft.Management.Infrastructure | `UNCHANGED` | 3.0.0 | 3.0.0 |
 | Microsoft.Management.Infrastructure.CimCmdlets | `UNCHANGED` | 7.6.6 | 7.6.6 |
 | Microsoft.Management.Infrastructure.Runtime.Win | `UNCHANGED` | 3.0.0 | 3.0.0 |
-| Microsoft.NETCore.App.Runtime.win-x64 | `UNCHANGED` | 10.0.12 | 10.0.12 |
+| Microsoft.NETCore.App.Runtime.win-x64 | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 10.0.12 | 10.0.13 |
 | Microsoft.PowerShell.Commands.Diagnostics | `UNCHANGED` | 7.6.6 | 7.6.6 |
 | Microsoft.PowerShell.Commands.Management | `UNCHANGED` | 7.6.6 | 7.6.6 |
 | Microsoft.PowerShell.Commands.Utility | `UNCHANGED` | 7.6.6 | 7.6.6 |
@@ -78,7 +78,7 @@
 | packaging | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 26.3 | 26.3 |
 | pandas | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 3.0.6 | 3.0.6 |
 | pip | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 26.2.1 | 26.2.1 |
-| pluggy | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.6.0 | 1.6.0 |
+| pluggy | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 1.6.0 | 1.7.0 |
 | Pygments | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.21.0 | 2.21.0 |
 | pymorphy3 | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.0.6 | 2.0.6 |
 | pymorphy3-dicts-ru | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 2.4.417150.4580142 | 2.4.417150.4580142 |
@@ -115,9 +115,9 @@
 | System.Net.Http.WinHttpHandler | `UNCHANGED` | 10.0.5 | 10.0.5 |
 | System.Reflection.Context | `UNCHANGED` | 10.0.5 | 10.0.5 |
 | System.Runtime.Caching | `UNCHANGED` | 10.0.5 | 10.0.5 |
-| System.Security.Cryptography.Pkcs | `UNCHANGED` | 10.0.10 | 10.0.10 |
+| System.Security.Cryptography.Pkcs | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 10.0.10 | 10.0.13 |
 | System.Security.Cryptography.ProtectedData | `UNCHANGED` | 10.0.5 | 10.0.5 |
-| System.Security.Cryptography.Xml | `UNCHANGED` | 10.0.10 | 10.0.10 |
+| System.Security.Cryptography.Xml | `VERSION_OR_ARTIFACT_CHANGED_LICENSE_SAME` | 10.0.10 | 10.0.13 |
 | System.Security.Permissions | `UNCHANGED` | 10.0.5 | 10.0.5 |
 | System.ServiceModel.Http | `UNCHANGED` | 10.0.652802 | 10.0.652802 |
 | System.ServiceModel.NetFramingBase | `UNCHANGED` | 10.0.652802 | 10.0.652802 |

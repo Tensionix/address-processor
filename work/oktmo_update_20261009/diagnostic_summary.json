@@ -1,0 +1,74 @@
+{
+  "stock_update": {
+    "ok": false,
+    "message": "HTTPError: HTTP Error 502: Bad Gateway",
+    "data": {}
+  },
+  "network_probe": [
+    {
+      "url": "https://rosstat.gov.ru/",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway",
+      "content_type": "text/html",
+      "server": "nginx",
+      "via": null,
+      "server_error_page": true
+    },
+    {
+      "url": "https://rosstat.gov.ru/opendata/7708234640-oktmo",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway",
+      "content_type": "text/html",
+      "server": "nginx",
+      "via": null,
+      "server_error_page": true
+    },
+    {
+      "url": "https://rosstat.gov.ru/opendata/7708234640-oktmo/meta.csv",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway",
+      "content_type": "text/html",
+      "server": "nginx",
+      "via": null,
+      "server_error_page": true
+    },
+    {
+      "url": "https://rosstat.gov.ru/opendata/7708234640-oktmo/data-20261001T1110-structure-20260210T1102.csv",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway",
+      "content_type": "text/html",
+      "server": "nginx",
+      "via": null,
+      "server_error_page": true
+    }
+  ],
+  "certificate_issuer": [
+    [
+      [
+        "countryName",
+        "RU"
+      ]
+    ],
+    [
+      [
+        "organizationName",
+        "The Ministry of Digital Development and Communications"
+      ]
+    ],
+    [
+      [
+        "commonName",
+        "Russian Trusted Sub CA"
+      ]
+    ]
+  ],
+  "certificate_not_before": "Dec  8 13:11:54 2025 GMT",
+  "certificate_not_after": "Dec  8 13:11:54 2026 GMT",
+  "browser_error": "net::ERR_CERT_AUTHORITY_INVALID",
+  "protected_files_checked": 11,
+  "protected_files_changed": [],
+  "source_files_changed": [],
+  "local_rosstat_csv_files": [],
+  "comparison": {
+    "shared_default_source": "https://rosstat.gov.ru/opendata/7708234640-oktmo/",
+    "address_processor_streams_download": true,
+    "address_processor_supports_source_environment": true,
+    "address_processor_rebuilds_lookup_cache_immediately": true
+  }
+}
